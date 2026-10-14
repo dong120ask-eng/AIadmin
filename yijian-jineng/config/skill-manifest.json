@@ -1,7 +1,7 @@
 {
-  "version": "2026-10-14-r7",
-  "skill_count": 47,
-  "platform_count": 17,
+  "version": "2026-10-14-r8",
+  "skill_count": 54,
+  "platform_count": 23,
   "skills": [
     {
       "name": "account-content-calendar",
@@ -189,6 +189,16 @@
       ]
     },
     {
+      "name": "platform-content-adapter",
+      "description": "为简书、美篇、豆瓣日记及YouTube、TikTok、X验证体裁、真实素材交接和任务绑定的平台设置，输出可核验交接单并阻止缺设置的自动执行。",
+      "entry": "skills/platform-content-adapter/SKILL.md",
+      "development": "script-and-instructions",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": [
+        "skills/platform-content-adapter/scripts/adapter.py"
+      ]
+    },
+    {
       "name": "platform-publish-router",
       "description": "把电脑已保存的成果按账号与平台入队，恢复发布进度并调度专用平台、USB手机、模拟器或网页控制技能。",
       "entry": "skills/platform-publish-router/SKILL.md",
@@ -249,9 +259,25 @@
       "scripts": []
     },
     {
+      "name": "publish-douban",
+      "description": "为豆瓣日记自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-douban/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
       "name": "publish-douyin",
       "description": "为抖音的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
       "entry": "skills/publish-douyin/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
+      "name": "publish-jianshu",
+      "description": "为简书自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-jianshu/SKILL.md",
       "development": "shared-platform-executor",
       "runtime_acceptance": "pending-real-environment",
       "scripts": []
@@ -268,6 +294,14 @@
       "name": "publish-kuaishou",
       "description": "为快手的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
       "entry": "skills/publish-kuaishou/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
+      "name": "publish-meipian",
+      "description": "为美篇自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-meipian/SKILL.md",
       "development": "shared-platform-executor",
       "runtime_acceptance": "pending-real-environment",
       "scripts": []
@@ -292,6 +326,14 @@
       "name": "publish-sohu",
       "description": "为搜狐号自有账号适配文章、图文或视频，调用经真实校准的发布执行器准备草稿、核对发布确认与结果。",
       "entry": "skills/publish-sohu/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
+      "name": "publish-tiktok",
+      "description": "为TikTok自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-tiktok/SKILL.md",
       "development": "shared-platform-executor",
       "runtime_acceptance": "pending-real-environment",
       "scripts": []
@@ -329,6 +371,14 @@
       "scripts": []
     },
     {
+      "name": "publish-x",
+      "description": "为X自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-x/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
       "name": "publish-xiaohongshu",
       "description": "为小红书的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
       "entry": "skills/publish-xiaohongshu/SKILL.md",
@@ -340,6 +390,14 @@
       "name": "publish-xigua",
       "description": "为西瓜视频的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
       "entry": "skills/publish-xigua/SKILL.md",
+      "development": "shared-platform-executor",
+      "runtime_acceptance": "pending-real-environment",
+      "scripts": []
+    },
+    {
+      "name": "publish-youtube",
+      "description": "为YouTube自有账号准备电脑稿件、验证体裁与必要平台设置，经真实校准执行草稿和单次提交，记录作品结果。",
+      "entry": "skills/publish-youtube/SKILL.md",
       "development": "shared-platform-executor",
       "runtime_acceptance": "pending-real-environment",
       "scripts": []

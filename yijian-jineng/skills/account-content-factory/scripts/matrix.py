@@ -3,12 +3,18 @@ import argparse,json,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"selfmedia-autopilot/scripts"))
 from common import read,save,inside,identifier,digest
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'platform-content-adapter/scripts'))
+from adapter import capabilities
 def build(root,spec,output):
     root=Path(root).resolve(); data=read(inside(root,spec,True)); campaign=identifier(data["id"])
     products={identifier(p["id"]):p for p in data["products"]}
     if len(products)!=len(data["products"]) or not data["accounts"] or not data["topics"]: raise ValueError("产品ID重复或账号/选题为空")
     if any(not isinstance(p.get("regulated_health"),bool) for p in products.values()): raise ValueError("每个产品需确认regulated_health实际类别标记")
     ids=[identifier(a["id"]) for a in data["accounts"]]
+    policies=capabilities()
+    for account in data['accounts']:
+        policy=policies.get(account['platform'])
+        if policy and account['format'] not in policy['formats']: raise ValueError('该平台尚未实现这个体裁：'+account['platform'])
     if len(ids)!=len(set(ids)): raise ValueError("账号标识重复")
     tids=[identifier(t['id']) for t in data['topics']]
     if len(tids)!=len(set(tids)): raise ValueError('选题标识重复')

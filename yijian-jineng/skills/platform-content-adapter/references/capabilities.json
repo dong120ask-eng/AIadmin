@@ -1,0 +1,105 @@
+{
+  "schema": "platform-capabilities/v1",
+  "platforms": {
+    "jianshu": {
+      "name": "简书",
+      "formats": [
+        "article"
+      ],
+      "uses_title": true,
+      "review_fields": [
+        "editor_format",
+        "image_order",
+        "originality",
+        "visibility"
+      ],
+      "source": "https://www3.jianshu.com/apps",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    },
+    "meipian": {
+      "name": "美篇",
+      "formats": [
+        "article",
+        "image"
+      ],
+      "uses_title": true,
+      "review_fields": [
+        "layout_preview",
+        "image_order",
+        "rights",
+        "visibility"
+      ],
+      "source": "https://www.meipian.cn/",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    },
+    "douban": {
+      "name": "豆瓣日记",
+      "formats": [
+        "article"
+      ],
+      "uses_title": true,
+      "review_fields": [
+        "diary_entry",
+        "originality",
+        "visibility"
+      ],
+      "source": "https://help.douban.com/diary?app=1",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    },
+    "youtube": {
+      "name": "YouTube",
+      "formats": [
+        "video"
+      ],
+      "uses_title": true,
+      "review_fields": [
+        "channel_identity",
+        "audience",
+        "rights",
+        "disclosure",
+        "visibility"
+      ],
+      "source": "https://support.google.com/youtube/answer/57407",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    },
+    "tiktok": {
+      "name": "TikTok",
+      "formats": [
+        "video"
+      ],
+      "uses_title": false,
+      "review_fields": [
+        "account_identity",
+        "music_rights",
+        "disclosure",
+        "visibility"
+      ],
+      "source": "https://support.tiktok.com/en/using-tiktok/creating-videos/creator-tools-on-tiktok",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    },
+    "x": {
+      "name": "X",
+      "formats": [
+        "text",
+        "image",
+        "video"
+      ],
+      "uses_title": false,
+      "review_fields": [
+        "post_type",
+        "account_limits",
+        "rights",
+        "visibility"
+      ],
+      "source": "https://help.x.com/en/using-x/how-to-post",
+      "checked_on": "2026-10-14",
+      "runtime_acceptance": "pending-real-page"
+    }
+  },
+  "note": "本工具实现范围，不等于平台全部能力。长度、尺寸、时长与账号权限需按当前页面核验。"
+}

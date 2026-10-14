@@ -9,5 +9,5 @@ for f in sorted((ROOT/'skills').glob('*/SKILL.md')):
     kind='shared-platform-executor' if f.parent.name.startswith('publish-') else 'script-and-instructions' if scripts else 'instruction-workflow'
     entries.append({'name':meta['name'],'description':meta['description'],'entry':f.relative_to(ROOT).as_posix(),'development':kind,'runtime_acceptance':'pending-real-environment','scripts':[s.relative_to(ROOT).as_posix() for s in scripts]})
 platforms=json.loads((ROOT/'config/platforms.json').read_text(encoding='utf-8'))['platforms']
-(ROOT/'config/skill-manifest.json').write_text(json.dumps({'version':'2026-10-14-r7','skill_count':len(entries),'platform_count':len(platforms),'skills':entries},ensure_ascii=False,indent=2),encoding='utf-8')
+(ROOT/'config/skill-manifest.json').write_text(json.dumps({'version':'2026-10-14-r8','skill_count':len(entries),'platform_count':len(platforms),'skills':entries},ensure_ascii=False,indent=2),encoding='utf-8')
 print('skills:',len(entries),'platforms:',len(platforms))

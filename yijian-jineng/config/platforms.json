@@ -186,6 +186,72 @@
       "skill": "publish-dayu",
       "calibration": "runtime-observation-required",
       "tested": false
+    },
+    {
+      "id": "jianshu",
+      "name": "简书",
+      "candidate_package": null,
+      "creator_url": "https://www.jianshu.com/",
+      "fields": "核对当前Markdown或富文本编辑器、正文图片顺序、文集/专题入口是否存在及原创设置；不自动投送专题。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-jianshu",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "meipian",
+      "name": "美篇",
+      "candidate_package": null,
+      "creator_url": "https://www.meipian.cn/",
+      "fields": "核对当前图文排版、图片顺序、封面与模板预览；不得把普通文字填入当作整篇富文本排版完成。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-meipian",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "douban",
+      "name": "豆瓣日记",
+      "candidate_package": null,
+      "creator_url": "https://www.douban.com/",
+      "fields": "本实现仅做自有账号日记，不做小组自动群发、书影音评分或虚构评论；核对当前日记编辑页和原创声明条件。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-douban",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "candidate_package": null,
+      "creator_url": "https://studio.youtube.com/",
+      "fields": "核对频道身份、受众设置、素材版权、适用内容披露、上传处理进度及可见性；处理完成与公开发布分别核验，不把视频文件选中当作上传完成。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-youtube",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "candidate_package": null,
+      "creator_url": "https://www.tiktok.com/",
+      "fields": "核对实际账号、音乐授权、适用内容披露、描述和可见性；没有账号或地区可用入口时记录阻塞，不绕过平台限制。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-tiktok",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "x",
+      "name": "X",
+      "candidate_package": null,
+      "creator_url": "https://x.com/",
+      "fields": "文案使用正文而不是标题；只支持单条帖子，先核对当前账号的文字与素材限制，不把长文自动拆成未经确认的串帖；提交后核对帖子链接。",
+      "verification": "实际作品ID/链接、当前账号与发布状态",
+      "skill": "publish-x",
+      "calibration": "runtime-observation-required",
+      "tested": false
     }
   ],
   "note": "平台操作由当前宿主按实时观察调用已实现控制器；不是已经真机测试的固定选择器"

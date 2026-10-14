@@ -4,8 +4,10 @@ from pathlib import Path
 from urllib.parse import urlparse
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'selfmedia-autopilot/scripts'))
 from runtime import ledger,read,save,inside,digest,instant,proof
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'platform-content-adapter/scripts'))
+from adapter import validate_review
 FINAL={'发布','发表','投稿','提交','发送','群发','确认发布','立即发布','publish','post','submit','send'}
-def validate(profile,task=None):
+def validate(profile,task=None,platform_settings=True):
     if profile.get('schema')!='publishing-profile/v1' or profile.get('backend') not in ('android','browser'): raise ValueError('发布配置版本或后端无效')
     for k in ('platform','account_id','device_id','location','identity_selector','visibility_value','visibility_selector','visibility_text'):
         if not profile.get(k): raise ValueError('发布配置缺 '+k)
@@ -24,6 +26,7 @@ def validate(profile,task=None):
         if step['action']=='files' and profile['backend']!='browser': raise ValueError('Android素材选择需实际文件选择器的校准点击步骤')
         if step['action']=='fill' and step.get('value') not in ('title','body'): raise ValueError('文字只能读取当前任务的title/body')
         if step['action']=='click' and step.get('purpose') not in ('navigation','editor','save-draft'): raise ValueError('点击必须标明已校准的非发布用途')
+    if task and platform_settings: validate_review(task,profile)
     return profile
 class Android:
     def __init__(self,p):
@@ -85,6 +88,7 @@ def execute(root,task_id,profile,mode,backend):
     l=ledger(root); folder=inside(root,'evidence/workflows/'+task_id+'/'+uuid.uuid4().hex); folder.mkdir(parents=True)
     try:
         task=l.load(task_id); validate(profile,task); l.check(task); l.owns(task)
+        for item in profile.get('platform_review',{}).get('evidence',[]): proof(l.root,item)
         if profile.get('calibrated') is not True or not profile.get('verified_by'): raise ValueError('配置尚未校准')
         instant(profile['verified_at'])
         for item in profile.get('calibration_evidence',[]): proof(l.root,item)
@@ -120,7 +124,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__); p.add_argument('mode',choices=('observe','prepare','submit'))
     for k in ('root','task','profile'): p.add_argument('--'+k,required=True)
     p.add_argument('--apply',action='store_true'); a=p.parse_args(); profile=read(inside(a.root,a.profile,True)); l=ledger(a.root)
-    try: task=l.load(a.task); validate(profile,task)
+    try: task=l.load(a.task); validate(profile,task,platform_settings=a.mode!='observe')
     finally: l.db.close()
     if not a.apply:
         print(json.dumps({'mode':'plan','operation':a.mode,'platform':profile['platform'],'task':a.task,'steps':profile.get('draft_steps',[]),'note':'未连接设备或浏览器'},ensure_ascii=False)); sys.exit()
@@ -128,6 +132,7 @@ if __name__=='__main__':
         if profile.get('calibrated') is not True or not profile.get('calibration_evidence'): raise ValueError('配置未校准；尚未连接设备')
         if task['state']!=('reviewed' if a.mode=='prepare' else 'publishing'): raise ValueError('任务阶段不允许该操作；尚未连接设备')
         for record in profile['calibration_evidence']: proof(Path(a.root).resolve(),record)
+        for record in profile.get('platform_review',{}).get('evidence',[]): proof(Path(a.root).resolve(),record)
         l=ledger(a.root)
         try: l.check(task); l.owns(task)
         finally: l.db.close()
