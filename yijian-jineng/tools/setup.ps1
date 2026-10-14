@@ -27,7 +27,8 @@ if (!$Plan) {
     New-Item -ItemType Directory -Path $release -Force | Out-Null
     Copy-Item -LiteralPath $bundle -Destination $release -Recurse
     $localBundle = Join-Path $release (Split-Path -Leaf $bundle)
-    @{ bundle=$localBundle; python=(Join-Path $localBundle 'offline\runtime\python.exe'); skills=30; time=(Get-Date -Format o) } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $target 'deployment-latest.json') -Encoding UTF8
+    $skillCount=@(Get-ChildItem -LiteralPath (Join-Path $bundle 'skills') -Directory | Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md') }).Count
+    @{ bundle=$localBundle; python=(Join-Path $localBundle 'offline\runtime\python.exe'); skills=$skillCount; time=(Get-Date -Format o) } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $target 'deployment-latest.json') -Encoding UTF8
     Write-Host ('Complete. Local tools: ' + $localBundle)
 }
 Write-Host ('Open this project folder in DeepSeek Harness / WorkBuddy / Codex: ' + $target)

@@ -10,4 +10,10 @@ PY为项目.venv-harness/Scripts/python.exe或已安装依赖的Python。ROOT是
 7. 发布：queue.py next --root ROOT --task TASK；按publish-*与dsh-account-matrix、dsh-android-control读取真实页面，使用锁、实际账号和内容确认。UI/浏览器submit包含一次attempt，不在外层再调用第二次attempt。
 8. 结果：实际核验作品状态后complete；未知用uncertain；确认未发才not-published并重新确认。
 
-样例是结构演示，不是真实产品、账号或发布授权。账号、设备、API端点和模型按用户真实环境配置。当前开发交付阶段不进行模型调用或真机发布测试。
+样例是结构演示，不是真实产品、账号或发布授权。账号、设备、API端点和模型按用户真实环境配置。实际执行依据当前用户请求。
+
+补齐模块：sources.py导入原始来源；remix.py生成事实与抽象框架提示；formatting.py导出安全文章HTML；quality.py --review 审核JSON --apply才转reviewed；calendar.py规划带时区账号/设备日历；assets.py登记权利与重复使用；analytics.py导入平台CSV；experiment.py做方案比较；adapt.py处理已有视频的横竖画幅与片段；export.py导出已质检任务交接包；bridge.py适配不同助手。
+
+真实UI步骤：engine.py observe --apply取得截图和结构 → calibrate.py绑定这些证据 → engine.py prepare --apply填写并存草稿。profile填写实际账户锚点、控件、可见性和校准证据，不能直接用example。完整包tools/batch_prepare.py --root ROOT --spec 批次草稿JSON先计划，再apply；每项提供task_id/profile/review，批量只准备草稿，不偷偷批准或发布。
+
+最终发布沿用ops.py approve/begin及engine.py submit --apply。异常由recovery.py基于真实作品证据核验。旧版非结构化QA任务应重新建任务并审核，不复用旧审批。

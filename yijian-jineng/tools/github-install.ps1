@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory=$true,ParameterSetName='Url')][string]$ReleaseUrl,
     [Parameter(Mandatory=$true,ParameterSetName='Repo')][string]$Repository,
     [Parameter(Mandatory=$true,ParameterSetName='Repo')][string]$Version,
-    [Parameter(ParameterSetName='Repo')][string]$AssetName='yijian-jineng-20261014-r4.zip',
+    [Parameter(ParameterSetName='Repo')][string]$AssetName='yijian-jineng-20261014-r5.zip',
     [Parameter(Mandatory=$true)][string]$Sha256,
     [string]$TargetRoot=(Join-Path $env:USERPROFILE 'SelfMediaWorkspace')
 )

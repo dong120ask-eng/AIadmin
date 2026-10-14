@@ -1,0 +1,242 @@
+{
+  "static_validation": true,
+  "skills": [
+    {
+      "name": "account-content-calendar",
+      "description": "按带时区的起始时间、账号日上限与设备串行时段规划内容任务，不直接执行定时发帖。",
+      "files": 3
+    },
+    {
+      "name": "account-content-factory",
+      "description": "按分类、产品、平台和账号人设混合规划独立内容任务，生成账号专属稿件与制作规格，用于一键批量内容工厂。",
+      "files": 6
+    },
+    {
+      "name": "asset-library",
+      "description": "用内容指纹登记图片视频来源与权利，记录账号使用，检查库内素材变化和跨账号复用。",
+      "files": 3
+    },
+    {
+      "name": "assistant-deployment-bridge",
+      "description": "向Harness、WorkBuddy与Codex部署真实技能目录，为普通豆包和千问客户端导出资料与调用指令。",
+      "files": 2
+    },
+    {
+      "name": "browser-publish-control",
+      "description": "在明确指定的本机浏览器页面上核验账号并准备稿件，支持文字、文件、点击和经确认的最终提交。",
+      "files": 2
+    },
+    {
+      "name": "content-experiment-lab",
+      "description": "可重复分配创意方案，对带真实来源的二项指标计算区间并识别样本不足，供选题、标题与结构优化。",
+      "files": 3
+    },
+    {
+      "name": "content-framework-remix",
+      "description": "把已拆解的内容框架应用到自己的产品和账号，重写叙事、论证与视觉结构，产出原创稿件和制作清单。",
+      "files": 2
+    },
+    {
+      "name": "content-package-export",
+      "description": "把一个已质检任务的正文与媒体打包为指纹可核验交接ZIP，供USB手机、模拟器或其他执行宿主接续。",
+      "files": 3
+    },
+    {
+      "name": "content-quality-gate",
+      "description": "检查真实任务的事实审核、使用权、平台规则、文本占位、图片及视频证据，生成与当前素材指纹绑定的质检报告。",
+      "files": 3
+    },
+    {
+      "name": "content-source-library",
+      "description": "导入公开或授权的文本、HTML与RSS，保存原始来源、采集时间和正文指纹，供爆款学习及事实追溯。",
+      "files": 3
+    },
+    {
+      "name": "desktop-media-production",
+      "description": "在电脑生成中文卡片、配音字幕短视频并核验文件，随后将保存好的素材交给手机或模拟器发布。",
+      "files": 5
+    },
+    {
+      "name": "dsh-account-matrix",
+      "description": "登记 Android App 原版与分身实例、核对运营账号，串行安排同手机多账号任务，并防止素材变更后沿用旧发布确认。",
+      "files": 1
+    },
+    {
+      "name": "dsh-android-control",
+      "description": "用显式指定设备的 ADB 检查 Android、截图、列出应用与系统用户、启动已安装 App 和传入素材；适用于本地手机草稿准备。",
+      "files": 5
+    },
+    {
+      "name": "dsh-app-publishing",
+      "description": "将已质检内容放入指定 App 或网页创作者后台的草稿，核对账号与预览，在明确发布确认后执行并核验作品结果。",
+      "files": 2
+    },
+    {
+      "name": "dsh-content-studio",
+      "description": "在本地制作中文图文、平台稿件和短视频素材；复用已有渲染器并产出可交接的质检报告，适用于手机发布前的内容生产。",
+      "files": 4
+    },
+    {
+      "name": "dsh-selfmedia-hub",
+      "description": "接续 Windows 本地自媒体项目，检查能力、调度内容制作与手机草稿任务，并用带素材指纹的台账衔接发布确认和结果核验。",
+      "files": 5
+    },
+    {
+      "name": "memu-multi-instance",
+      "description": "使用逍遥MEmu官方MEMUC管理多开实例并接入ADB发布设备，适用于模拟器创建、克隆、启停和应用安装。",
+      "files": 3
+    },
+    {
+      "name": "model-provider-runtime",
+      "description": "调用明确选择的兼容模型API，记录每日令牌预留与调用上限，对429有限退避，连接结果不明时停止。",
+      "files": 3
+    },
+    {
+      "name": "platform-publish-router",
+      "description": "把电脑已保存的成果按账号与平台入队，恢复发布进度并调度专用平台、USB手机、模拟器或网页控制技能。",
+      "files": 3
+    },
+    {
+      "name": "product-analysis-local",
+      "description": "分析商品的市场、竞品、用户与差异化，或从软件截图分析功能和交互；复用本地产品分析资料，输出有事实依据的分析报告及后续内容制作任务。",
+      "files": 9
+    },
+    {
+      "name": "product-market-marketing",
+      "description": "整合37本经典营销著作+GEO自动化实战+专业GEO审计与SEO技术审计，提供战略理论到种草双引擎内容创作、电商平台差异化运营、媒体投放与达人策略、团队配置、数据追踪的全链路营销方案；当用户需要营销策划、品牌定位、种草文案、软性种草、私域/直播/电商运营、活动策划、数据分析、爆款复刻、选号策略、GEO审计、AI搜索优化、SEO技术审计时使用",
+      "files": 106
+    },
+    {
+      "name": "publish-baijiahao",
+      "description": "为百家号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-bilibili",
+      "description": "为哔哩哔哩的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-csdn",
+      "description": "为CSDN的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-dayu",
+      "description": "为大鱼号自有账号适配文章、图文或视频，调用经真实校准的发布执行器准备草稿、核对发布确认与结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-douyin",
+      "description": "为抖音的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-juejin",
+      "description": "为掘金的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-kuaishou",
+      "description": "为快手的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-netease",
+      "description": "为网易号自有账号适配文章、图文或视频，调用经真实校准的发布执行器准备草稿、核对发布确认与结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-penguin",
+      "description": "为企鹅号自有账号适配文章、图文或视频，调用经真实校准的发布执行器准备草稿、核对发布确认与结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-sohu",
+      "description": "为搜狐号自有账号适配文章、图文或视频，调用经真实校准的发布执行器准备草稿、核对发布确认与结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-toutiao",
+      "description": "为今日头条的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-wechat-channels",
+      "description": "为微信视频号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-wechat-mp",
+      "description": "为微信公众号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-weibo",
+      "description": "为微博的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-xiaohongshu",
+      "description": "为小红书的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-xigua",
+      "description": "为西瓜视频的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-zhihu",
+      "description": "为知乎的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publishing-calibration",
+      "description": "将真实账号、页面观察与审核者绑定成可复用的Android或网页发布配置，供平台执行器使用。",
+      "files": 3
+    },
+    {
+      "name": "publishing-recovery",
+      "description": "审计中断与结果不明任务，依据精确任务、作品身份和真实证据恢复台账，避免重复投稿。",
+      "files": 3
+    },
+    {
+      "name": "publishing-workflow-runner",
+      "description": "按照已校准的具体账号页面执行真实文字、素材和草稿步骤；绑定台账与实时身份，最终提交只执行一次。",
+      "files": 3
+    },
+    {
+      "name": "selfmedia-analytics",
+      "description": "导入真实平台CSV导出，按账号、平台和2h/24h/72h观察窗汇总阅读互动，保留来源文件指纹。",
+      "files": 3
+    },
+    {
+      "name": "selfmedia-autopilot",
+      "description": "统一调度营销策划、爆款学习、混合账号内容生成、电脑制作、模拟器与USB发布任务；用户要求一键自媒体全流程时使用。",
+      "files": 7
+    },
+    {
+      "name": "software-install-maintain",
+      "description": "核对并安装自媒体所需电脑依赖、官方软件与指定Android组件，保留版本和安装记录，不重复安装。",
+      "files": 2
+    },
+    {
+      "name": "video-format-adaptation",
+      "description": "将电脑已有长中短视频按指定时间段、尺寸和帧率转码，保持原片不覆盖，输出供不同平台发布的横竖版素材与实际元数据。",
+      "files": 3
+    },
+    {
+      "name": "viral-content-learning",
+      "description": "从各平台公开或授权样本记录热度证据，拆解钩子、结构、论证、画面节奏与账号适配，建立可复用内容框架库。",
+      "files": 2
+    },
+    {
+      "name": "workspace-organizer",
+      "description": "整理本项目旧版本、资料、交付和运行成果，使用可恢复归档清单而非删除，保持技能相对资源路径完整。",
+      "files": 2
+    }
+  ],
+  "errors": [],
+  "note": "静态校验不等于真机/API/模拟器/平台发布验收"
+}

@@ -108,6 +108,10 @@ class Ledger:
                 raise ValueError("素材已改变，须新建任务并重新预览确认")
         if self.fingerprint(body) != body["fingerprint"]:
             raise ValueError("任务指纹不一致")
+        if body.get('qa'):
+            if self.file(body['qa']['path'])!=body['qa']: raise ValueError('质检证据已改变')
+            report=json.loads(self.path(body['qa']['path']).read_text(encoding='utf-8-sig'))
+            if not isinstance(report,dict) or report.get('schema')!='content-qa/v1' or report.get('passed') is not True or report.get('task_id')!=body['id'] or report.get('fingerprint')!=body['fingerprint'] or report.get('issues') or not report.get('reviewer'): raise ValueError('质检无效或来自旧版本，请重新建任务质检')
 
     def log(self, task, kind, detail):
         self.db.execute("INSERT INTO events(task,at,kind,detail) VALUES(?,?,?,?)",
@@ -146,6 +150,9 @@ class Ledger:
             elif kind == "qa":
                 if b["state"] != "prepared":
                     raise ValueError("仅 prepared 可进入 reviewed")
+                report=json.loads(self.path(evidence).read_text(encoding='utf-8-sig'))
+                if report.get('schema')!='content-qa/v1' or report.get('passed') is not True or report.get('task_id')!=key or report.get('fingerprint')!=b['fingerprint'] or report.get('issues') or not report.get('reviewer'):
+                    raise ValueError('需当前任务通过的结构化质检报告；普通文件不能代替质检')
                 b["qa"] = self.evidence(evidence)
                 b["state"] = "reviewed"
             elif kind == "draft":

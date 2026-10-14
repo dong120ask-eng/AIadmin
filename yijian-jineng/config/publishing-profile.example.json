@@ -1,0 +1,17 @@
+{
+  "schema": "publishing-profile/v1",
+  "backend": "browser",
+  "platform": "xiaohongshu",
+  "account_id": "example-account",
+  "device_id": "example-browser-instance",
+  "cdp": "http://127.0.0.1:9222",
+  "location": "https://creator.xiaohongshu.com/actual-editor-url-required",
+  "identity_selector": "ACTUAL_UNIQUE_ACCOUNT_SELECTOR_REQUIRED",
+  "visibility_value": "private",
+  "visibility_selector": "ACTUAL_VISIBILITY_SELECTOR_REQUIRED",
+  "visibility_text": "实际页面的仅自己可见文字",
+  "calibrated": false,
+  "draft_steps": [],
+  "submit_selector": "ACTUAL_SUBMIT_SELECTOR_REQUIRED",
+  "note": "示例不能直接操作，先observe并记录实际账号、URL、定位、可见性，再校准。"
+}

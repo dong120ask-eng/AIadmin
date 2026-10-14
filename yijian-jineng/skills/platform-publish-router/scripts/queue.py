@@ -19,7 +19,16 @@ def enrollment(root,plan,apply,output):
             candidates.append((job,body,content,media))
         if not apply: return {"mode":"plan","jobs":len(candidates),"note":"未建台账，未操作手机"}
         out=inside(root,output)
-        if out.exists(): raise ValueError("批次映射已存在，读取旧记录继续，不重新建同批次")
+        if out.exists():
+            mapping=read(out)
+            if mapping.get('plan_sha256')!=digest(inside(root,plan,True)): raise ValueError('批次映射不属于当前精确计划')
+            expected={job['id']:(job,body,content,media) for job,body,content,media in candidates}
+            if set(expected)!={x['job'] for x in mapping['tasks']}: raise ValueError('批次映射任务不完整')
+            for row in mapping['tasks']:
+                t=ledger.load(row['task']); job,body,content,media=expected[row['job']]; ledger.check(t)
+                if t['instance']['id']!=job['instance_id'] or t['title']!=content['title'] or t['visibility']!=job['visibility'] or t['text']!=ledger.file(body) or t['media']!=[ledger.file(f) for f in media]: raise ValueError('已入队任务和当前成果不一致')
+                row['state']=t['state']
+            return {'mode':'resumed','tasks':mapping['tasks']}
         mapped=[]
         for job,body,content,media in candidates:
             existing=next((t for t in ledger.listing() if t["instance"]["id"]==job["instance_id"] and
@@ -27,7 +36,7 @@ def enrollment(root,plan,apply,output):
                 t["text"]==ledger.file(body) and t["media"]==[ledger.file(f) for f in media]),None)
             task=existing or ledger.create(job["instance_id"],content["title"],str(body),media,job["visibility"])
             mapped.append({"job":job["id"],"task":task["id"],"platform":job["platform"],"state":task["state"]})
-        save(out,{"tasks":mapped,"note":"QA/草稿/发布授权另行记录，电脑产物先留存"})
+        save(out,{"tasks":mapped,'plan_sha256':digest(inside(root,plan,True)),"note":"QA/草稿/发布授权另行记录，电脑产物先留存"})
         return {"mode":"enrolled","tasks":mapped}
     finally: ledger.db.close()
 if __name__=="__main__":

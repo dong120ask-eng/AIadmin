@@ -1,0 +1,16 @@
+{
+  "task_id": "current-task-id-required",
+  "fingerprint": "actual-current-task-fingerprint-required",
+  "facts_reviewed": false,
+  "rights_reviewed": false,
+  "reviewer": null,
+  "platform_rules": {
+    "platform": "xiaohongshu",
+    "title_max_chars": null,
+    "body_max_chars": null,
+    "blocked_phrases": []
+  },
+  "evidence": [],
+  "regulated_health": false,
+  "note": "示例不表示审核完成；先核对产品事实、权利与当前平台规则，再填真实任务、审核者和证据指纹。"
+}

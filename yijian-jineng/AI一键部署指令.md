@@ -1,6 +1,6 @@
 # 复制下面的指令给 AI
 
-请部署这个自媒体技能套件。先定位本文件所在目录，不要假定 U 盘盘符或 D 盘路径。读取 docs/技能检查与优化报告.md，确认 Windows 10/11 x64、目标项目目录和可用空间。默认项目目录为当前用户目录下 SelfMediaWorkspace，用户指定路径优先。
+请部署这个自媒体技能套件。先定位本文件所在目录，不要假定 U 盘盘符或 D 盘路径。读取 docs/剩余技能补齐与交付清单.md 和 docs/技能检查与优化报告.md，确认 Windows 10/11 x64、目标项目目录和可用空间。默认项目目录为当前用户目录下 SelfMediaWorkspace，用户指定路径优先。
 
 执行 tools/setup.ps1 -TargetRoot "目标项目绝对路径" -Plan，核对清单与指纹。用户已要求部署时，继续执行同一命令去掉 -Plan。一次部署到 .dsh/skills、.codebuddy/skills、.agents/skills 三个目录；保留原有其他技能，记录每个宿主的备份位置。不要删除原数据。失败时停止，说明已经完成哪些宿主、哪个宿主失败，按日志恢复或重跑。部署不等于已完成真实平台验收。
 
@@ -22,12 +22,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "U盘实际路径\自媒体�
 
 ## GitHub 方式
 
-使用现有私有仓库 `dong120ask-eng/AIadmin`，技能放在全拼目录 `yijian-jineng`（一键技能），完整交付 ZIP 名称为 `yijian-jineng-20261014-r4.zip`。先核验实际Release。当前方案采用已连接GitHub上传源码及GitHub Actions构建发布，不要求本机CLI登录；具体见 docs/GitHub老仓库部署.md。
+使用现有私有仓库 `dong120ask-eng/AIadmin`，技能放在全拼目录 `yijian-jineng`（一键技能），完整交付 ZIP 名称为 `yijian-jineng-20261014-r5.zip`。先核验实际Release。当前方案采用已连接GitHub上传源码及GitHub Actions构建发布，不要求本机CLI登录；具体见 docs/GitHub老仓库部署.md。
 
 仓库拥有者把完整 ZIP 上传到版本化 GitHub Release，并在可信发布说明中给出 ZIP 的 SHA256。下载并查看 tools/github-install.ps1 后，运行：
 
 ```powershell
-.\github-install.ps1 -Repository "dong120ask-eng/AIadmin" -Version "v2026.10.14-r4" -AssetName "yijian-jineng-20261014-r4.zip" -Sha256 "发布说明中的64位SHA256" -TargetRoot "E:\我的运营项目"
+.\github-install.ps1 -Repository "dong120ask-eng/AIadmin" -Version "v2026.10.14-r5" -AssetName "yijian-jineng-20261014-r5.zip" -Sha256 "发布说明中的64位SHA256" -TargetRoot "E:\我的运营项目"
 ```
 
 这是参数示例，尚不是已发布的实际链接。仓库、版本和文件名必须与实际发布值一致；不可把 ZIP 文件上传进 Git 源码历史。私有入口需CLI登录；也可先通过已登录GitHub浏览器下载完整ZIP，再双击部署。公开仓库可以使用 -ReleaseUrl 指定真实Release链接。

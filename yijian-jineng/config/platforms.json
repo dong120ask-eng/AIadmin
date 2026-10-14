@@ -142,6 +142,50 @@
       "skill": "publish-xigua",
       "calibration": "runtime-observation-required",
       "tested": false
+    },
+    {
+      "id": "penguin",
+      "name": "企鹅号",
+      "candidate_package": null,
+      "creator_url": "https://om.qq.com/",
+      "fields": "文章/图文/视频入口与权限按当前实际页面核验",
+      "verification": "具体作品ID、账号和创作者后台状态",
+      "skill": "publish-penguin",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "netease",
+      "name": "网易号",
+      "candidate_package": null,
+      "creator_url": "https://mp.163.com/",
+      "fields": "文章/图文/视频入口与权限按当前实际页面核验",
+      "verification": "具体作品ID、账号和创作者后台状态",
+      "skill": "publish-netease",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "sohu",
+      "name": "搜狐号",
+      "candidate_package": null,
+      "creator_url": "https://mp.sohu.com/",
+      "fields": "文章/图文/视频入口与权限按当前实际页面核验",
+      "verification": "具体作品ID、账号和创作者后台状态",
+      "skill": "publish-sohu",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "dayu",
+      "name": "大鱼号",
+      "candidate_package": null,
+      "creator_url": "https://mp.dayu.com/",
+      "fields": "文章/图文/视频入口与权限按当前实际页面核验",
+      "verification": "具体作品ID、账号和创作者后台状态",
+      "skill": "publish-dayu",
+      "calibration": "runtime-observation-required",
+      "tested": false
     }
   ],
   "note": "平台操作由当前宿主按实时观察调用已实现控制器；不是已经真机测试的固定选择器"

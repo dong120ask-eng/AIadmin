@@ -3,22 +3,42 @@
     "deepseek": {
       "base_url": "https://api.deepseek.com/v1",
       "model": null,
-      "api_key_env": "DEEPSEEK_API_KEY"
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "daily_call_limit": 10,
+      "daily_token_budget": 250000,
+      "max_output_tokens": 2000,
+      "retry_429": 2,
+      "max_input_bytes": 60000
     },
     "doubao": {
       "base_url": "https://ark.cn-beijing.volces.com/api/v3",
       "model": null,
-      "api_key_env": "ARK_API_KEY"
+      "api_key_env": "ARK_API_KEY",
+      "daily_call_limit": 10,
+      "daily_token_budget": 250000,
+      "max_output_tokens": 2000,
+      "retry_429": 2,
+      "max_input_bytes": 60000
     },
     "qwen": {
       "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
       "model": null,
-      "api_key_env": "DASHSCOPE_API_KEY"
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "daily_call_limit": 10,
+      "daily_token_budget": 250000,
+      "max_output_tokens": 2000,
+      "retry_429": 2,
+      "max_input_bytes": 60000
     },
     "local": {
       "base_url": "http://127.0.0.1:8765/v1",
       "model": null,
-      "api_key_env": "LOCAL_MODEL_API_KEY"
+      "api_key_env": "LOCAL_MODEL_API_KEY",
+      "daily_call_limit": 10,
+      "daily_token_budget": 250000,
+      "max_output_tokens": 2000,
+      "retry_429": 2,
+      "max_input_bytes": 60000
     }
   },
   "note": "模型名由实际账号开通情况填写；本机地址仅配置示例，不代表存在服务。宿主原生生成不需要此文件。"

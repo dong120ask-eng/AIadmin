@@ -1,0 +1,10 @@
+{
+  "policy": {
+    "start": "2026-10-15T08:00:00+08:00",
+    "account_gap_minutes": 60,
+    "device_slot_minutes": 10,
+    "account_daily_cap": 2
+  },
+  "jobs": [],
+  "note": "填写真实任务id/account_id/device_id；示例节奏不是平台通用上限或发布授权。"
+}

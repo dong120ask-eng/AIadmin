@@ -15,6 +15,8 @@ description: 在本地制作中文图文、平台稿件和短视频素材；复�
 ## 文章
 输出 title/body/tags、配图和资料来源；分别适配公众号、小红书、头条号等，当前平台规格从官方来源或实际后台核对。涉及产品用核准资料，不编造销量、疗效或资质。正文是实际文件，不仅聊天文本。
 
+用 [文章排版](scripts/formatting.py) --root ROOT --title 标题 --text 正文MD --output 新HTML 导出保守Markdown子集的内联样式HTML，正文原始HTML被转义，非HTTPS链接不变成可执行链接。排版后仍需预览；图片上传和公众号后台粘贴按实际发布流程处理，不把本地HTML说成已发布。
+
 ## 视频
 复用本机 make_video.py、verify_output.py 和既有 cn-video-auto 流程，运行前核对 Python 模块、ffmpeg/ffprobe 路径。edge-tts 需要网络，不宣称完全离线。旧脚本依赖/素材不足就记录真实缺口。
 产出视频、封面、字幕、制作单和质检；检查画幅、音轨、字幕、时长与平台实际要求。缺少运行依赖时不得把脚本方案说成已出片。
