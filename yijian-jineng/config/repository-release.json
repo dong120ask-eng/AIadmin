@@ -1,10 +1,10 @@
 {
   "repository": "dong120ask-eng/AIadmin",
   "directory": "yijian-jineng",
-  "version": "v2026.10.14-r5",
-  "asset": "yijian-jineng-20261014-r5.zip",
+  "version": "v2026.10.14-r6",
+  "asset": "yijian-jineng-20261014-r6.zip",
   "visibility": "private",
   "publication": "verify GitHub release before treating the download as available",
   "skill_count": 47,
-  "regression_tests": 51
+  "regression_tests": 52
 }

@@ -149,6 +149,9 @@ class LibraryTests(Base):
     def test_html_import_removes_scripts_and_deduplicates(self):
         self.write('source.html','<p>正文事实</p><script>bad()</script>'); self.write('metadata.json',{'source_url':'https://example.com/article','access':'public','collected_at':'2026-10-14T10:00:00+08:00'})
         a=sources.ingest(self.root,'source.html','metadata.json'); b=sources.ingest(self.root,'source.html','metadata.json'); self.assertEqual(a['id'],b['id']); self.assertNotIn('bad()',(self.root/a['path']/'body.md').read_text(encoding='utf-8'))
+    def test_multiline_source_dedup_matches_saved_fingerprint(self):
+        self.write('source.html','<p>第一段</p><p>第二段</p>'); self.write('metadata.json',{'source_url':'https://example.com/article','access':'public','collected_at':'2026-10-14T10:00:00+08:00'})
+        a=sources.ingest(self.root,'source.html','metadata.json'); b=sources.ingest(self.root,'source.html','metadata.json'); self.assertEqual(a['id'],b['id']); self.assertEqual(self.proof(a['path']+'/body.md')['sha256'],a['id'])
     def test_rss_rejects_entities(self):
         self.write('source.xml','<!DOCTYPE x [<!ENTITY e SYSTEM "file:///secret">]><rss/>'); self.write('metadata.json',{'source_url':'https://example.com/rss','access':'public','collected_at':'2026-10-14T10:00:00+08:00'})
         with self.assertRaises(ValueError): sources.ingest(self.root,'source.xml','metadata.json')

@@ -3,7 +3,7 @@ from pathlib import Path
 def read(path): return json.loads(Path(path).read_text(encoding="utf-8-sig"))
 def save(path,value):
     path=Path(path); path.parent.mkdir(parents=True,exist_ok=True)
-    with path.open("x",encoding="utf-8") as f:
+    with path.open("x",encoding="utf-8",newline="\n") as f:
         f.write(value) if isinstance(value,str) else json.dump(value,f,ensure_ascii=False,indent=2)
 def inside(root,value,exists=False):
     root=Path(root).resolve(); path=(root/value).resolve()

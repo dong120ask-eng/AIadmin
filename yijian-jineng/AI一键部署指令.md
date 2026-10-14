@@ -22,12 +22,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "U盘实际路径\自媒体�
 
 ## GitHub 方式
 
-使用现有私有仓库 `dong120ask-eng/AIadmin`，技能放在全拼目录 `yijian-jineng`（一键技能），完整交付 ZIP 名称为 `yijian-jineng-20261014-r5.zip`。先核验实际Release。当前方案采用已连接GitHub上传源码及GitHub Actions构建发布，不要求本机CLI登录；具体见 docs/GitHub老仓库部署.md。
+使用现有私有仓库 `dong120ask-eng/AIadmin`，技能放在全拼目录 `yijian-jineng`（一键技能），完整交付 ZIP 名称为 `yijian-jineng-20261014-r6.zip`。先核验实际Release。当前方案采用已连接GitHub上传源码及GitHub Actions构建发布，不要求本机CLI登录；具体见 docs/GitHub老仓库部署.md。
 
 仓库拥有者把完整 ZIP 上传到版本化 GitHub Release，并在可信发布说明中给出 ZIP 的 SHA256。下载并查看 tools/github-install.ps1 后，运行：
 
 ```powershell
-.\github-install.ps1 -Repository "dong120ask-eng/AIadmin" -Version "v2026.10.14-r5" -AssetName "yijian-jineng-20261014-r5.zip" -Sha256 "发布说明中的64位SHA256" -TargetRoot "E:\我的运营项目"
+.\github-install.ps1 -Repository "dong120ask-eng/AIadmin" -Version "v2026.10.14-r6" -AssetName "yijian-jineng-20261014-r6.zip" -Sha256 "发布说明中的64位SHA256" -TargetRoot "E:\我的运营项目"
 ```
 
 这是参数示例，尚不是已发布的实际链接。仓库、版本和文件名必须与实际发布值一致；不可把 ZIP 文件上传进 Git 源码历史。私有入口需CLI登录；也可先通过已登录GitHub浏览器下载完整ZIP，再双击部署。公开仓库可以使用 -ReleaseUrl 指定真实Release链接。
