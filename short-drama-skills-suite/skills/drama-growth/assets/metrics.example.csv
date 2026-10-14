@@ -1,0 +1,3 @@
+content_id,platform,account,language,genre,variant,cohort,window_hours,episode_seconds,plays,starts,retained_starts,completions,next_episode_clicks,likes
+demo-a,youtube,test-channel,zh-CN,suspense,A,test-cohort,24,60,1000,900,600,400,180,50
+demo-b,youtube,test-channel,zh-CN,suspense,B,test-cohort,24,60,1200,1000,720,510,250,75

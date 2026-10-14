@@ -1,0 +1,4 @@
+interface:
+  display_name: "短剧资产与一致性"
+  short_description: "固定角色服装、场景与声音设计，输出逐镜参考素材计划与方舟接入清单"
+  default_prompt: "使用 $drama-assets，为我的短剧建立角色场景资产计划，并准备支持的方舟参考图清单。"

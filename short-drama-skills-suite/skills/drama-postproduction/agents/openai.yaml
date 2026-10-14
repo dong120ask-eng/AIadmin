@@ -1,0 +1,4 @@
+interface:
+  display_name: "短剧后期与质检"
+  short_description: "短剧字幕时间轴检查与烧录、封面制作、授权音乐混音和真实成片检测"
+  default_prompt: "使用 $drama-postproduction，检查我的短剧成片并完成字幕、封面和授权配乐后期。"

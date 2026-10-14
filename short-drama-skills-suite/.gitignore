@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env*
+*.key
+*credentials*
+*cookies*
+runs/
+projects/
+verification/demo/
+verification/验收记录.json
+短剧生产技能套装/
+*.zip
+*.mp4
+*.wav
+*.mp3
+*.download

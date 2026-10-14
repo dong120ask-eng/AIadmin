@@ -1,0 +1,3 @@
+interface:
+  display_name: "短剧市场研究"
+  short_description: "基于可核验证据分析同题材案例与反例并输出原创试验假设"

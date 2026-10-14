@@ -1,0 +1,4 @@
+interface:
+  display_name: "一键短剧总控"
+  short_description: "统一启动七个短剧技能，按阶段推进策划、审稿生产、后期、发布与数据复盘"
+  default_prompt: "使用 $short-drama-hub，根据我的话题、集数、时长和本次方舟API配置，制作普通话短剧样片。"

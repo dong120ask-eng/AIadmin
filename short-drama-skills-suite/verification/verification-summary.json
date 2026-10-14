@@ -1,0 +1,24 @@
+{
+  "client_date": "2026-10-14",
+  "passed": true,
+  "test_count": 48,
+  "official_skill_validator": "not_passed_missing_PyYAML_no_install",
+  "real_ffmpeg_tests": true,
+  "model_and_api_tests": "mocked_no_paid_provider_calls",
+  "actual_provider_acceptance": false,
+  "actual_client_deployment": false,
+  "actual_platform_upload": false,
+  "visual_and_listening_acceptance": false,
+  "suites": [
+    {
+      "suite": "core",
+      "count": 29,
+      "passed": true
+    },
+    {
+      "suite": "bundle",
+      "count": 19,
+      "passed": true
+    }
+  ]
+}

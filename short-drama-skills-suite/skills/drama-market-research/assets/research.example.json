@@ -1,0 +1,7 @@
+{
+  "platform": "hongguo", "audience": "普通话悬疑漫剧观众", "genre": "suspense",
+  "research_window": "用户指定的观察时间窗",
+  "cases": [{"title": "待填写实际作品", "url": "https://example.com/sample", "accessed_at": "2026-10-14", "evidence_level": "C", "material": "synopsis", "observation": "仅能分析实际可读简介", "episode": null, "timecode": null, "metrics": [], "counterexample": false}],
+  "hypotheses": [{"change": "开场先呈现可视故障", "expected_metric": "3秒留存", "reason": "测试观众是否更快理解任务", "disconfirming_signal": "同条件留存未改善或完播下降"}],
+  "limitations": ["示例占位材料，需用真实来源替换；未观看完整短剧"]
+}

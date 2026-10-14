@@ -1,0 +1,9 @@
+{
+  "verified_at": "2026-10-14",
+  "coverage": "用户提供的三个分享链接；未宣称覆盖所有红果爆款",
+  "cases": [
+    {"url": "https://novelquickapp.com/s/k8PRy5d7Rac/", "title": "别惹这个外卖小哥", "material_id": "7680194984858897432", "status": "share_page_observed_full_episodes_unavailable", "evidence_level": "B", "tags": ["都市", "3D", "逆袭翻身", "大男主", "现代"], "metrics": {"display": "9.1万", "type": "unverified_counter", "likes": null}, "observation": "简介设置低社会地位主角与资源掌控者的冲突，以及隐藏身份和价值回应。", "inference": "可测试身份反差、主动应对、尊严兑现的叙事机制；无法据此验证逐集节奏。", "episode_observations": []},
+    {"url": "https://novelquickapp.com/s/rREpZ9wCpEI/", "title": "师尊明明无敌为何怂如蝼蚁", "material_id": "7661620637298871321", "status": "share_page_observed_full_episodes_unavailable", "evidence_level": "B", "tags": ["玄幻", "3D", "玄幻仙侠", "系统", "任务流", "扮猪吃虎", "穿越", "大男主"], "metrics": {"display": "23.8万", "type": "unverified_counter", "likes": null}, "observation": "简介中强大能力与避事性格相冲突，外部任务和危机推动行动。", "inference": "可测试能力/意愿错位、被迫行动、群像行为差异；不是已验证留存原因。", "episode_observations": []},
+    {"url": "https://novelquickapp.com/s/nzpZKMtNj7Y/", "title": "我住帐篷那天，整个豪宅区慌了", "material_id": "7678648802529512510", "status": "share_page_observed_full_episodes_unavailable", "evidence_level": "B", "tags": ["都市", "3D", "逆袭翻身", "大男主", "现代"], "metrics": {"display": "7.9万", "type": "unverified_counter", "likes": null}, "observation": "简介以预期财富与实际处境的反差引出利益冲突，继承线索改变资源关系。", "inference": "可测试可视化落差、主动选择、证据链翻盘；不得当作现实产权法律教程。", "episode_observations": []}
+  ]
+}

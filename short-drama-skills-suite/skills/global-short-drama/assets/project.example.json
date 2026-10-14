@@ -1,0 +1,82 @@
+{
+  "project_id": "my-drama",
+  "topic": "失忆的女工程师发现自己设计的城市正在倒计时",
+  "episodes": 6,
+  "minutes_per_episode": 1,
+  "source_language": "zh-CN",
+  "languages": [
+    "zh-CN"
+  ],
+  "genre": "auto",
+  "style": "原创3D漫剧，普通话对白，题材决定人物与表演，固定角色外形与音色",
+  "quality": {
+    "enabled": true,
+    "max_revisions": 2,
+    "max_structure_retries": 1,
+    "minimum_score": 16,
+    "han_per_second": 3.5
+  },
+  "execution": {
+    "max_inflight_video_tasks": 3
+  },
+  "assets": {
+    "manifest_path": "",
+    "reference_images_supported": false,
+    "max_reference_images": 3,
+    "multimodal_references_supported": false,
+    "audio_only_reference_supported": false,
+    "max_reference_videos": 3,
+    "max_reference_audios": 3,
+    "max_reference_video_seconds": 15,
+    "max_reference_audio_seconds": 15
+  },
+  "markets": [
+    "中国普通话市场"
+  ],
+  "platforms": [
+    "hongguo",
+    "douyin",
+    "kuaishou",
+    "bilibili",
+    "xiaohongshu",
+    "wechat-channels",
+    "youtube",
+    "tiktok",
+    "instagram",
+    "facebook",
+    "reelshort",
+    "dramabox"
+  ],
+  "ark": {
+    "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+    "text_model": "",
+    "video_model": "",
+    "video_options": {
+      "duration": 5,
+      "ratio": "9:16",
+      "generate_audio": true
+    },
+    "review_model": ""
+  },
+  "budget": {
+    "max_text_calls": 100,
+    "max_video_seconds": 1200,
+    "text_call_estimate_cny": null,
+    "video_second_estimate_cny": null
+  },
+  "render": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "rights": {
+    "original_or_licensed": false,
+    "music_cleared": false,
+    "voice_cleared": false
+  },
+  "platform_access": {},
+  "filing": {
+    "status": "not_checked",
+    "number": ""
+  }
+}

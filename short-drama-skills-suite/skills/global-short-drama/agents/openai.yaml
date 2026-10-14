@@ -1,0 +1,4 @@
+interface:
+  display_name: "全球一键短剧"
+  short_description: "多题材短剧写稿、审稿返修与方舟视频生产，支持普通话优先和平台发布协作"
+  default_prompt: "使用 $global-short-drama，根据话题、集数、单集分钟数和火山方舟模型配置制作多语言短剧，并准备红果及国内外平台发布。"

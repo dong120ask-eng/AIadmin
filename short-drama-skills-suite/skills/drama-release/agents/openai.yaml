@@ -1,0 +1,4 @@
+interface:
+  display_name: "短剧发布适配与回执"
+  short_description: "整理平台供片资料、检查质量缺口，协助授权后台发布并保存真实回执"
+  default_prompt: "使用 $drama-release，准备指定平台的短剧发布资料，并在我确认后协助提交和记录回执。"

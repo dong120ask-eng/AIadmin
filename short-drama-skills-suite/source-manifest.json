@@ -1,0 +1,206 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "9304af80860224b573d5fa22dfc54e5a8df5c846d2db70ec3afcc40fde90cf23"
+  },
+  {
+    "path": "README.md",
+    "sha256": "19284d67c5ee7e35474c22ac150792780a77dee9b67493409a5f9c4c76a9e918"
+  },
+  {
+    "path": "skills/cn-drama-director/agents/openai.yaml",
+    "sha256": "6bf4b7bdbfb82c4c9f0ebab98d8a85418e6500dbbfb4d37395f2b17ba2e6cd3f"
+  },
+  {
+    "path": "skills/cn-drama-director/references/cases.json",
+    "sha256": "f4c73d36fa23acc6cdc7226f9025a85f2cc518bd3a4e35c6d3b1c890673a3a17"
+  },
+  {
+    "path": "skills/cn-drama-director/references/deployment.md",
+    "sha256": "07442f1d3100fc1801ba5c8c29d60946a66a27e81ecfbb9e3dd83e675614fc89"
+  },
+  {
+    "path": "skills/cn-drama-director/references/genre-guide.md",
+    "sha256": "c35ec4e4b2c4d4aa4849013668d78ab4c5dc3a51726c9559e80cc33737a5c560"
+  },
+  {
+    "path": "skills/cn-drama-director/references/handoff.md",
+    "sha256": "0187a4f94891328d0e7ae534b280b3ee6f3396b7c9651b7fe453b7215e9e8520"
+  },
+  {
+    "path": "skills/cn-drama-director/references/methodology.md",
+    "sha256": "2ec5dfd0d4a2b4d2e8b1b4791dc9131378b7a4beb48728705d4fac2e9a98cf47"
+  },
+  {
+    "path": "skills/cn-drama-director/references/research.md",
+    "sha256": "7ce052de2f2c0fbd627abacdf302ed15f6124e625e8eadc474f0b5e43c68a2e9"
+  },
+  {
+    "path": "skills/cn-drama-director/references/sample-patterns.md",
+    "sha256": "bcd4e334b261dcc44ce1e137db5e998cba0055a2765c57c317a429e1c8272e05"
+  },
+  {
+    "path": "skills/cn-drama-director/SKILL.md",
+    "sha256": "bdf5dd59e62dee7a2f122b392d6bf5da5272b88b6ae02319dbc14facfe58835f"
+  },
+  {
+    "path": "skills/drama-assets/agents/openai.yaml",
+    "sha256": "48fb15077c54d024ad33288a6a423c6e2854a5e2a573f815394617770f7121e7"
+  },
+  {
+    "path": "skills/drama-assets/scripts/assets.py",
+    "sha256": "e1a2759fc0c18ddd2bde11deede467d8eb9009a5846e47ffd42abd063b331ea5"
+  },
+  {
+    "path": "skills/drama-assets/SKILL.md",
+    "sha256": "2be550caa1f45c958fdc5b5ff73aee44d19dc986ae78b24f57e25c29ff19e197"
+  },
+  {
+    "path": "skills/drama-growth/agents/openai.yaml",
+    "sha256": "3a59057b2f41a086c8362b8592a139cb90fe60aa115b0d97df79b130b6e99e52"
+  },
+  {
+    "path": "skills/drama-growth/assets/metrics.example.csv",
+    "sha256": "9af2e2d1de2df8522134553b82dbd2ceed9213a6990071eb9eec73dc75ed8541"
+  },
+  {
+    "path": "skills/drama-growth/scripts/growth.py",
+    "sha256": "e96319c9852a6a40b3041c1899754d19261e7c431403084e341843c3560f6ee7"
+  },
+  {
+    "path": "skills/drama-growth/SKILL.md",
+    "sha256": "352429779e50fb50ab88102ef387c2befaafcdabb6ce84aa4da1781fb7938d75"
+  },
+  {
+    "path": "skills/drama-market-research/agents/openai.yaml",
+    "sha256": "5493b593b43ed1010cf2c7e051a2da155c2b801e5734ebad3560064f586d776d"
+  },
+  {
+    "path": "skills/drama-market-research/assets/research.example.json",
+    "sha256": "f8923f60df2c71fec153d9ba6ebb9b35ff9246f08a7a9dd2b53137544ff7b26e"
+  },
+  {
+    "path": "skills/drama-market-research/scripts/research.py",
+    "sha256": "fff58ea04e10c87080fef05068f705682aad6736558f478d1556f60499b44737"
+  },
+  {
+    "path": "skills/drama-market-research/SKILL.md",
+    "sha256": "636cc49b6b4f148c6dad795aea62c5726f899aae383a5df0e973f97aeae3342f"
+  },
+  {
+    "path": "skills/drama-postproduction/agents/openai.yaml",
+    "sha256": "6c5c1439d20f073f3623d44124564599c40ec3c0b97b32ec2a3e9ad4150d9e04"
+  },
+  {
+    "path": "skills/drama-postproduction/scripts/media.py",
+    "sha256": "e4353fef2610bd2eb104e1e381c417bfaff4c18d4f5963ef22a9a98efd86b175"
+  },
+  {
+    "path": "skills/drama-postproduction/SKILL.md",
+    "sha256": "e183d2d82515817b71f591f3877e62778622c6aae48a8a31f2d4fcfb9ba511dc"
+  },
+  {
+    "path": "skills/drama-release/agents/openai.yaml",
+    "sha256": "43d17a43bbd23cd7f44f72d25442abc8d4b0aae209b3e325e2facbaa8e6e59f6"
+  },
+  {
+    "path": "skills/drama-release/scripts/release.py",
+    "sha256": "bf6abdb1810cb3715ff857630316b9d9ea5a73f60aea9e5d2576c1d92e6ff152"
+  },
+  {
+    "path": "skills/drama-release/SKILL.md",
+    "sha256": "7779bf3b70e1c3d70c8cb58fe94e2af10552c307bf1f3cc030916cd2e73feb67"
+  },
+  {
+    "path": "skills/global-short-drama/agents/openai.yaml",
+    "sha256": "e0b9319dc84d0f77fb32064eb7b99644e94ca81482e175d0d5fae5dcd779e7ce"
+  },
+  {
+    "path": "skills/global-short-drama/assets/genre-frameworks.json",
+    "sha256": "1867de261b39016b02eaeee14128e4f804964f5eadfad8b1a1ee3b5aef5c05b5"
+  },
+  {
+    "path": "skills/global-short-drama/assets/project.example.json",
+    "sha256": "2740771cdf06b113aa71ee48349b38e72ddd96b7c584b44fbebae136d34959fa"
+  },
+  {
+    "path": "skills/global-short-drama/references/platforms.md",
+    "sha256": "71c9ed99a70b1e63a08f29c74194303b3a89c48234769bcab73a9ba851c69927"
+  },
+  {
+    "path": "skills/global-short-drama/references/quality.md",
+    "sha256": "ae8d5e76fb80cb3f7d53772713f5d9f667335c0df5e71f204980ddd6de7e3689"
+  },
+  {
+    "path": "skills/global-short-drama/references/workflow.md",
+    "sha256": "52cbdb7213137535af28b0ffea104f28b9f89f81d9924f445147b9b03da26228"
+  },
+  {
+    "path": "skills/global-short-drama/scripts/drama.py",
+    "sha256": "167d08458be2520f9d0b6a222164d15dc6335d503969cf4b633f95648dfc8d48"
+  },
+  {
+    "path": "skills/global-short-drama/scripts/runtime_support.py",
+    "sha256": "50e779e695ef845c4e5077340b10640e9480d3edfb1da65bb30cd66e7692a683"
+  },
+  {
+    "path": "skills/global-short-drama/scripts/story_rules.py",
+    "sha256": "1665e5e89598bef16ae9f5d8e80ca2354138a9315f182b9eafd3eecd942b91a8"
+  },
+  {
+    "path": "skills/global-short-drama/scripts/test_drama.py",
+    "sha256": "d88a0fb05f47e03de6063cc68a0c1b5d1bcab9268a35e8dfed9e4051091a8e95"
+  },
+  {
+    "path": "skills/global-short-drama/scripts/test_quality.py",
+    "sha256": "2d93d6cd116f47f2022e3d6bb065759c88e4c19591197c3199d52e4c94c49664"
+  },
+  {
+    "path": "skills/global-short-drama/SKILL.md",
+    "sha256": "6bd0cf8ecd68fdbdafa5acf9d741b2bb916fe5a8b1db13b9e6732e29838f842c"
+  },
+  {
+    "path": "skills/short-drama-hub/agents/openai.yaml",
+    "sha256": "42478095d9a06ed0608a92ee3d4a2a2ee29c8dd4fcfb491d8849423234f69011"
+  },
+  {
+    "path": "skills/short-drama-hub/scripts/project.py",
+    "sha256": "3b6e1c773b11d49ab6ca3ab26ee222385f96df78144ab299ef6cac206791c306"
+  },
+  {
+    "path": "skills/short-drama-hub/SKILL.md",
+    "sha256": "7d30eb7037b8290b0f87d4b9f96ca3e02bc3fcf680d7b7d047724e94122690dd"
+  },
+  {
+    "path": "tools/build_bundle.py",
+    "sha256": "2f6f5ce900b2080df5939bd915ec9b754a42f8819b453566ccde4e0276795330"
+  },
+  {
+    "path": "tools/deploy.py",
+    "sha256": "65c9d8ec594194d8ae0089a9e73d8db6eb97cf71c3f59044454b914854ceb4e6"
+  },
+  {
+    "path": "verification/run_checks.py",
+    "sha256": "e735d2492a45835670465f0d328cbef0ec41d3192e53dd4806a3ef0c634fb726"
+  },
+  {
+    "path": "verification/test_bundle.py",
+    "sha256": "a4b5419c97b95c83e23b42a786dc38a747a0f00cf031ae3b0f74db4876b123b3"
+  },
+  {
+    "path": "verification/verification-summary.json",
+    "sha256": "21ccdfebadf855352e53cad01e05f42e2e74af82beca62ade40428da0c69da95"
+  },
+  {
+    "path": "verification/verify_bundle.py",
+    "sha256": "30be95e07c56dcc6dcd4635c29d6495a143aa7f0165aad3b4c7d58ee5ff6addd"
+  },
+  {
+    "path": "市场适配审查与升级记录.md",
+    "sha256": "30fa07812da8b0a03b43cc145244970dd7fdb2e2b0c4f4a5b417a118d8af8955"
+  },
+  {
+    "path": "短剧技能套装_功能部署操作与优化说明.md",
+    "sha256": "98355f3e8844cfdd63f218b5e20f902e298fa9c34097121fe73534b734e44f6f"
+  }
+]

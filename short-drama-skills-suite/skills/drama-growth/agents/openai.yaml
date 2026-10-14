@@ -1,0 +1,4 @@
+interface:
+  display_name: "短剧数据复盘"
+  short_description: "按实际观看数据复盘留存、完播和续看，输出有证据的下一轮样片修改建议"
+  default_prompt: "使用 $drama-growth，分析我的短剧后台数据，给出下一轮导演修改建议。"
