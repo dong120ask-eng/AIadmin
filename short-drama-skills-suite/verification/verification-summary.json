@@ -1,7 +1,7 @@
 {
   "client_date": "2026-10-14",
   "passed": true,
-  "test_count": 48,
+  "test_count": 49,
   "official_skill_validator": "not_passed_missing_PyYAML_no_install",
   "real_ffmpeg_tests": true,
   "model_and_api_tests": "mocked_no_paid_provider_calls",
@@ -17,7 +17,7 @@
     },
     {
       "suite": "bundle",
-      "count": 19,
+      "count": 20,
       "passed": true
     }
   ]

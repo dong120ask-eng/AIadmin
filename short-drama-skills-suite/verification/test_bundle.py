@@ -244,6 +244,19 @@ class BundleTests(unittest.TestCase):
             p.checked_text('review',lambda x: None,'review-routing',model=self.c['ark']['review_model'])
             self.assertEqual(api.call_args.args[1]['model'],'critic')
 
+    def test_stale_review_does_not_pass_publish_manifest(self):
+        p = Pipeline(self.c,self.root/'run')
+        self.seed(p)
+        p.review_required = True
+        save(p.out/'ep001/zh-CN/review.json',{'passed':True,'assessment':'old-review'})
+        with patch.object(p,'require_review',side_effect=ValueError('stale review')):
+            p.package()
+        row = read(p.out/'publish-manifest.json')[0]
+        self.assertFalse(row['script_review']['passed'])
+        with patch.object(p,'require_review'):
+            p.package()
+        self.assertTrue(read(p.out/'publish-manifest.json')[0]['script_review']['passed'])
+
     def test_until_ready_stops_at_review_without_repeated_key_entry(self):
         cp=self.root/'project.json'
         save(cp,self.c)

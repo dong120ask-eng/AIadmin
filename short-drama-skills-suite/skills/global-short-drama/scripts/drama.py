@@ -570,9 +570,16 @@ class Pipeline:
                 master_stat = {'size': master.stat().st_size, 'mtime_ns': master.stat().st_mtime_ns} if master.exists() else None
                 media_current = bool(master.exists() and qc and qc.get('script_sha256') == digest(script) and qc.get('media_inputs_sha256') == digest(media_signature(folder, script, self.c['render'])) and qc.get('master_stat') == master_stat)
                 review = read(folder / 'review.json') if (folder / 'review.json').exists() else None
+                review_current = False
+                if review and self.review_required:
+                    try:
+                        self.require_review(ep, lang, script)
+                        review_current = True
+                    except (ValueError, KeyError, TypeError, FileNotFoundError):
+                        pass
                 asset_hash = file_sha256(master) if master.exists() else None
                 for platform in self.c['platforms']:
-                    rows.append({'platform': platform, 'episode': ep, 'language': lang, 'title': script.get('title'), 'synopsis': script.get('synopsis'), 'video': str(master.resolve()), 'subtitle': str((folder / 'captions.srt').resolve()), 'media_exists': master.exists(), 'media_current': media_current, 'asset_sha256': asset_hash, 'qc': qc, 'script_review': {'passed': review.get('passed'), 'assessment': review.get('assessment')} if review else None, 'rights': self.c['rights'], 'filing': self.c['filing'], 'access': self.c.get('platform_access', {}).get(platform, 'not_connected'), 'status': 'prepared' if media_current else ('stale_or_unverified_media' if master.exists() else 'missing_media'), 'published': False})
+                    rows.append({'platform': platform, 'episode': ep, 'language': lang, 'title': script.get('title'), 'synopsis': script.get('synopsis'), 'video': str(master.resolve()), 'subtitle': str((folder / 'captions.srt').resolve()), 'media_exists': master.exists(), 'media_current': media_current, 'asset_sha256': asset_hash, 'qc': qc, 'script_review': {'passed': review_current, 'assessment': review.get('assessment'), 'current': review_current} if review else None, 'rights': self.c['rights'], 'filing': self.c['filing'], 'access': self.c.get('platform_access', {}).get(platform, 'not_connected'), 'status': 'prepared' if media_current else ('stale_or_unverified_media' if master.exists() else 'missing_media'), 'published': False})
         save(self.out / 'publish-manifest.json', rows)
         return {'status': 'package_created', 'rows': len(rows), 'uploaded': False}
 

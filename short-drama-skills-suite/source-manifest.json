@@ -137,7 +137,7 @@
   },
   {
     "path": "skills/global-short-drama/scripts/drama.py",
-    "sha256": "167d08458be2520f9d0b6a222164d15dc6335d503969cf4b633f95648dfc8d48"
+    "sha256": "9aa20fda8c5cf6f0ec798a70bf3e208c98aa6b59aea25643d56bd4fa1dcb705f"
   },
   {
     "path": "skills/global-short-drama/scripts/runtime_support.py",
@@ -185,11 +185,11 @@
   },
   {
     "path": "verification/test_bundle.py",
-    "sha256": "a4b5419c97b95c83e23b42a786dc38a747a0f00cf031ae3b0f74db4876b123b3"
+    "sha256": "72f99bc41705d8e11f691ad4582fbeec7bacb468ca733c713ad4f0c23c820d89"
   },
   {
     "path": "verification/verification-summary.json",
-    "sha256": "21ccdfebadf855352e53cad01e05f42e2e74af82beca62ade40428da0c69da95"
+    "sha256": "f02995dda64143331c64c48b21529d90a8070f026673145b0f3060c7c0a9b3c2"
   },
   {
     "path": "verification/verify_bundle.py",
@@ -197,10 +197,10 @@
   },
   {
     "path": "市场适配审查与升级记录.md",
-    "sha256": "30fa07812da8b0a03b43cc145244970dd7fdb2e2b0c4f4a5b417a118d8af8955"
+    "sha256": "b72921e4c9a0fb0c091a9a5927dcdc57885589467ce1b235e57564a0362b7065"
   },
   {
     "path": "短剧技能套装_功能部署操作与优化说明.md",
-    "sha256": "98355f3e8844cfdd63f218b5e20f902e298fa9c34097121fe73534b734e44f6f"
+    "sha256": "5b8e7da28da5cd2b22999b2d80411b3491c857bf1fe302714cdacd07f4fd2358"
   }
 ]
