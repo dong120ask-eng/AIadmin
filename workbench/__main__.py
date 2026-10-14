@@ -7,6 +7,7 @@ from pathlib import Path
 
 from .runner import doctor, run_job
 from .media import media_index, android_doctor, execution_plan
+from .android import AndroidInspector
 from .server import make_server
 from .store import Problem, Store
 
@@ -25,6 +26,10 @@ def main():
     media.add_argument("--category")
     media.add_argument("--keyword")
     sub.add_parser("android-doctor")
+    inspect = sub.add_parser("android-inspect", help="读取已连接设备页面结构；不登录、不发布")
+    inspect.add_argument("--binding", required=True)
+    inspect.add_argument("--server", default="http://127.0.0.1:4723")
+    inspect.add_argument("--output", required=True, help="保存本机页面XML，可能含个人资料；不得上传源码仓库")
     publish = sub.add_parser("publish-plan")
     publish.add_argument("--binding", required=True)
     publish.add_argument("--request", required=True)
@@ -48,6 +53,21 @@ def main():
             result = media_index(args.category, args.keyword)
         elif args.command == "android-doctor":
             result = android_doctor()
+        elif args.command == "android-inspect":
+            target=Path(args.output).resolve()
+            if target.exists():
+                raise Problem("输出文件已存在；选择新文件，避免覆盖")
+            binding=json.loads(Path(args.binding).read_text(encoding="utf-8"))
+            inspector=AndroidInspector(args.server)
+            try:
+                result=inspector.connect(binding)
+                content=inspector.source()
+                target.parent.mkdir(parents=True,exist_ok=True)
+                with target.open("x",encoding="utf-8") as f:
+                    f.write(content)
+                result["output"]=str(target)
+            finally:
+                inspector.close()
         elif args.command == "publish-plan":
             result = execution_plan(json.loads(Path(args.binding).read_text(encoding="utf-8")), json.loads(Path(args.request).read_text(encoding="utf-8")))
         elif args.command == "doctor":

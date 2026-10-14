@@ -55,3 +55,7 @@ publish-plan校验企业、项目、账号、渠道及形式，输出执行步�
 ## 验证结果
 
 43个Python测试通过。新增媒体页面7项JSDOM检查通过；原工作台8项JSDOM检查通过。未进行Windows实机、视觉浏览器、真实平台登录、手机操作或对外发布测试。
+
+## 安卓接口增量（2026-10-14）
+
+选雷电模拟器9作为首个Windows接入目标。新增android-inspect本机Appium页面读取接口，详情见[ANDROID-SETUP.md](ANDROID-SETUP.md)。49个Python测试通过；测试服务器协议检查不等于真实设备或平台发布实测。
