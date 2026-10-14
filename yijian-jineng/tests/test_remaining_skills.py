@@ -113,9 +113,9 @@ class WorkflowTests(Base):
         with self.assertRaises(ValueError): engine.execute(self.root,t['id'],p,'submit',b)
         self.assertNotIn(('click','publish'),b.operations)
     def test_calibration_binds_observed_identity(self):
-        t=self.task(True); p=self.profile(); obs=engine.capture(FakeBackend(),p,self.root,self.root/'evidence/sample','observe'); r=calibration.calibrate(self.root,t['id'],p,str(obs.relative_to(self.root)),'reviewer'); self.assertTrue(r['calibrated'])
-        self.write(str(obs.relative_to(self.root)),{'schema':'ui-observation/v1','account_id':'wrong'})
-        with self.assertRaises(ValueError): calibration.calibrate(self.root,t['id'],p,str(obs.relative_to(self.root)),'reviewer')
+        t=self.task(True); p=self.profile(); obs=engine.capture(FakeBackend(),p,self.root,self.root/'evidence/sample','observe'); r=calibration.calibrate(self.root,t['id'],p,str(obs.relative_to(self.root.resolve())),'reviewer'); self.assertTrue(r['calibrated'])
+        self.write(str(obs.relative_to(self.root.resolve())),{'schema':'ui-observation/v1','account_id':'wrong'})
+        with self.assertRaises(ValueError): calibration.calibrate(self.root,t['id'],p,str(obs.relative_to(self.root.resolve())),'reviewer')
     def test_recovery_requires_exact_verified_work(self):
         t=self.task(True); p=self.profile(); b=FakeBackend(); self.stage(t,p,b); engine.execute(self.root,t['id'],p,'submit',b)
         self.write('result.md','实际作品与账号截图测试证据')
