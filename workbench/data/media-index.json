@@ -3915,6 +3915,108 @@
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
       "notes": "官方资料显示航班工具和点评，尚不足以确认通用文章发布、形式或网页入口。必须核查实际App，模拟器兼容性未知。"
+    },
+    {
+      "id": "kuaishou-creator",
+      "name": "快手 · 视频投稿",
+      "forms": [
+        "short_video"
+      ],
+      "surface": "browser",
+      "entry_url": "https://cp.kuaishou.com/article/manage/video",
+      "evidence_urls": [
+        "https://www.kuaishou.com/help/feedback/4000?categoryId=hot"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方帮助说明电脑上传视频路径；视频规格及账号权限待核实。"
+    },
+    {
+      "id": "douyin-creator",
+      "name": "抖音 · 创作者中心",
+      "forms": [],
+      "surface": "browser",
+      "entry_url": "https://creator.douyin.com/",
+      "evidence_urls": [
+        "https://creator.douyin.com/"
+      ],
+      "evidence_status": "entry_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方介绍确认创作者／机构登录和内容管理；当前图文、视频、文章入口须实际编辑器逐项确认。"
+    },
+    {
+      "id": "bilibili-creator",
+      "name": "B站 · 创作中心",
+      "forms": [],
+      "surface": "browser",
+      "entry_url": "https://member.bilibili.com/platform/home",
+      "evidence_urls": [
+        "https://member.bilibili.com/platform/home"
+      ],
+      "evidence_status": "entry_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方入口已找到；需核查视频、专栏与动态各入口的实际权限，不使用用户投稿教程冒充官方规格。"
+    },
+    {
+      "id": "xiaohongshu-creator",
+      "name": "小红书 · 创作服务平台",
+      "forms": [],
+      "surface": "unknown",
+      "entry_url": "https://creator.xiaohongshu.com/",
+      "evidence_urls": [
+        "https://creator.xiaohongshu.com/"
+      ],
+      "evidence_status": "pending",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "本轮访问超时；未确认当前入口形式。"
+    },
+    {
+      "id": "toutiao-micro",
+      "name": "今日头条 · 微头条",
+      "forms": [
+        "image_text"
+      ],
+      "surface": "android_or_browser",
+      "entry_url": "https://mp.toutiao.com/profile_v4/",
+      "evidence_urls": [
+        "https://mp.toutiao.com/docs/baike/2789/20594/"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方帮助说明微头条发布及话题入口；具体图文规格、账号要求和电脑入口待核实。"
+    },
+    {
+      "id": "toutiao-article",
+      "name": "今日头条 · 文章",
+      "forms": [
+        "article"
+      ],
+      "surface": "browser",
+      "entry_url": "https://mp.toutiao.com/profile_v4/",
+      "evidence_urls": [
+        "https://baike.toutiao.com/"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方创作者帮助列出图文及文章创作内容；当前编辑器和账号权限待核查。"
     }
   ]
 }

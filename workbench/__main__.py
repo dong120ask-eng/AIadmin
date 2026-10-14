@@ -8,6 +8,7 @@ from pathlib import Path
 from .runner import doctor, run_job
 from .media import media_index, android_doctor, execution_plan
 from .android import AndroidInspector
+from .dispatch import DispatchQueue
 from .server import make_server
 from .store import Problem, Store
 
@@ -33,6 +34,20 @@ def main():
     publish = sub.add_parser("publish-plan")
     publish.add_argument("--binding", required=True)
     publish.add_argument("--request", required=True)
+    queue_add=sub.add_parser("dispatch-enqueue",help="任务入队；真实发布仍需平台执行器")
+    queue_add.add_argument("--binding",required=True)
+    queue_add.add_argument("--request",required=True)
+    queue_add.add_argument("--key",required=True)
+    queue_add.add_argument("--action",choices=["inspect_only","draft","publish"],default="inspect_only")
+    sub.add_parser("dispatch-list")
+    sub.add_parser("dispatch-recover",help="过期任务标记未知，保留设备隔离")
+    queue_run=sub.add_parser("dispatch-run-inspection",help="在已连接安卓设备执行一个页面检查")
+    queue_run.add_argument("--worker",default="local-inspector")
+    queue_run.add_argument("--server",default="http://127.0.0.1:4723")
+    queue_resolve=sub.add_parser("dispatch-resolve",help="确认旧进程停止后取消状态未知任务，不重发")
+    queue_resolve.add_argument("--task",required=True)
+    queue_resolve.add_argument("--reason",required=True)
+    queue_resolve.add_argument("--worker-stopped",action="store_true")
     sub.add_parser("recover", help="确认没有运行中进程后恢复中断任务")
     project = sub.add_parser("create-project")
     project.add_argument("--file", required=True)
@@ -49,7 +64,19 @@ def main():
             parser.add_argument("--output", required=True)
     args = p.parse_args()
     try:
-        if args.command == "media-index":
+        if args.command.startswith("dispatch-"):
+            queue=DispatchQueue(Path(args.data_dir).resolve()/"dispatch.sqlite3")
+            if args.command=="dispatch-enqueue":
+                result=queue.enqueue(args.tenant,json.loads(Path(args.binding).read_text(encoding="utf-8")),json.loads(Path(args.request).read_text(encoding="utf-8")),args.key,args.action)
+            elif args.command=="dispatch-list":
+                result=queue.tasks(args.tenant)
+            elif args.command=="dispatch-recover":
+                result=queue.recover()
+            elif args.command=="dispatch-resolve":
+                result=queue.resolve_unknown(args.tenant,args.task,args.reason,args.worker_stopped)
+            else:
+                result=queue.inspect_next(args.tenant,args.worker,args.server)
+        elif args.command == "media-index":
             result = media_index(args.category, args.keyword)
         elif args.command == "android-doctor":
             result = android_doctor()

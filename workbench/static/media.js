@@ -1,5 +1,6 @@
 'use strict';
 let catalog;
+const formLabels={article:'文章',image_text:'图文／动态',short_video:'短视频',long_video:'长视频',audio:'音频',novel:'小说',music:'音乐',short_drama:'短剧'};
 function text(tag, value) { const e = document.createElement(tag); e.textContent = value; return e; }
 function source(url) { const a = text('a', '来源'); const u = new URL(url); if (u.protocol === 'https:' || u.protocol === 'http:') { a.href = u.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; } return a; }
 function render() {
@@ -15,6 +16,6 @@ fetch('/api/media-index').then(r => {if(!r.ok) throw new Error('清单读取失�
   document.querySelector('#coverage').textContent = `已查看 ${data.coverage.primary_categories} 个一级分类，记录 ${data.coverage.observed_applications} 个榜单应用，另补 ${data.coverage.requested_additions} 个指定渠道。二级榜单、全部应用、发布能力和自动化尚未全量验证。`;
   const select = document.querySelector('#category');
   for(const c of [...data.categories.map(x=>x.name),'用户指定补查']) { const opt = text('option', c); opt.value = c; select.append(opt); }
-  for(const c of data.channels) { const p = text('p', `${c.name}｜资料支持形式：${c.forms.join('、') || '待核查'}｜未接入。${c.notes} `);for(const u of c.evidence_urls) p.append(source(u), document.createTextNode(' '));document.querySelector('#channels').append(p); }
+  for(const c of data.channels) { const p = text('p', `${c.name}｜资料支持形式：${c.forms.map(x=>formLabels[x]||x).join('、') || '待核查'}｜未接入。${c.notes} `);for(const u of c.evidence_urls) p.append(source(u), document.createTextNode(' '));document.querySelector('#channels').append(p); }
   select.addEventListener('change', render); document.querySelector('#search').addEventListener('input', render); render();
 }).catch(e=>{document.querySelector('#error').textContent=e.message;});

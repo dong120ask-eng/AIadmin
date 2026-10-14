@@ -59,3 +59,7 @@ publish-plan校验企业、项目、账号、渠道及形式，输出执行步�
 ## 安卓接口增量（2026-10-14）
 
 选雷电模拟器9作为首个Windows接入目标。新增android-inspect本机Appium页面读取接口，详情见[ANDROID-SETUP.md](ANDROID-SETUP.md)。49个Python测试通过；测试服务器协议检查不等于真实设备或平台发布实测。
+
+## 多账号队列增量（2026-10-14）
+
+新增持久化设备锁、租约、异常隔离和安卓检查队列；真实发布执行器未接通。专项渠道核查记录扩展到18条。66个Python测试与21项JSDOM交互检查通过。详见[DISPATCH.md](DISPATCH.md)。

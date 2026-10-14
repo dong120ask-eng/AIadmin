@@ -158,3 +158,5 @@ JSDOM_MODULE="$PWD/.qa-tools/node_modules/jsdom" PYTHONPATH=. python3 scripts/ui
 打开本机工作台的`/media.html`查看分类清单。当前仅有发现登记、部分渠道证据及浏览器／安卓执行计划，未接通真实发布。使用方法与覆盖限制见[PUBLISHING-DEVELOPMENT.md](PUBLISHING-DEVELOPMENT.md)。
 
 安卓环境首选雷电9；本机Appium页面读取接口与准备步骤见[ANDROID-SETUP.md](ANDROID-SETUP.md)。实际发布执行器仍待开发和实测。
+
+本机多账号队列、设备互斥与异常核查见[DISPATCH.md](DISPATCH.md)。当前可执行安卓页面检查，真实发布仍未接通。

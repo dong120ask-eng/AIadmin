@@ -6,7 +6,7 @@ const {JSDOM}=require(process.env.JSDOM_MODULE||'jsdom');
  w.fetch=p=>fetch(new URL(p,base));w.eval(await(await fetch(base+'/media.js')).text());
  for(let i=0;i<100&&!w.document.querySelector('#apps').children.length;i++)await new Promise(r=>setTimeout(r,20));
  assert.equal(w.document.querySelector('#apps').children.length,260);
- assert.equal(w.document.querySelector('#channels').children.length,12);
+ assert.equal(w.document.querySelector('#channels').children.length,18);
  const category=w.document.querySelector('#category');category.value='电子商务';category.dispatchEvent(new w.Event('change'));
  assert.equal(w.document.querySelector('#apps').children.length,10);
  const search=w.document.querySelector('#search');search.value='天猫';search.dispatchEvent(new w.Event('input'));
