@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.tools/
+.qa-tools/
+data/
+runtime/
+*.db
+*.db-shm
+*.db-wal
+node_modules/
+.env
+*.log
