@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "job_id": null,
+  "tenant_id": null,
+  "project_id": null,
+  "content_id": null,
+  "version": 1,
+  "topic": null,
+  "content_type": null,
+  "platform_id": null,
+  "account_key": null,
+  "idempotency_key": null,
+  "state": "planned",
+  "publish_state": "not_connected",
+  "artifact_digest": null,
+  "artifacts": [],
+  "review": null,
+  "approval": null,
+  "publication_evidence": null,
+  "cost": {
+    "estimated_cny": null,
+    "actual_cny": null,
+    "supplier_record": null
+  },
+  "blockers": []
+}

@@ -1,0 +1,25 @@
+{
+  "platform_id": "weibo",
+  "name": "微博",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "social",
+    "news"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "短博文、长文章与视频分开核实账号能力；内容标签相关，链接与推广权限另查；不批量刷话题。"
+}

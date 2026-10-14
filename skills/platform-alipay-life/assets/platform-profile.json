@@ -1,0 +1,23 @@
+{
+  "platform_id": "alipay-life",
+  "name": "支付宝生活号",
+  "candidate_types": [
+    "image_text",
+    "short_video"
+  ],
+  "categories": [
+    "local",
+    "merchant"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "优先核实生活号／商家具体入口、运营资格和开放形式；不能假设普通账号均可投稿或有网页发布。"
+}

@@ -1,0 +1,21 @@
+{
+  "platform_id": "ximalaya",
+  "name": "喜马拉雅",
+  "candidate_types": [
+    "audio"
+  ],
+  "categories": [
+    "audio"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "节目、专辑和单集关系保持一致；文本、有声改编、配音和音乐权利分别核查；上传音频而不是口播稿。"
+}

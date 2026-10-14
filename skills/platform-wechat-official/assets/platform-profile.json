@@ -1,0 +1,25 @@
+{
+  "platform_id": "wechat-official",
+  "name": "微信公众号",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "audio",
+    "short_video"
+  ],
+  "categories": [
+    "article",
+    "private_domain"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "保存草稿、预览、发布与群发是不同动作；群发须在明确授权范围；检查手机排版、外链、原创选项及署名。"
+}

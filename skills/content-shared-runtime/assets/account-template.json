@@ -1,0 +1,17 @@
+{
+  "tenant_id": null,
+  "project_id": null,
+  "account_key": null,
+  "platform_id": null,
+  "external_id": null,
+  "display_name": null,
+  "positioning": null,
+  "audience_hypothesis": null,
+  "voice": null,
+  "credential_ref": null,
+  "browser_context_ref": null,
+  "identity_status": "unverified",
+  "publish_authorized": false,
+  "allowed_forms": [],
+  "daily_limit": null
+}

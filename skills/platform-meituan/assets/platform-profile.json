@@ -1,0 +1,23 @@
+{
+  "platform_id": "meituan",
+  "name": "美团商家内容",
+  "candidate_types": [
+    "image_text",
+    "short_video"
+  ],
+  "categories": [
+    "local",
+    "merchant"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实具体业务和商家后台入口，区分商家营销内容与普通用户笔记；没有商家权限不得替代发到其他账号。"
+}

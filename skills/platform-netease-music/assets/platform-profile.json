@@ -1,0 +1,23 @@
+{
+  "platform_id": "netease-music",
+  "name": "网易云音乐",
+  "candidate_types": [
+    "music",
+    "audio"
+  ],
+  "categories": [
+    "music",
+    "audio"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实音乐人／播客具体入口；发行、音频节目和歌词提交不同；检查音频与元信息、封面及音乐权利，不自动申请独占版权。"
+}

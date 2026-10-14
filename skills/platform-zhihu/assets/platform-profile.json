@@ -1,0 +1,25 @@
+{
+  "platform_id": "zhihu",
+  "name": "知乎",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "knowledge",
+    "community"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "回答、文章与视频分别核查；回答必须针对实际问题，不伪造问题或专业身份；保留出处和商业说明。"
+}

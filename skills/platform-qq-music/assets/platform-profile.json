@@ -1,0 +1,21 @@
+{
+  "platform_id": "qq-music",
+  "name": "QQ音乐",
+  "candidate_types": [
+    "music"
+  ],
+  "categories": [
+    "music"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实音乐人入驻、作品发行和当前上传方式；音频、歌词、词曲信息与授权完整；发行协议及收费不可自行同意。"
+}

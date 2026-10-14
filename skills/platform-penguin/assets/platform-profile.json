@@ -1,0 +1,26 @@
+{
+  "platform_id": "penguin",
+  "name": "企鹅号",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "article",
+    "news",
+    "video"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实企鹅号当前作者入口、资质与投稿形式；不能把上传到后台等同分发到所有腾讯渠道。"
+}

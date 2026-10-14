@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "content_type": "short_video",
+  "required_payload_fields": [
+    "title",
+    "hooks",
+    "shots",
+    "voiceover",
+    "subtitles",
+    "asset_requirements",
+    "cover",
+    "caption"
+  ],
+  "allowed_artifact_kinds": [
+    "production_brief",
+    "text_draft",
+    "script",
+    "image",
+    "audio",
+    "video"
+  ],
+  "artifact_kind_rule": "只有真实媒体文件存在并检查通过才能使用image/audio/video；script与text_draft不能冒称成品。",
+  "limitations_required": true
+}

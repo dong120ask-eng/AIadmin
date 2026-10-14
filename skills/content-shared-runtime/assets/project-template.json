@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "tenant_id": null,
+  "project_id": null,
+  "product": {
+    "name": null,
+    "facts": [],
+    "evidence": [],
+    "claims_to_verify": [],
+    "asset_refs": []
+  },
+  "audience": {
+    "hypotheses": [],
+    "evidence": []
+  },
+  "business_goal": null,
+  "brand_voice": null,
+  "accounts": [],
+  "selected_platforms": [],
+  "budget": {
+    "currency": "CNY",
+    "per_task_limit": null,
+    "per_day_limit": null
+  },
+  "publish_scope": {
+    "mode": "draft_only",
+    "allowed": false,
+    "platforms": [],
+    "account_external_ids": [],
+    "forms": [],
+    "topics": [],
+    "time_window": null,
+    "daily_limit": null,
+    "confirmed_at": null
+  },
+  "capabilities": {},
+  "tasks": []
+}

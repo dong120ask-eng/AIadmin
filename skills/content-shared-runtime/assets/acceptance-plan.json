@@ -1,0 +1,69 @@
+{
+  "status": "deferred_by_user",
+  "cases": [
+    {
+      "id": "real_product_article",
+      "status": "pending"
+    },
+    {
+      "id": "real_product_video_script",
+      "status": "pending"
+    },
+    {
+      "id": "image_readability",
+      "status": "pending"
+    },
+    {
+      "id": "video_audio_subtitles",
+      "status": "pending"
+    },
+    {
+      "id": "novel_continuity",
+      "status": "pending"
+    },
+    {
+      "id": "music_rights",
+      "status": "pending"
+    },
+    {
+      "id": "short_drama_consistency",
+      "status": "pending"
+    },
+    {
+      "id": "account_identity",
+      "status": "pending"
+    },
+    {
+      "id": "duplicate_submit",
+      "status": "pending"
+    },
+    {
+      "id": "unknown_submit_reconciliation",
+      "status": "pending"
+    },
+    {
+      "id": "platform_rules",
+      "status": "pending"
+    },
+    {
+      "id": "codex_installation",
+      "status": "pending"
+    },
+    {
+      "id": "workbuddy_import",
+      "status": "pending"
+    },
+    {
+      "id": "doubao_capabilities",
+      "status": "pending"
+    },
+    {
+      "id": "qianwen_capabilities",
+      "status": "pending"
+    },
+    {
+      "id": "platform_publish_result",
+      "status": "pending"
+    }
+  ]
+}

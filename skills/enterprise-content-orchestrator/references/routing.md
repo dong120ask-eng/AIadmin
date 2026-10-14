@@ -1,0 +1,46 @@
+# 技能路由
+
+共享assets/suite-manifest.json是名称、依赖与状态的统一入口。按产品分析、人群账号规划、选题研究、分类、创作、审核、发布、复盘顺序调度，实际可用性优先于规则清单。
+
+- $content-shared-runtime：内容项目共享底座
+- $enterprise-content-orchestrator：企业自媒体总控
+- $product-analysis：产品分析
+- $media-account-planning：媒体账号人群规划
+- $topic-viral-research：选题与爆款逻辑研究
+- $content-media-router：媒体内容分类与组合运营
+- $content-article：一键文章创作
+- $content-image-text：一键图文创作
+- $content-short-video：一键短视频创作
+- $content-long-video：一键长视频创作
+- $content-audio：一键音频创作
+- $content-novel：一键小说创作
+- $content-music：一键音乐创作
+- $content-short-drama：一键短剧创作
+- $content-quality-review：内容审核与发布资格检查
+- $content-performance-review：自媒体数据复盘
+- $content-publish-workflow：选题到已发布总工作流
+- $platform-xiaohongshu：一键小红书内容工作流
+- $platform-douyin：一键抖音内容工作流
+- $platform-kuaishou：一键快手内容工作流
+- $platform-wechat-official：一键微信公众号内容工作流
+- $platform-wechat-channels：一键微信视频号内容工作流
+- $platform-toutiao：一键今日头条内容工作流
+- $platform-bilibili：一键B站内容工作流
+- $platform-zhihu：一键知乎内容工作流
+- $platform-weibo：一键微博内容工作流
+- $platform-baijiahao：一键百家号内容工作流
+- $platform-sohu：一键搜狐号内容工作流
+- $platform-netease：一键网易号内容工作流
+- $platform-penguin：一键企鹅号内容工作流
+- $platform-alipay-life：一键支付宝生活号内容工作流
+- $platform-meituan：一键美团商家内容内容工作流
+- $platform-meiyou：一键美柚内容工作流
+- $platform-ximalaya：一键喜马拉雅内容工作流
+- $platform-qingting：一键蜻蜓FM内容工作流
+- $platform-fanqie：一键番茄小说内容工作流
+- $platform-qimao：一键七猫小说内容工作流
+- $platform-qidian：一键起点中文网内容工作流
+- $platform-jinjiang：一键晋江文学城内容工作流
+- $platform-netease-music：一键网易云音乐内容工作流
+- $platform-qq-music：一键QQ音乐内容工作流
+- $platform-kugou：一键酷狗音乐内容工作流

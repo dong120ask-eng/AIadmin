@@ -1,0 +1,25 @@
+{
+  "platform_id": "bilibili",
+  "name": "B站",
+  "candidate_types": [
+    "article",
+    "short_video",
+    "long_video",
+    "audio"
+  ],
+  "categories": [
+    "video",
+    "knowledge"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "视频投稿与专栏分别核实；音频候选入口待确认；检查分区、封面、章节、转载／原创标记及字幕。"
+}
