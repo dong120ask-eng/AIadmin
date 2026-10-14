@@ -10,6 +10,8 @@
 
 Windows PowerShell，进入解压后的项目目录：
 
+也可以直接双击`start-windows.bat`，它检查Python版本并启动本机工作台、尝试打开浏览器。保持启动窗口打开。首次Windows实机运行仍需验证；需要你准备的资料与操作见`USER-CHECKLIST.md`。
+
 ```powershell
 py -3 -m unittest discover -v
 py -3 -m workbench serve

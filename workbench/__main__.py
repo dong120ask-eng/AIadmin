@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import sys
+import webbrowser
 from pathlib import Path
 
 from .runner import doctor, run_job
@@ -17,6 +18,7 @@ def main():
     serve = sub.add_parser("serve")
     serve.add_argument("--port", type=int, default=8765)
     serve.add_argument("--enable-cli", action="store_true", help="允许网页调用现有Codex权益；实际调用费用未知")
+    serve.add_argument("--open-browser", action="store_true", help="启动后打开本机工作台")
     sub.add_parser("doctor")
     sub.add_parser("recover", help="确认没有运行中进程后恢复中断任务")
     project = sub.add_parser("create-project")
@@ -49,6 +51,11 @@ def main():
                 if recovered:
                     print(f"{recovered}个中断任务标记为状态未知，请人工核对。", flush=True)
                 print("CLI网页生成：" + ("已启用；费用可能未知" if args.enable_cli else "未启用"), flush=True)
+                if args.open_browser:
+                    try:
+                        webbrowser.open(f"http://127.0.0.1:{server.server_port}")
+                    except (OSError, webbrowser.Error):
+                        print("请手动在浏览器打开上方本机地址。", flush=True)
                 try:
                     server.serve_forever()
                 except KeyboardInterrupt:
