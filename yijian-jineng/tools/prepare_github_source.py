@@ -2,7 +2,7 @@
 import argparse,json,shutil
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-ALLOWED=('skills','tools','config','docs','tests','README.md','AI一键部署指令.md','requirements-base.txt','requirements-video.txt','requirements-browser.txt','一键部署.cmd')
+ALLOWED=('skills','tools','config','docs','tests','README.md','AI一键部署指令.md','requirements-base.txt','requirements-video.txt','requirements-browser.txt','一键部署.cmd','查看工作进度.cmd')
 def prepare(target):
     target=Path(target).resolve()
     if target.exists() or target.is_relative_to(ROOT) or ROOT.is_relative_to(target): raise ValueError('需新目录，不能与源码互相包含')

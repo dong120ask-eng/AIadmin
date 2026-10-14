@@ -5,6 +5,7 @@ description: 统一调度营销策划、爆款学习、混合账号内容生成�
 
 # 自媒体全流程总控
 按当前项目工作目录执行。本包默认先生成并保存电脑成果，再交给明确的手机/模拟器/网页账号准备草稿和发布。
+用户询问进度、缺口或下一步时，先运行完整包 tools/progress_console.py --root 工作目录 --json；需要展示时去掉 --json，打开返回的本地 HTML。脚本只读台账，不初始化数据库，不操作账号或手机。进度页是快照，需重新运行刷新；设备工具 PATH 检查不能作为设备验收。具体使用与验收顺序见 [用户流程](references/user-flow.md)。
 ## 顺序
 1. product-market-marketing：复用完整营销资料，确定产品、人群、已核实卖点、策略与内容边界。
 2. viral-content-learning → content-framework-remix：收集有来源的样本，拆结构和逻辑，重做原创表达。
