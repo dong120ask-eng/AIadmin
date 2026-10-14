@@ -160,3 +160,5 @@ JSDOM_MODULE="$PWD/.qa-tools/node_modules/jsdom" PYTHONPATH=. python3 scripts/ui
 安卓环境首选雷电9；本机Appium页面读取接口与准备步骤见[ANDROID-SETUP.md](ANDROID-SETUP.md)。实际发布执行器仍待开发和实测。
 
 本机多账号队列、设备互斥与异常核查见[DISPATCH.md](DISPATCH.md)。当前可执行安卓页面检查，真实发布仍未接通。
+
+GitHub安卓控制项目、可选SDK检查接口与多手机技能整合见[ANDROID-OPEN-SOURCE.md](ANDROID-OPEN-SOURCE.md)。网页优先新增渠道见[WEB-FIRST.md](WEB-FIRST.md)，USB真机接入见[USB-START.md](USB-START.md)。

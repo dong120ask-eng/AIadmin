@@ -9,6 +9,8 @@ description: "执行企业内容从选题、样本分析、创作、素材、审
 
 按topic-viral-research→content-media-router→创作技能→content-quality-review→对应platform技能执行。每个账号平台单独建job与幂等键；共享母稿保留版本，平台文案独立适配。已有成品从其实际阶段续跑，不重新生成已完成部分。
 
+网页编辑器可完成时优先网页；必须安卓App时调用 $android-device-operator，使用明确UDID、实际应用实例与账号唯一ID。多手机独立排队，同一物理设备串行；切号后重新核验身份。
+
 检查浏览器／官方接口实际能力。优先适用的官方接口；没有接口可以使用用户明确授权且平台允许的浏览器方式，但不假设所有平台都有可靠网页入口。登录验证阻断时用户接手，其他独立任务继续。
 
 提交前验证当前账号唯一ID、产物digest、审核版本、授权与频次；有明确授权的auto_publish可直接执行范围内任务。发布超时先查作品记录，再决定重试；不盲点第二次。保存draft_saved/submitted/under_review/scheduled/published/unknown的真实状态。

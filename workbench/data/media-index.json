@@ -6,7 +6,7 @@
   "coverage": {
     "primary_categories": 26,
     "observed_applications": 250,
-    "requested_additions": 10,
+    "requested_additions": 11,
     "observed_secondary_menu_items": 85,
     "all_apps_collected": false,
     "all_secondary_categories_checked": false,
@@ -3705,6 +3705,19 @@
       "candidate_forms": [],
       "automation_status": "not_connected",
       "review_status": "pending"
+    },
+    {
+      "id": "requested-qzone",
+      "name": "QQ空间",
+      "category": "用户指定补查",
+      "rank": null,
+      "source_url": "https://qzone.qq.com/",
+      "source_kind": "user_requested",
+      "observed_at": "2026-10-14",
+      "publishing_status": "unknown",
+      "candidate_forms": [],
+      "automation_status": "not_connected",
+      "review_status": "pending"
     }
   ],
   "channels": [
@@ -3724,7 +3737,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方资料更新于2023-05-24；当前权限、格式、图文入口须再核实。天猫店铺不等于独立创作者账号。"
+      "notes": "官方资料更新于2023-05-24；当前权限、格式、图文入口须再核实。天猫店铺不等于独立创作者账号。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "taobao-subscription",
@@ -3742,7 +3756,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "商家私域内容，须核对店铺身份与订阅发布权限。"
+      "notes": "商家私域内容，须核对店铺身份与订阅发布权限。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "taobao-product-video",
@@ -3760,7 +3775,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "商品素材维护渠道；不等于自媒体文章。按商品ID和账号店铺权限分别绑定。"
+      "notes": "商品素材维护渠道；不等于自媒体文章。按商品ID和账号店铺权限分别绑定。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "jd-video",
@@ -3778,7 +3794,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方开发者应用说明支持视频创作；网页入口内容不可读，需登录实测。"
+      "notes": "官方开发者应用说明支持视频创作；网页入口内容不可读，需登录实测。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "jd-zhongcaoxiu",
@@ -3794,7 +3811,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "搜索检索到官方关闭入口公告；正文登录受限，禁用旧流程直到核实。"
+      "notes": "搜索检索到官方关闭入口公告；正文登录受限，禁用旧流程直到核实。",
+      "route_priority": "review_required"
     },
     {
       "id": "jd-finance",
@@ -3810,7 +3828,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方界面显示内容号创建、实名和绑定；当前作品形式待核实。"
+      "notes": "官方界面显示内容号创建、实名和绑定；当前作品形式待核实。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "sohu-video",
@@ -3830,7 +3849,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方视频上传帮助和作品管理入口已找到；不同于搜狐号文章。"
+      "notes": "官方视频上传帮助和作品管理入口已找到；不同于搜狐号文章。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "sina-kandian",
@@ -3850,7 +3870,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方介绍列出文章、图集、视频；当前申请、登录和AI要求待核实。"
+      "notes": "官方介绍列出文章、图集、视频；当前申请、登录和AI要求待核实。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "pdd-video",
@@ -3866,7 +3887,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "未找到足够的官方发布文档；商家后台不等于多多视频创作者入口。"
+      "notes": "未找到足够的官方发布文档；商家后台不等于多多视频创作者入口。",
+      "route_priority": "review_required"
     },
     {
       "id": "sohu-account",
@@ -3882,7 +3904,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方入口已找到，当前图文和视频编辑器须登录核实。"
+      "notes": "官方入口已找到，当前图文和视频编辑器须登录核实。",
+      "route_priority": "review_required"
     },
     {
       "id": "netease-account",
@@ -3898,7 +3921,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方域名尝试访问失败；未确认当前入口和形式。"
+      "notes": "官方域名尝试访问失败；未确认当前入口和形式。",
+      "route_priority": "review_required"
     },
     {
       "id": "umetrip-community",
@@ -3914,7 +3938,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方资料显示航班工具和点评，尚不足以确认通用文章发布、形式或网页入口。必须核查实际App，模拟器兼容性未知。"
+      "notes": "官方资料显示航班工具和点评，尚不足以确认通用文章发布、形式或网页入口。必须核查实际App，模拟器兼容性未知。",
+      "route_priority": "review_required"
     },
     {
       "id": "kuaishou-creator",
@@ -3932,7 +3957,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方帮助说明电脑上传视频路径；视频规格及账号权限待核实。"
+      "notes": "官方帮助说明电脑上传视频路径；视频规格及账号权限待核实。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "douyin-creator",
@@ -3948,7 +3974,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方介绍确认创作者／机构登录和内容管理；当前图文、视频、文章入口须实际编辑器逐项确认。"
+      "notes": "官方介绍确认创作者／机构登录和内容管理；当前图文、视频、文章入口须实际编辑器逐项确认。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "bilibili-creator",
@@ -3964,7 +3991,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方入口已找到；需核查视频、专栏与动态各入口的实际权限，不使用用户投稿教程冒充官方规格。"
+      "notes": "官方入口已找到；需核查视频、专栏与动态各入口的实际权限，不使用用户投稿教程冒充官方规格。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "xiaohongshu-creator",
@@ -3980,7 +4008,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "本轮访问超时；未确认当前入口形式。"
+      "notes": "本轮访问超时；未确认当前入口形式。",
+      "route_priority": "review_required"
     },
     {
       "id": "toutiao-micro",
@@ -3998,7 +4027,8 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方帮助说明微头条发布及话题入口；具体图文规格、账号要求和电脑入口待核实。"
+      "notes": "官方帮助说明微头条发布及话题入口；具体图文规格、账号要求和电脑入口待核实。",
+      "route_priority": "web_first_candidate"
     },
     {
       "id": "toutiao-article",
@@ -4016,7 +4046,169 @@
       "account_access": "pending",
       "rules_status": "needs_current_account_check",
       "adapter_status": "not_connected",
-      "notes": "官方创作者帮助列出图文及文章创作内容；当前编辑器和账号权限待核查。"
+      "notes": "官方创作者帮助列出图文及文章创作内容；当前编辑器和账号权限待核查。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "qzone-say",
+      "name": "QQ空间 · 说说",
+      "forms": [
+        "image_text"
+      ],
+      "surface": "browser_or_android",
+      "entry_url": "https://qzone.qq.com/",
+      "evidence_urls": [
+        "https://qzone.qq.com/web/tk.html",
+        "https://apps.apple.com/jp/app/qq空间/id364183992"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方应用说明支持说说、照片。网页版入口为登录页；当前编辑器、可见范围和账号权限需登录核实。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "qzone-blog",
+      "name": "QQ空间 · 日志",
+      "forms": [
+        "article"
+      ],
+      "surface": "browser_or_android",
+      "entry_url": "https://qzone.qq.com/",
+      "evidence_urls": [
+        "https://qzone.qq.com/web/tk.html",
+        "https://apps.apple.com/jp/app/qq空间/id364183992"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方应用说明支持日志；网页写作、图文格式及公开范围须单独核实。不是QQ群消息或私聊分发。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "soul-moments",
+      "name": "Soul · 瞬间／广场",
+      "forms": [],
+      "surface": "unknown",
+      "entry_url": null,
+      "evidence_urls": [
+        "https://www.soulapp.cn/"
+      ],
+      "evidence_status": "pending",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官网确认广场帖子场景，尚无网页投稿入口证据；图片、视频、音频形式和App入口待核查。",
+      "route_priority": "review_required"
+    },
+    {
+      "id": "wechat-official-draft",
+      "name": "微信公众号 · 草稿与文章",
+      "forms": [
+        "article",
+        "image_text"
+      ],
+      "surface": "browser",
+      "entry_url": "https://mp.weixin.qq.com/",
+      "evidence_urls": [
+        "https://mp.weixin.qq.com/"
+      ],
+      "evidence_status": "pending",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "公众号网页后台作为候选；尚未核对当前账号编辑器、发布权限与素材规格。草稿保存和群发／发布必须分开执行。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "qishui-artist",
+      "name": "汽水音乐 · 音乐人／作品发行",
+      "forms": [
+        "music"
+      ],
+      "surface": "browser",
+      "entry_url": "https://music.douyin.com/",
+      "evidence_urls": [
+        "https://music.douyin.com/",
+        "https://music.douyin.com/support/content/142096?hideAvatar=1&hideUnify=1&pageId=474&spaceId=299&timestamp=1724321506897"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方音乐合作平台与个人入驻／歌曲上传帮助已找到；文档有权限校验提示。音乐人权限、作品权利、AI音乐要求、音频封面及发行状态须核实。不是普通听歌页面发视频。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "douyin-short-drama",
+      "name": "抖音内容合作 · 短剧",
+      "forms": [
+        "short_drama"
+      ],
+      "surface": "browser",
+      "entry_url": "https://content.douyin.com/",
+      "evidence_urls": [
+        "https://content.douyin.com/",
+        "https://developer.open-douyin.com/docs/resource/zh-CN/developer/tools/cloud/guide/industry-solutions/short-drama-media-management"
+      ],
+      "evidence_status": "official_evidence_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方合作平台说明短剧经营入驻，官方文档另有短剧媒资／提审能力。账号资质、作品信息和提交路径单独核查，不沿用普通短视频投稿。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "kuaishou-short-drama",
+      "name": "快手 · 短剧经营者平台",
+      "forms": [
+        "short_drama"
+      ],
+      "surface": "browser",
+      "entry_url": "https://kdj.kuaishou.com/",
+      "evidence_urls": [
+        "https://kdj.kuaishou.com/",
+        "https://open.kuaishou.com/docs/new_industry_solution/vertical_industry_solution/shortplay_solution"
+      ],
+      "evidence_status": "entry_found",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "官方经营者入口和短剧行业方案已找到；实际入驻、媒资提交、审核和发行权限待核查。普通快手账号不等于短剧经营者。",
+      "route_priority": "web_first_candidate"
+    },
+    {
+      "id": "hongguo-short-drama",
+      "name": "红果短剧 · 作品合作",
+      "forms": [],
+      "surface": "unknown",
+      "entry_url": null,
+      "evidence_urls": [
+        "https://content.douyin.com/"
+      ],
+      "evidence_status": "pending",
+      "verified_at": "2026-10-14",
+      "account_access": "pending",
+      "rules_status": "needs_current_account_check",
+      "adapter_status": "not_connected",
+      "notes": "红果应用已在榜单观察到；尚未确认该账号的独立投稿入口、合作路径或与抖音内容合作平台的权限关系。保留独立待核查渠道，禁止推断已能直发。",
+      "route_priority": "review_required"
     }
-  ]
+  ],
+  "routing_policy": {
+    "preferred": "browser_when_current_publish_editor_verified",
+    "fallback": "android_after_web_capability_check",
+    "official_api": "use_if_app_and_account_permissions_verified",
+    "consumer_site_is_not_publish_entry": true,
+    "auto_publish_enabled": false
+  }
 }

@@ -44,6 +44,7 @@ def main():
     queue_run=sub.add_parser("dispatch-run-inspection",help="在已连接安卓设备执行一个页面检查")
     queue_run.add_argument("--worker",default="local-inspector")
     queue_run.add_argument("--server",default="http://127.0.0.1:4723")
+    queue_run.add_argument("--backend",choices=["appium","uiautomator2","mobilerun"],default="appium")
     queue_resolve=sub.add_parser("dispatch-resolve",help="确认旧进程停止后取消状态未知任务，不重发")
     queue_resolve.add_argument("--task",required=True)
     queue_resolve.add_argument("--reason",required=True)
@@ -75,7 +76,7 @@ def main():
             elif args.command=="dispatch-resolve":
                 result=queue.resolve_unknown(args.tenant,args.task,args.reason,args.worker_stopped)
             else:
-                result=queue.inspect_next(args.tenant,args.worker,args.server)
+                result=queue.inspect_next(args.tenant,args.worker,args.server,args.backend)
         elif args.command == "media-index":
             result = media_index(args.category, args.keyword)
         elif args.command == "android-doctor":

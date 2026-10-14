@@ -154,9 +154,13 @@ class DispatchQueue:
         with self.transaction() as db:
             return [self._view(row) for row in db.execute('SELECT * FROM dispatch_tasks WHERE tenant=? ORDER BY created,rowid',(tenant,))]
 
-    def inspect_next(self,tenant,worker,server='http://127.0.0.1:4723'):
+    def inspect_next(self,tenant,worker,server='http://127.0.0.1:4723',backend='appium'):
         # Validate the local endpoint before obtaining a device lock.
-        client=AndroidInspector(server)
+        if backend=='appium':client=AndroidInspector(server)
+        elif backend in {'uiautomator2','mobilerun'}:
+            from .android_sdks import LocalSdkInspector
+            client=LocalSdkInspector(backend)
+        else:raise Problem('检查后端无效')
         task=self.claim(tenant,worker)
         if task is None:return {'status':'idle','publishing_verified':False}
         token=task['lease_token'];binding=task['payload']['binding']

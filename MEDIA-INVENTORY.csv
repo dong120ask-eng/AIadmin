@@ -259,3 +259,4 @@ requested-7,京东内容助手,用户指定补查,,,user_requested,unknown,not_c
 requested-8,京东金融创作者服务平台,用户指定补查,,,user_requested,unknown,not_connected,pending
 requested-9,多多视频,用户指定补查,,,user_requested,unknown,not_connected,pending
 requested-10,淘宝光合平台,用户指定补查,,,user_requested,unknown,not_connected,pending
+requested-qzone,QQ空间,用户指定补查,,https://qzone.qq.com/,user_requested,unknown,not_connected,pending
