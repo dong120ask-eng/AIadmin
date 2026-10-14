@@ -1,0 +1,10 @@
+.env*
+__pycache__/
+*.pyc
+offline/
+state/
+evidence/
+outputs/
+work/
+*.zip
+*.sqlite

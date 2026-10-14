@@ -1,0 +1,354 @@
+{
+  "workflow_name": "爆款内容生产流水线",
+  "version": "1.0",
+  "created_at": "2026-04-22",
+  "description": "输入爆款视频或产品截图，自动拆解逻辑，输出可批量复制的创作流水线",
+  
+  "workflow_type": "hybrid",
+  "input_types": ["video_link", "image_batch", "text_description"],
+  
+  "workflow_config": {
+    "nodes": [
+      {
+        "node_id": "input_classifier",
+        "name": "输入分类器",
+        "type": "condition",
+        "description": "判断用户输入类型，分发到对应分析分支",
+        "inputs": ["user_input"],
+        "outputs": ["input_type", "content_data"],
+        "logic": {
+          "if": "url contains [douyin, xiaohongshu, bilibili, kuaishou]",
+          "then": "video_branch",
+          "else_if": "input contains [image, screenshot]",
+          "then": "product_branch",
+          "else": "text_branch"
+        }
+      },
+      
+      {
+        "node_id": "video_analysis",
+        "name": "视频拆解分析",
+        "type": "process",
+        "description": "对爆款视频进行6维度深度分析",
+        "inputs": ["video_url"],
+        "outputs": ["video_analysis_result"],
+        "config": {
+          "model": "doubao-pro",
+          "temperature": 0.7,
+          "max_tokens": 3000
+        },
+        "analysis_dimensions": [
+          "hook_identification",
+          "content_structure",
+          "emotion_curve",
+          "value_extraction",
+          "interaction_design",
+          "differentiation"
+        ],
+        "prompt_template": "你是一个专业的短视频拆解专家。请对以下视频进行6维度深度分析：\n\n视频内容：{{video_content}}\n视频链接：{{video_url}}\n\n分析维度：\n1. 开头钩子识别（40+种钩子类型匹配）\n2. 内容结构拆解（叙事框架、节奏设计）\n3. 情绪曲线分析（情绪波动节点）\n4. 价值点提炼（干货密度、实用性）\n5. 互动设计分析（点赞、评论、分享引导）\n6. 差异化特征（与同类内容对比）\n\n请输出结构化的分析报告。"
+      },
+      
+      {
+        "node_id": "product_analysis",
+        "name": "产品逆向分析",
+        "type": "process",
+        "description": "对产品截图进行5维度逆向分析",
+        "inputs": ["product_images"],
+        "outputs": ["product_analysis_result"],
+        "config": {
+          "model": "doubao-pro",
+          "temperature": 0.7,
+          "max_tokens": 3000
+        },
+        "analysis_dimensions": [
+          "interface_structure",
+          "function_modules",
+          "user_paths",
+          "selling_points",
+          "technical_architecture"
+        ],
+        "prompt_template": "你是一个专业的产品逆向工程师。请对以下产品截图进行5维度分析：\n\n产品截图：{{images}}\n产品类型：{{product_type}}\n\n分析维度：\n1. 界面结构解析（导航、卡片、列表、表单）\n2. 功能模块识别（12+功能模块分类）\n3. 用户路径还原（核心流程梳理）\n4. 卖点设计挖掘（差异化定位）\n5. 技术架构抽象（可复用组件）\n\n请输出完整的逆向分析报告和PRD文档。"
+      },
+      
+      {
+        "node_id": "workflow_generator",
+        "name": "工作流生成器",
+        "type": "process",
+        "description": "根据分析结果生成可执行的工作流配置",
+        "inputs": ["analysis_result"],
+        "outputs": ["workflow_config"],
+        "config": {
+          "model": "doubao-pro",
+          "temperature": 0.5,
+          "max_tokens": 4000
+        },
+        "output_formats": [
+          "coze_workflow",
+          "ai_coding_instructions"
+        ],
+        "prompt_template": "基于以下分析结果，生成可批量复用的工作流配置：\n\n分析报告：{{analysis_report}}\n\n请生成：\n1. 扣子工作流JSON配置（可直接导入）\n2. AI编程指令格式（可直接执行）\n\n工作流应包含完整的节点配置、连接关系和输出格式。"
+      },
+      
+      {
+        "node_id": "creation_guide_generator",
+        "name": "创作指南生成器",
+        "type": "process",
+        "description": "生成详细的创作执行指南",
+        "inputs": ["analysis_result", "workflow_config"],
+        "outputs": ["creation_guide"],
+        "config": {
+          "model": "doubao-pro",
+          "temperature": 0.7,
+          "max_tokens": 3000
+        },
+        "guide_sections": [
+          "创作目标",
+          "创作步骤",
+          "关键要素",
+          "质量检查清单",
+          "变量调整指南"
+        ],
+        "prompt_template": "基于以下分析和配置，生成详细的创作执行指南：\n\n分析报告：{{analysis_report}}\n工作流配置：{{workflow_config}}\n\n请生成包含以下部分的分步骤创作指南：\n1. 创作目标（定位、受众、指标）\n2. 创作步骤（每步骤执行要点和检查清单）\n3. 关键要素（钩子、结构、情绪、互动）\n4. 质量检查清单（发布前/发布后）\n5. 变量调整指南（不同场景的调整方法）"
+      },
+      
+      {
+        "node_id": "report_compiler",
+        "name": "报告编译器",
+        "type": "process",
+        "description": "将分析结果编译成完整报告",
+        "inputs": ["video_analysis_result", "product_analysis_result"],
+        "outputs": ["final_report"],
+        "config": {
+          "model": "doubao-pro",
+          "temperature": 0.7,
+          "max_tokens": 5000
+        },
+        "output_template": "完整的拆解报告，包含所有分析维度和总结"
+      },
+      
+      {
+        "node_id": "output_formatter",
+        "name": "输出格式化器",
+        "type": "output",
+        "description": "将结果格式化并打包输出",
+        "inputs": ["final_report", "workflow_config", "creation_guide"],
+        "outputs": ["output_files"],
+        "output_files": [
+          {
+            "name": "拆解报告.md",
+            "format": "markdown",
+            "path": "./拆解报告.md"
+          },
+          {
+            "name": "工作流配置.json",
+            "format": "json",
+            "path": "./工作流配置.json"
+          },
+          {
+            "name": "创作指南.md",
+            "format": "markdown",
+            "path": "./创作指南.md"
+          }
+        ]
+      }
+    ],
+    
+    "connections": [
+      {
+        "from": "input_classifier",
+        "to": "video_analysis",
+        "condition": "input_type == 'video'"
+      },
+      {
+        "from": "input_classifier",
+        "to": "product_analysis",
+        "condition": "input_type == 'product'"
+      },
+      {
+        "from": "video_analysis",
+        "to": "workflow_generator"
+      },
+      {
+        "from": "product_analysis",
+        "to": "workflow_generator"
+      },
+      {
+        "from": "workflow_generator",
+        "to": "creation_guide_generator"
+      },
+      {
+        "from": "video_analysis",
+        "to": "report_compiler"
+      },
+      {
+        "from": "product_analysis",
+        "to": "report_compiler"
+      },
+      {
+        "from": "report_compiler",
+        "to": "output_formatter"
+      },
+      {
+        "from": "workflow_generator",
+        "to": "output_formatter"
+      },
+      {
+        "from": "creation_guide_generator",
+        "to": "output_formatter"
+      }
+    ]
+  },
+  
+  "coze_workflow_export": {
+    "nodes": [
+      {
+        "id": "start",
+        "type": "start",
+        "next": "input_node"
+      },
+      {
+        "id": "input_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "分析用户输入，判断类型（视频链接/产品截图/文字描述），提取关键信息。",
+        "output_variable": "input_type",
+        "next": "analysis_node"
+      },
+      {
+        "id": "analysis_node",
+        "type": "condition",
+        "condition_expression": "{{input_type}}",
+        "branches": {
+          "video": "video_decompose_node",
+          "product": "product_reverse_node",
+          "text": "text_analyze_node"
+        }
+      },
+      {
+        "id": "video_decompose_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "执行视频拆解6维度分析",
+        "output_variable": "video_analysis_result",
+        "next": "merge_node"
+      },
+      {
+        "id": "product_reverse_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "执行产品逆向5维度分析",
+        "output_variable": "product_analysis_result",
+        "next": "merge_node"
+      },
+      {
+        "id": "text_analyze_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "分析文字描述内容",
+        "output_variable": "text_analysis_result",
+        "next": "merge_node"
+      },
+      {
+        "id": "merge_node",
+        "type": "template",
+        "template": "整合分析结果",
+        "next": "workflow_gen_node"
+      },
+      {
+        "id": "workflow_gen_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "生成工作流配置JSON",
+        "output_variable": "workflow_config",
+        "next": "guide_gen_node"
+      },
+      {
+        "id": "guide_gen_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "生成创作指南",
+        "output_variable": "creation_guide",
+        "next": "report_gen_node"
+      },
+      {
+        "id": "report_gen_node",
+        "type": "LLM",
+        "model": "doubao-pro",
+        "prompt": "编译完整拆解报告",
+        "output_variable": "final_report",
+        "next": "output_node"
+      },
+      {
+        "id": "output_node",
+        "type": "end",
+        "output": ["final_report", "workflow_config", "creation_guide"]
+      }
+    ]
+  },
+  
+  "ai_coding_template": {
+    "task": "爆款内容流水线执行",
+    "language": "python",
+    "framework": "langgraph",
+    
+    "instructions": [
+      {
+        "step": 1,
+        "action": "输入分类",
+        "code": "def classify_input(user_input):\n    if is_video_url(user_input):\n        return 'video'\n    elif is_image_input(user_input):\n        return 'product'\n    else:\n        return 'text'",
+        "notes": "根据输入类型分发到不同分析分支"
+      },
+      {
+        "step": 2,
+        "action": "视频拆解分析",
+        "code": "def analyze_video(video_url):\n    # 6维度分析\n    hook = identify_hook(video_url)\n    structure = analyze_structure(video_url)\n    emotion = analyze_emotion_curve(video_url)\n    value = extract_value_points(video_url)\n    interaction = analyze_interaction(video_url)\n    differentiation = analyze_differentiation(video_url)\n    return VideoAnalysisResult(...)",
+        "notes": "调用视频分析模型"
+      },
+      {
+        "step": 3,
+        "action": "产品逆向分析",
+        "code": "def analyze_product(images):\n    # 5维度分析\n    interface = parse_interface(images)\n    functions = identify_functions(images)\n    paths =还原_user_paths(images)\n    selling_points = extract_selling_points(images)\n    tech = abstract_architecture(images)\n    return ProductAnalysisResult(...)",
+        "notes": "调用图像理解模型"
+      },
+      {
+        "step": 4,
+        "action": "工作流生成",
+        "code": "def generate_workflow(analysis_result):\n    workflow = {\n        'nodes': [...],\n        'connections': [...]\n    }\n    return workflow",
+        "notes": "生成可执行的工作流配置"
+      },
+      {
+        "step": 5,
+        "action": "创作指南生成",
+        "code": "def generate_creation_guide(analysis, workflow):\n    guide = {\n        '目标': {...},\n        '步骤': [...],\n        '检查清单': [...]\n    }\n    return guide",
+        "notes": "生成创作执行指南"
+      }
+    ],
+    
+    "dependencies": {
+      "packages": ["langgraph", "openai", "pillow"],
+      "imports": ["from typing import *", "from dataclasses import *"]
+    },
+    
+    "output": {
+      "format": "json",
+      "path": "./工作流配置.json"
+    }
+  },
+  
+  "variable_mapping": {
+    "input_type": {
+      "video": "视频链接输入",
+      "product": "产品截图输入",
+      "text": "文字描述输入"
+    },
+    "analysis_result": {
+      "hook_type": "钩子类型（40+种之一）",
+      "hook_content": "钩子具体内容",
+      "structure_type": "叙事框架类型",
+      "emotion_curve": "情绪曲线数据",
+      "value_points": "价值点列表",
+      "interaction_design": "互动设计方案",
+      "differentiation": "差异化特征"
+    }
+  }
+}

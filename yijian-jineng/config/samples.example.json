@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "id": "sample-structure",
+      "platform": "xiaohongshu",
+      "source_file": "用户授权样本路径",
+      "observed_at": "2026-10-14",
+      "metrics": {},
+      "structure": {
+        "hook": "提问",
+        "problem": "明确场景",
+        "progression": "逐步解释",
+        "evidence": "需实际来源",
+        "turn": "提出新判断",
+        "ending": "执行建议",
+        "visual_rhythm": "按素材观察"
+      },
+      "popularity_evidence": null
+    }
+  ],
+  "note": "没有实际热度证据，此样例不标爆款"
+}

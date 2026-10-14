@@ -1,0 +1,157 @@
+{
+  "static_validation": true,
+  "skills": [
+    {
+      "name": "account-content-factory",
+      "description": "按分类、产品、平台和账号人设混合规划独立内容任务，生成账号专属稿件与制作规格，用于一键批量内容工厂。",
+      "files": 4
+    },
+    {
+      "name": "browser-publish-control",
+      "description": "在明确指定的本机浏览器页面上核验账号并准备稿件，支持文字、文件、点击和经确认的最终提交。",
+      "files": 2
+    },
+    {
+      "name": "content-framework-remix",
+      "description": "把已拆解的内容框架应用到自己的产品和账号，重写叙事、论证与视觉结构，产出原创稿件和制作清单。",
+      "files": 1
+    },
+    {
+      "name": "desktop-media-production",
+      "description": "在电脑生成中文卡片、配音字幕短视频并核验文件，随后将保存好的素材交给手机或模拟器发布。",
+      "files": 5
+    },
+    {
+      "name": "dsh-account-matrix",
+      "description": "登记 Android App 原版与分身实例、核对运营账号，串行安排同手机多账号任务，并防止素材变更后沿用旧发布确认。",
+      "files": 1
+    },
+    {
+      "name": "dsh-android-control",
+      "description": "用显式指定设备的 ADB 检查 Android、截图、列出应用与系统用户、启动已安装 App 和传入素材；适用于本地手机草稿准备。",
+      "files": 5
+    },
+    {
+      "name": "dsh-app-publishing",
+      "description": "将已质检内容放入指定 App 或网页创作者后台的草稿，核对账号与预览，在明确发布确认后执行并核验作品结果。",
+      "files": 2
+    },
+    {
+      "name": "dsh-content-studio",
+      "description": "在本地制作中文图文、平台稿件和短视频素材；复用已有渲染器并产出可交接的质检报告，适用于手机发布前的内容生产。",
+      "files": 2
+    },
+    {
+      "name": "dsh-selfmedia-hub",
+      "description": "接续 Windows 本地自媒体项目，检查能力、调度内容制作与手机草稿任务，并用带素材指纹的台账衔接发布确认和结果核验。",
+      "files": 4
+    },
+    {
+      "name": "memu-multi-instance",
+      "description": "使用逍遥MEmu官方MEMUC管理多开实例并接入ADB发布设备，适用于模拟器创建、克隆、启停和应用安装。",
+      "files": 3
+    },
+    {
+      "name": "platform-publish-router",
+      "description": "把电脑已保存的成果按账号与平台入队，恢复发布进度并调度专用平台、USB手机、模拟器或网页控制技能。",
+      "files": 2
+    },
+    {
+      "name": "product-analysis-local",
+      "description": "分析商品的市场、竞品、用户与差异化，或从软件截图分析功能和交互；复用本地产品分析资料，输出有事实依据的分析报告及后续内容制作任务。",
+      "files": 9
+    },
+    {
+      "name": "product-market-marketing",
+      "description": "整合37本经典营销著作+GEO自动化实战+专业GEO审计与SEO技术审计，提供战略理论到种草双引擎内容创作、电商平台差异化运营、媒体投放与达人策略、团队配置、数据追踪的全链路营销方案；当用户需要营销策划、品牌定位、种草文案、软性种草、私域/直播/电商运营、活动策划、数据分析、爆款复刻、选号策略、GEO审计、AI搜索优化、SEO技术审计时使用",
+      "files": 106
+    },
+    {
+      "name": "publish-baijiahao",
+      "description": "为百家号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-bilibili",
+      "description": "为哔哩哔哩的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-csdn",
+      "description": "为CSDN的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-douyin",
+      "description": "为抖音的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-juejin",
+      "description": "为掘金的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-kuaishou",
+      "description": "为快手的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-toutiao",
+      "description": "为今日头条的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-wechat-channels",
+      "description": "为微信视频号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-wechat-mp",
+      "description": "为微信公众号的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-weibo",
+      "description": "为微博的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-xiaohongshu",
+      "description": "为小红书的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-xigua",
+      "description": "为西瓜视频的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "publish-zhihu",
+      "description": "为知乎的自有账号准备内容和草稿，按当前界面核验身份、字段、发布确认与作品结果。",
+      "files": 1
+    },
+    {
+      "name": "selfmedia-autopilot",
+      "description": "统一调度营销策划、爆款学习、混合账号内容生成、电脑制作、模拟器与USB发布任务；用户要求一键自媒体全流程时使用。",
+      "files": 5
+    },
+    {
+      "name": "software-install-maintain",
+      "description": "核对并安装自媒体所需电脑依赖、官方软件与指定Android组件，保留版本和安装记录，不重复安装。",
+      "files": 2
+    },
+    {
+      "name": "viral-content-learning",
+      "description": "从各平台公开或授权样本记录热度证据，拆解钩子、结构、论证、画面节奏与账号适配，建立可复用内容框架库。",
+      "files": 2
+    },
+    {
+      "name": "workspace-organizer",
+      "description": "整理本项目旧版本、资料、交付和运行成果，使用可恢复归档清单而非删除，保持技能相对资源路径完整。",
+      "files": 2
+    }
+  ],
+  "errors": [],
+  "note": "静态校验不等于真机/API/模拟器/平台发布验收"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "demo-campaign",
+  "products": [
+    {
+      "id": "cup",
+      "name": "结构示例茶杯",
+      "brief": "config/product-demo.md",
+      "regulated_health": false
+    }
+  ],
+  "accounts": [
+    {
+      "id": "xhs-a",
+      "instance_id": "example-not-a-real-instance",
+      "platform": "xiaohongshu",
+      "format": "image",
+      "categories": [
+        "生活"
+      ],
+      "product_ids": [
+        "cup"
+      ],
+      "persona": "理性测评",
+      "max_items": 1,
+      "visibility": "private"
+    },
+    {
+      "id": "dy-b",
+      "instance_id": "example-not-a-real-instance-b",
+      "platform": "douyin",
+      "format": "video",
+      "categories": [
+        "生活"
+      ],
+      "product_ids": [
+        "cup"
+      ],
+      "persona": "场景故事",
+      "max_items": 1,
+      "visibility": "private"
+    }
+  ],
+  "topics": [
+    {
+      "id": "use-case",
+      "product_id": "cup",
+      "category": "生活",
+      "angle": "基于已确认资料解释使用场景",
+      "framework": {
+        "hook": "提出具体问题",
+        "progression": "解释判断依据",
+        "ending": "给出可执行检查点"
+      }
+    }
+  ],
+  "note": "仅结构示例，账号未登记，不能直接用于真实发布"
+}

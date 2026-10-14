@@ -1,0 +1,148 @@
+{
+  "platforms": [
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "candidate_package": "com.xingin.xhs",
+      "creator_url": "https://creator.xiaohongshu.com/",
+      "fields": "图文/视频；首图、图序、标题、正文、话题、可见性",
+      "verification": "个人主页账号、作品列表或创作者后台状态",
+      "skill": "publish-xiaohongshu",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "douyin",
+      "name": "抖音",
+      "candidate_package": "com.ss.android.ugc.aweme",
+      "creator_url": "https://creator.douyin.com/",
+      "fields": "视频/图文；封面、音乐授权、标题、话题、挂载、可见性",
+      "verification": "账号作品与审核/公开状态",
+      "skill": "publish-douyin",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "toutiao",
+      "name": "今日头条",
+      "candidate_package": "com.ss.android.article.news",
+      "creator_url": "https://mp.toutiao.com/",
+      "fields": "文章/微头条/视频分别选择；标题、正文、封面与原创设置",
+      "verification": "内容管理中对应作品与审核状态",
+      "skill": "publish-toutiao",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "kuaishou",
+      "name": "快手",
+      "candidate_package": "com.smile.gifmaker",
+      "creator_url": "https://cp.kuaishou.com/",
+      "fields": "视频、图文、封面、描述、可见性；按当前入口核验",
+      "verification": "个人作品或官方创作者后台回执",
+      "skill": "publish-kuaishou",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "bilibili",
+      "name": "哔哩哔哩",
+      "candidate_package": null,
+      "creator_url": "https://member.bilibili.com/",
+      "fields": "视频分区、版权声明、封面、标题、简介、字幕",
+      "verification": "稿件管理中稿件ID和状态",
+      "skill": "publish-bilibili",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "wechat-channels",
+      "name": "微信视频号",
+      "candidate_package": "com.tencent.mm",
+      "creator_url": "https://channels.weixin.qq.com/",
+      "fields": "微信中的实际视频号身份；封面、文案、视频、挂载与可见性",
+      "verification": "视频号作品列表，微信昵称不能代替视频号账号",
+      "skill": "publish-wechat-channels",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "wechat-mp",
+      "name": "微信公众号",
+      "candidate_package": "com.tencent.mm",
+      "creator_url": "https://mp.weixin.qq.com/",
+      "fields": "公众号后台优先；排版、封面、摘要、作者、预览；普通微信聊天不是公众号编辑器",
+      "verification": "公众号草稿与群发/发布管理状态",
+      "skill": "publish-wechat-mp",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "baijiahao",
+      "name": "百家号",
+      "candidate_package": null,
+      "creator_url": "https://baijiahao.baidu.com/",
+      "fields": "图文/视频/动态分入口；封面、正文与当前账号权限",
+      "verification": "内容管理的作品ID与状态",
+      "skill": "publish-baijiahao",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "weibo",
+      "name": "微博",
+      "candidate_package": null,
+      "creator_url": "https://weibo.com/",
+      "fields": "图文/视频、图片顺序、话题、可见性；自有账号核验",
+      "verification": "对应微博链接、内容和可见状态",
+      "skill": "publish-weibo",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "zhihu",
+      "name": "知乎",
+      "candidate_package": null,
+      "creator_url": "https://www.zhihu.com/creator",
+      "fields": "回答/文章/想法分体裁；问题上下文、引用和图片",
+      "verification": "实际回答/文章链接及账号",
+      "skill": "publish-zhihu",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "csdn",
+      "name": "CSDN",
+      "candidate_package": null,
+      "creator_url": "https://mp.csdn.net/",
+      "fields": "Markdown/富文本编辑、图片、分类、标签、封面与版权声明",
+      "verification": "文章管理中的对应文章和审核状态",
+      "skill": "publish-csdn",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "juejin",
+      "name": "掘金",
+      "candidate_package": null,
+      "creator_url": "https://juejin.cn/editor/drafts/new",
+      "fields": "Markdown正文、封面、分类、标签、预览",
+      "verification": "草稿/文章与作者身份及实际状态",
+      "skill": "publish-juejin",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    },
+    {
+      "id": "xigua",
+      "name": "西瓜视频",
+      "candidate_package": null,
+      "creator_url": "https://studio.ixigua.com/",
+      "fields": "视频、封面、标题、简介、版权信息与账号权限",
+      "verification": "创作后台中的作品ID与状态",
+      "skill": "publish-xigua",
+      "calibration": "runtime-observation-required",
+      "tested": false
+    }
+  ],
+  "note": "平台操作由当前宿主按实时观察调用已实现控制器；不是已经真机测试的固定选择器"
+}

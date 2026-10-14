@@ -1,0 +1,52 @@
+name: Build Yijian Jineng Release
+on:
+  push:
+    branches: [main]
+    paths: ['yijian-jineng/**', '.github/workflows/yijian-jineng-release.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: yijian-jineng-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Build pinned portable runtime
+        run: python -X utf8 yijian-jineng/tools/build_offline.py
+      - name: Verify skills and run deployment regressions
+        run: |
+          $py = '.\yijian-jineng\offline\runtime\python.exe'
+          & $py -X utf8 yijian-jineng/tools/check_release.py
+          if ($LASTEXITCODE -ne 0) { throw 'Skill validation failed' }
+          & $py -X utf8 -m unittest discover -s yijian-jineng/tests -v
+          if ($LASTEXITCODE -ne 0) { throw 'Regression tests failed' }
+      - name: Package and verify deployment
+        run: |
+          $py = '.\yijian-jineng\offline\runtime\python.exe'
+          New-Item -ItemType Directory -Path dist | Out-Null
+          & $py -X utf8 yijian-jineng/tools/package.py --output dist/yijian-jineng-20261014-r4.zip
+          if ($LASTEXITCODE -ne 0) { throw 'Package verification failed' }
+          & .\yijian-jineng\tools\setup.ps1 -TargetRoot "$env:RUNNER_TEMP\SelfMediaSmoke" -Plan
+          if ($LASTEXITCODE -ne 0) { throw 'Deployment plan failed' }
+      - name: Publish complete release ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          $asset='dist/yijian-jineng-20261014-r4.zip'
+          $hash=(Get-FileHash -LiteralPath $asset -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  yijian-jineng-20261014-r4.zip" | Set-Content dist/SHA256.txt -Encoding utf8
+          @('30 skills. Windows x64 portable Python and dependencies included.','Extract the ZIP and run the deployment launcher.','Real-platform publishing acceptance remains pending.',"SHA256: $hash") | Set-Content dist/RELEASE.md -Encoding utf8
+          gh release view v2026.10.14-r4 --repo $env:GH_REPO *> $null
+          if ($LASTEXITCODE -eq 0) { throw 'Release already exists; never overwrite its assets. Use a new version.' }
+          gh release create v2026.10.14-r4 $asset dist/SHA256.txt --repo $env:GH_REPO --target $env:GITHUB_SHA --title 'Yijian Jineng v2026.10.14-r4' --notes-file dist/RELEASE.md
+          if ($LASTEXITCODE -ne 0) { throw 'Release upload failed' }
