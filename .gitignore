@@ -11,3 +11,7 @@ runtime/
 node_modules/
 .env
 *.log
+
+# Versioned public discovery data, distinct from runtime data.
+!workbench/data/
+!workbench/data/media-index.json

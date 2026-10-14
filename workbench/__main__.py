@@ -6,6 +6,7 @@ import webbrowser
 from pathlib import Path
 
 from .runner import doctor, run_job
+from .media import media_index, android_doctor, execution_plan
 from .server import make_server
 from .store import Problem, Store
 
@@ -20,6 +21,13 @@ def main():
     serve.add_argument("--enable-cli", action="store_true", help="允许网页调用现有Codex权益；实际调用费用未知")
     serve.add_argument("--open-browser", action="store_true", help="启动后打开本机工作台")
     sub.add_parser("doctor")
+    media = sub.add_parser("media-index")
+    media.add_argument("--category")
+    media.add_argument("--keyword")
+    sub.add_parser("android-doctor")
+    publish = sub.add_parser("publish-plan")
+    publish.add_argument("--binding", required=True)
+    publish.add_argument("--request", required=True)
     sub.add_parser("recover", help="确认没有运行中进程后恢复中断任务")
     project = sub.add_parser("create-project")
     project.add_argument("--file", required=True)
@@ -36,7 +44,13 @@ def main():
             parser.add_argument("--output", required=True)
     args = p.parse_args()
     try:
-        if args.command == "doctor":
+        if args.command == "media-index":
+            result = media_index(args.category, args.keyword)
+        elif args.command == "android-doctor":
+            result = android_doctor()
+        elif args.command == "publish-plan":
+            result = execution_plan(json.loads(Path(args.binding).read_text(encoding="utf-8")), json.loads(Path(args.request).read_text(encoding="utf-8")))
+        elif args.command == "doctor":
             result = doctor()
         else:
             data = Path(args.data_dir).resolve()

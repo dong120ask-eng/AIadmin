@@ -152,3 +152,7 @@ JSDOM_MODULE="$PWD/.qa-tools/node_modules/jsdom" PYTHONPATH=. python3 scripts/ui
 - Python本地HTTP服务：https://docs.python.org/3.12/library/http.server.html
 
 这些链接用于实现依据；当前平台规格与商业接入仍需各自核查。
+
+## 媒体发现与执行计划扩展
+
+打开本机工作台的`/media.html`查看分类清单。当前仅有发现登记、部分渠道证据及浏览器／安卓执行计划，未接通真实发布。使用方法与覆盖限制见[PUBLISHING-DEVELOPMENT.md](PUBLISHING-DEVELOPMENT.md)。
