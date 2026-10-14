@@ -70,9 +70,11 @@ class Browser:
     def snapshot(self,base): self.page.screenshot(path=str(base)+'.png',full_page=True); save(str(base)+'.html',self.page.content())
     def close(self): self.pw.stop()
 def capture(backend,profile,root,folder,label):
+    root=Path(root).resolve(); folder=Path(folder).resolve()
+    if not folder.is_relative_to(root): raise ValueError('观察目录必须位于工作区内')
     account=backend.identity()
     if account!=profile['account_id']: raise ValueError('实际页面账号不符')
-    base=inside(root,str(folder.relative_to(Path(root).resolve()))+'/'+label)
+    base=inside(root,str(folder.relative_to(root))+'/'+label)
     base.parent.mkdir(parents=True,exist_ok=True); backend.snapshot(base)
     record={'schema':'ui-observation/v1','account_id':account,'location':profile['location'],'backend':profile['backend'],'files':[]}
     for f in base.parent.glob(base.name+'.*'):
