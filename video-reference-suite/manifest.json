@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "date": "2026-10-15",
+  "skills": [
+    "video-reference-adapt",
+    "video-shot-prompts",
+    "video-voice-sync",
+    "video-edit-review",
+    "video-jimeng-bridge",
+    "video-jichuang-bridge"
+  ],
+  "execution": "workflow-and-prompts; no connected external video executor",
+  "verified": "skill structure and local package checks",
+  "not_verified": [
+    "Windows installation",
+    "WorkBuddy import",
+    "real media generation",
+    "lip sync",
+    "Jianying export",
+    "public repository visibility"
+  ],
+  "work_skill_sync": "failed: HTTP 422; local sources retained"
+}
