@@ -12,7 +12,14 @@ $source=(Get-Item -LiteralPath $SourcePath -ErrorAction Stop).FullName
 $hash=(Get-FileHash -LiteralPath $package -Algorithm SHA256).Hash.ToLowerInvariant()
 if (!(Test-Path -LiteralPath (Join-Path $source 'skills\selfmedia-autopilot\SKILL.md'))) { throw 'Incomplete source tree' }
 if (Test-Path -LiteralPath (Join-Path $source '.git')) { throw 'Existing local Git repository; inspect previous publication state before retry' }
-if ((Get-ChildItem -LiteralPath $source -Recurse -File | Where-Object { $_.Name -like '.env*' -or $_.Extension -in @('.zip','.sqlite','.exe','.dll','.whl') }).Count -gt 0) { throw 'Repository source must exclude binaries, archives, live credentials and state' }
+# Expanded blocklist: credentials, keys, certs, binaries, archives, state.
+$blockExt=@('.zip','.sqlite','.exe','.dll','.whl','.pem','.key','.p12','.pfx','.crt','.cer','.p7b','.keystore')
+$leaked=Get-ChildItem -LiteralPath $source -Recurse -File | Where-Object {
+    $_.Name -like '.env*' -or $_.Extension -in $blockExt
+}
+if ($leaked.Count -gt 0) {
+    throw 'Repository source must exclude binaries, archives, live credentials, keys and certs: ' + ($leaked.FullName -join ', ')
+}
 Write-Host ('Plan: private repository ' + $Repository + '; release ' + $Version + '; SHA256 ' + $hash)
 if (!$Apply) { return }
 & $gh auth status --hostname github.com
@@ -39,7 +46,7 @@ try {
     $notes=Join-Path $env:TEMP ('yijian-release-'+[Guid]::NewGuid().ToString('N')+'.md')
     @('30 skills. Windows x64 portable Python and dependencies included.','USB: extract and run deployment launcher.','Platform publishing remains pending real-account acceptance.','',('SHA256: '+$hash)) | Set-Content -LiteralPath $notes -Encoding UTF8
     & $gh release create $Version $package --repo $Repository --target main --title ('Yijian jineng '+$Version) --notes-file $notes
-    if ($LASTEXITCODE -ne 0) { throw 'Release upload failed; inspect release before retry' }
+    if ($LASTEXITCODE -ne 0) { throw 'Release upload failed' }
     & $gh release view $Version --repo $Repository --json url,assets
     if ($LASTEXITCODE -ne 0) { throw 'Release verification failed' }
 } finally { if ($previousPath) { $env:PATH=$previousPath }; Pop-Location }
