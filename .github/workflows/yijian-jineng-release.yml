@@ -1,14 +1,23 @@
 name: Build Yijian Jineng Release
+
 on:
   push:
     branches: [main]
     paths: ['yijian-jineng/**', '.github/workflows/yijian-jineng-release.yml']
   workflow_dispatch:
+
+env:
+  # Bump this single variable for each release.
+  RELEASE_VERSION: v2026.10.14-r8
+  RELEASE_DATE: 20261014
+
 permissions:
   contents: write
+
 concurrency:
   group: yijian-jineng-release
   cancel-in-progress: false
+
 jobs:
   release:
     runs-on: windows-latest
@@ -17,11 +26,14 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
+
       - name: Build pinned portable runtime
         run: python -X utf8 yijian-jineng/tools/build_offline.py
+
       - name: Verify skills and run deployment regressions
         run: |
           $py = '.\yijian-jineng\offline\runtime\python.exe'
@@ -29,24 +41,33 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Skill validation failed' }
           & $py -X utf8 -m unittest discover -s yijian-jineng/tests -v
           if ($LASTEXITCODE -ne 0) { throw 'Regression tests failed' }
+
       - name: Package and verify deployment
         run: |
           $py = '.\yijian-jineng\offline\runtime\python.exe'
           New-Item -ItemType Directory -Path dist | Out-Null
-          & $py -X utf8 yijian-jineng/tools/package.py --output dist/yijian-jineng-20261014-r8.zip
+          $asset = "dist/yijian-jineng-$env:RELEASE_DATE-r8.zip"
+          & $py -X utf8 yijian-jineng/tools/package.py --output $asset
           if ($LASTEXITCODE -ne 0) { throw 'Package verification failed' }
           & .\yijian-jineng\tools\setup.ps1 -TargetRoot "$env:RUNNER_TEMP\SelfMediaSmoke" -Plan
           if ($LASTEXITCODE -ne 0) { throw 'Deployment plan failed' }
+
       - name: Publish complete release ZIP
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          $asset='dist/yijian-jineng-20261014-r8.zip'
-          $hash=(Get-FileHash -LiteralPath $asset -Algorithm SHA256).Hash.ToLowerInvariant()
-          "$hash  yijian-jineng-20261014-r8.zip" | Set-Content dist/SHA256.txt -Encoding utf8
-          @('54 skills; 68 regression checks. Windows x64 portable Python and dependencies included.','Extract the ZIP and run the deployment launcher.','Real-platform publishing acceptance remains pending.',"SHA256: $hash") | Set-Content dist/RELEASE.md -Encoding utf8
-          gh release view v2026.10.14-r8 --repo $env:GH_REPO *> $null
-          if ($LASTEXITCODE -eq 0) { throw 'Release already exists; never overwrite its assets. Use a new version.' }
-          gh release create v2026.10.14-r8 $asset dist/SHA256.txt --repo $env:GH_REPO --target $env:GITHUB_SHA --title 'Yijian Jineng v2026.10.14-r8' --notes-file dist/RELEASE.md
+          $asset = "dist/yijian-jineng-$env:RELEASE_DATE-r8.zip"
+          $hash = (Get-FileHash -LiteralPath $asset -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  yijian-jineng-$env:RELEASE_DATE-r8.zip" | Set-Content dist/SHA256.txt -Encoding utf8
+          @('54 skills; 68 regression checks. Windows x64 portable Python and dependencies included.',
+            'Extract the ZIP and run the deployment launcher.',
+            'Real-platform publishing acceptance remains pending.',
+            "SHA256: $hash") | Set-Content dist/RELEASE.md -Encoding utf8
+          gh release view $env:RELEASE_VERSION --repo $env:GH_REPO *> $null
+          if ($LASTEXITCODE -eq 0) { throw 'Release already exists; never overwrite its assets. Bump RELEASE_VERSION.' }
+          gh release create $env:RELEASE_VERSION $asset dist/SHA256.txt `
+            --repo $env:GH_REPO --target $env:GITHUB_SHA `
+            --title "Yijian Jineng $env:RELEASE_VERSION" `
+            --notes-file dist/RELEASE.md
           if ($LASTEXITCODE -ne 0) { throw 'Release upload failed' }
