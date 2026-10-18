@@ -88,15 +88,24 @@ class DispatchQueue:
     def recover(self):
         with self.transaction() as db:return {'marked_unknown':self._expire(db),'auto_requeued':False}
 
-    def claim(self,tenant,worker,lease_seconds=120):
+    def claim(self,tenant,worker,lease_seconds=120,action="inspect_only"):
         identifier(tenant);identifier(worker)
+        if action not in {"inspect_only", "draft"}:raise Problem("不允许执行发布")
         if isinstance(lease_seconds,bool) or not isinstance(lease_seconds,(int,float)) or not math.isfinite(lease_seconds) or not 5<=lease_seconds<=600:
             raise Problem('租约必须为5至600秒')
         with self.transaction() as db:
             self._expire(db)
-            row=db.execute("SELECT t.* FROM dispatch_tasks t LEFT JOIN dispatch_resources r ON t.resource=r.resource WHERE t.tenant=? AND t.state='queued' AND r.resource IS NULL ORDER BY t.created,t.rowid LIMIT 1",(tenant,)).fetchone()
+            row=db.execute("SELECT t.* FROM dispatch_tasks t LEFT JOIN dispatch_resources r ON t.resource=r.resource WHERE t.tenant=? AND t.state='queued' AND t.action=? AND r.resource IS NULL ORDER BY t.created,t.rowid",(tenant,action)).fetchall()
+            candidates=row;row=None;extra=None
+            for candidate in candidates:
+                payload=json.loads(candidate["payload"])
+                unique=payload["binding"]["account_unique_id"]
+                alias="wechat-account:"+hashlib.sha256(unique.encode()).hexdigest() if action=="draft" else None
+                if alias and db.execute("SELECT 1 FROM dispatch_resources WHERE resource=?",(alias,)).fetchone():continue
+                row=candidate;extra=alias;break
             if row is None:return None
             token=secrets.token_hex(24)
+            if extra:db.execute('INSERT INTO dispatch_resources(resource,task_id) VALUES(?,?)',(extra,row['id']))
             db.execute('INSERT INTO dispatch_resources(resource,task_id) VALUES(?,?)',(row['resource'],row['id']))
             db.execute("UPDATE dispatch_tasks SET state='running',worker=?,lease_token=?,lease_until=?,updated=? WHERE id=?",(worker,token,self.clock()+lease_seconds,self.clock(),row['id']))
             self._event(db,row['id'],'running','取得设备／会话排他锁')
@@ -126,7 +135,7 @@ class DispatchQueue:
             row=self._owned(db,tenant,task,token)
             if row['action']!='inspect_only':raise Problem('检查执行器不能完成发布任务')
             db.execute("UPDATE dispatch_tasks SET state='inspected',lease_token=NULL,result=?,updated=? WHERE id=?",(json.dumps(artifact),self.clock(),task))
-            db.execute('DELETE FROM dispatch_resources WHERE resource=? AND task_id=?',(row['resource'],task))
+            db.execute('DELETE FROM dispatch_resources WHERE task_id=?',(task,))
             self._event(db,task,'inspected','已保存实际页面文件；不是账号核验或发布成功')
             return self._view(self._row(db,tenant,task))
 
@@ -143,7 +152,7 @@ class DispatchQueue:
             row=self._row(db,tenant,task)
             if row['state']!='unknown':raise Problem('只能核查状态未知的任务',409)
             db.execute("UPDATE dispatch_tasks SET state='cancelled',updated=? WHERE id=?",(self.clock(),task))
-            db.execute('DELETE FROM dispatch_resources WHERE resource=? AND task_id=?',(row['resource'],task))
+            db.execute('DELETE FROM dispatch_resources WHERE task_id=?',(task,))
             self._event(db,task,'cancelled','人工核查完毕；结论保存在本机，不自动重发')
             # Free-text reconciliation notes may contain private account facts.
             db.execute('UPDATE dispatch_tasks SET result=? WHERE id=?',(json.dumps({'manual_resolution':reason,'worker_stopped':True},ensure_ascii=False),task))
@@ -178,3 +187,4 @@ class DispatchQueue:
             try:self.mark_unknown(tenant,task['id'],token)
             except Problem:self.recover()
             raise Problem('设备检查中断，任务与资源隔离；核查并停止旧进程后再恢复',409)
+
