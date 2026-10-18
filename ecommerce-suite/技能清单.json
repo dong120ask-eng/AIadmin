@@ -1,0 +1,111 @@
+[
+  {
+    "name": "manage-china-ecommerce",
+    "title": "电商总控"
+  },
+  {
+    "name": "ecom-profit",
+    "title": "利润与现金流诊断",
+    "command": "profit"
+  },
+  {
+    "name": "ecom-promotion",
+    "title": "促销优惠防错",
+    "command": "promotion"
+  },
+  {
+    "name": "ecom-inventory",
+    "title": "共享库存与补货",
+    "command": "inventory"
+  },
+  {
+    "name": "ecom-funnel",
+    "title": "流量成交漏斗诊断",
+    "command": "funnel"
+  },
+  {
+    "name": "ecom-after-sales",
+    "title": "客服售后根因闭环",
+    "command": "after_sales"
+  },
+  {
+    "name": "ecom-product",
+    "title": "商品上新与搜索优化",
+    "command": null
+  },
+  {
+    "name": "ecom-content",
+    "title": "电商素材与内容转化",
+    "command": null
+  },
+  {
+    "name": "ecom-ads",
+    "title": "推广投放与预算实验",
+    "command": null
+  },
+  {
+    "name": "ecom-campaign",
+    "title": "大促活动与资源协同",
+    "command": null
+  },
+  {
+    "name": "ecom-retention",
+    "title": "会员与复购运营",
+    "command": null
+  },
+  {
+    "name": "ecom-compliance",
+    "title": "规则资质与宣传审核",
+    "command": null
+  },
+  {
+    "name": "ecom-execution",
+    "title": "店铺执行与经营复盘",
+    "command": null
+  },
+  {
+    "name": "ecom-selection",
+    "title": "市场调研与选品",
+    "command": null
+  },
+  {
+    "name": "ecom-procurement",
+    "title": "采购询价与供应商管理",
+    "command": null
+  },
+  {
+    "name": "ecom-quality",
+    "title": "质检抽检与召回协同",
+    "command": null
+  },
+  {
+    "name": "ecom-warehouse",
+    "title": "订单仓储与物流异常",
+    "command": null
+  },
+  {
+    "name": "ecom-reconciliation",
+    "title": "财务对账与结算差异",
+    "command": null
+  },
+  {
+    "name": "ecom-category",
+    "title": "全品类适配与特殊履约",
+    "command": null
+  },
+  {
+    "name": "ecom-tooling",
+    "title": "工具插件与连接能力管理",
+    "command": null
+  },
+  {
+    "name": "ecom-incident",
+    "title": "经营异常与未知问题分流",
+    "command": null
+  },
+  {
+    "name": "ecom-automation",
+    "title": "电商自动巡检与变更执行",
+    "command": "automation"
+  }
+]

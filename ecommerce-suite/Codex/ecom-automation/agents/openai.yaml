@@ -1,0 +1,4 @@
+interface:
+  display_name: "电商自动巡检与变更执行"
+  short_description: "活动检测报名与商品推广变更的授权检查、执行回读和状态恢复"
+  default_prompt: "使用 $ecom-automation 巡检活动与经营数据，核验授权后执行并重读变更结果。"

@@ -1,0 +1,19 @@
+{
+  "operator_minutes_per_day": 360,
+  "worker_minutes_per_day": 600,
+  "stores": [
+    {
+      "tenant_id": "DEMO-TENANT",
+      "platform": "DEMO-PLATFORM",
+      "store_id": "DEMO-STORE",
+      "model": "mixed",
+      "orders_per_day": 100,
+      "exception_rate": 0.1,
+      "minutes_per_exception": 10,
+      "routine_manual_minutes": 20,
+      "api_calls_per_day": 200,
+      "api_quota_per_day": 1000,
+      "worker_minutes": 60
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "offline_calculated",
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "mode": "funnel",
+  "results": [
+    {
+      "channel": "demo-search",
+      "ctr": "0.100000",
+      "cart_rate": "0.166667",
+      "buyer_rate": "0.055556",
+      "visitors": 90,
+      "buyers": 5
+    }
+  ],
+  "limitation": "Same-window counts only; channel visitors may overlap. No causal diagnosis or cross-channel deduplication."
+}

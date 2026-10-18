@@ -1,0 +1,13 @@
+interface:
+  display_name: AI电商运营全能托管
+  short_description: 统筹国内七平台商品、内容、投放、利润、库存履约、售后与经营复盘
+  default_prompt: 使用 $manage-china-ecommerce 接管当前电商项目，先核验数据与权限，给出经营诊断并执行已授权任务。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

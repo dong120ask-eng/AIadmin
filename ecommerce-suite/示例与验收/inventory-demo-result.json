@@ -1,0 +1,25 @@
+{
+  "status": "offline_calculated",
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "mode": "inventory",
+  "results": [
+    {
+      "sku": "DEMO-SKU",
+      "available": 7,
+      "allocations": [
+        {
+          "store_id": "A",
+          "allocated": 6,
+          "unmet": 0
+        },
+        {
+          "store_id": "B",
+          "allocated": 1,
+          "unmet": 5
+        }
+      ],
+      "unallocated": 0
+    }
+  ],
+  "limitation": "Snapshot proposal in input priority order; not live reservation or synchronization. Revalidate before execution."
+}

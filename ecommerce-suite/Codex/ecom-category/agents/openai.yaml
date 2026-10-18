@@ -1,0 +1,4 @@
+interface:
+  display_name: "全品类适配与特殊履约"
+  short_description: "国内多平台电商全品类适配与特殊履约工作流、证据核验与可执行交付"
+  default_prompt: "使用 $ecom-category 处理项目问题，核证据与授权后完成可执行交付。"

@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "timezone": "Asia/Shanghai",
+  "stores": [],
+  "sku_mapping": [],
+  "product_evidence": [],
+  "inventory_source": null,
+  "owners": {},
+  "goals": {},
+  "authorization": {
+    "mode": "analysis_and_local_drafts",
+    "store_ids": [],
+    "actions": [],
+    "valid_until": null,
+    "daily_spend_limit": null,
+    "price_floor": null
+  },
+  "capabilities": {},
+  "thresholds": {},
+  "pending_tasks": []
+}

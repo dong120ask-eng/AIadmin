@@ -1,0 +1,4 @@
+interface:
+  display_name: "利润与现金流诊断"
+  short_description: "面向国内多平台电商的利润与现金流诊断专项工作流与实战交付"
+  default_prompt: "使用 $ecom-profit 处理当前项目，核验资料后给出可执行结果和证据。"

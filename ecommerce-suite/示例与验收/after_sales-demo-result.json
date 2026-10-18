@@ -1,0 +1,14 @@
+{
+  "status": "offline_calculated",
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "mode": "after_sales",
+  "results": [
+    {
+      "sku": "DEMO-SKU",
+      "reason": "物流破损",
+      "case_count": 1,
+      "refund_amount": "20.00"
+    }
+  ],
+  "limitation": "Counts and amounts only; refund rate needs matching order denominator and maturity. Reason is reported label, not proven root cause."
+}

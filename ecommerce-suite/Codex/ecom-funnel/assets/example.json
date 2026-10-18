@@ -1,0 +1,13 @@
+{
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "rows": [
+    {
+      "channel": "demo-search",
+      "impressions": 1000,
+      "clicks": 100,
+      "visitors": 90,
+      "cart_users": 15,
+      "buyers": 5
+    }
+  ]
+}

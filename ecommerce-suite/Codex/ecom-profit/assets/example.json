@@ -1,0 +1,17 @@
+{
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "rows": [
+    {
+      "record_id": "demo-1",
+      "sku": "DEMO-SKU",
+      "net_revenue": 100,
+      "merchant_subsidy": 0,
+      "goods_cost": 40,
+      "platform_fees": 5,
+      "ad_spend": 30,
+      "fulfillment_cost": 10,
+      "after_sales_net_loss": 20,
+      "other_variable_cost": 0
+    }
+  ]
+}

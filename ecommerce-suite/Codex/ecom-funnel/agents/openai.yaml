@@ -1,0 +1,4 @@
+interface:
+  display_name: "流量成交漏斗诊断"
+  short_description: "面向国内多平台电商的流量成交漏斗诊断专项工作流与实战交付"
+  default_prompt: "使用 $ecom-funnel 处理当前项目，核验资料后给出可执行结果和证据。"

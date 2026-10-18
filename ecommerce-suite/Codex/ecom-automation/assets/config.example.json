@@ -1,0 +1,34 @@
+{
+  "mode": "preview",
+  "stop": false,
+  "authorization": {
+    "stores": [],
+    "actions": [],
+    "valid_until": null,
+    "targets_by_store": {},
+    "bindings": {}
+  },
+  "adapters": {},
+  "tasks": [
+    {
+      "task_id": "demo-detect",
+      "store_id": "DEMO-STORE",
+      "target_id": "campaign-list",
+      "action": "campaign_detect"
+    },
+    {
+      "task_id": "demo-title",
+      "store_id": "DEMO-STORE",
+      "target_id": "DEMO-SKU",
+      "action": "product_title_update",
+      "expected_before": "示例旧标题",
+      "desired_value": "待证据审核的新标题"
+    }
+  ],
+  "stores": {
+    "DEMO-STORE": {
+      "tenant_id": "DEMO-TENANT",
+      "platform": "DEMO-PLATFORM"
+    }
+  }
+}

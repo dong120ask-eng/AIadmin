@@ -1,0 +1,25 @@
+{
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "rows": [
+    {
+      "scenario_id": "demo-1",
+      "unit_price": 100,
+      "quantity": 1,
+      "merchant_subsidy": 0,
+      "total_variable_cost": 65,
+      "unit_price_floor": 75,
+      "operations": [
+        {
+          "type": "multiply",
+          "factor": 0.8
+        },
+        {
+          "type": "subtract",
+          "threshold": 90,
+          "amount": 10,
+          "threshold_basis": "initial"
+        }
+      ]
+    }
+  ]
+}

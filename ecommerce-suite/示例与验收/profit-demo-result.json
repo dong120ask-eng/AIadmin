@@ -1,0 +1,16 @@
+{
+  "status": "offline_calculated",
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "mode": "profit",
+  "results": [
+    {
+      "record_id": "demo-1",
+      "sku": "DEMO-SKU",
+      "contribution_profit": "-5.00",
+      "ad_roas": "3.333333",
+      "loss": true
+    }
+  ],
+  "total_contribution_profit": "-5.00",
+  "limitation": "Contribution profit excludes fixed costs and tax unless explicitly included in input. Not cash flow or net profit."
+}

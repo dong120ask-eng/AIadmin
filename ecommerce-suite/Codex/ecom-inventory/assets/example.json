@@ -1,0 +1,21 @@
+{
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "rows": [
+    {
+      "sku": "DEMO-SKU",
+      "on_hand": 10,
+      "reserved": 2,
+      "safety": 1,
+      "requests": [
+        {
+          "store_id": "A",
+          "requested": 6
+        },
+        {
+          "store_id": "B",
+          "requested": 6
+        }
+      ]
+    }
+  ]
+}

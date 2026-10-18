@@ -1,0 +1,15 @@
+{
+  "status": "offline_calculated",
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "mode": "promotion",
+  "results": [
+    {
+      "scenario_id": "demo-1",
+      "payable": "70.00",
+      "profit": "5.00",
+      "below_floor": true,
+      "loss": false
+    }
+  ],
+  "limitation": "Only explicitly supplied allowed scenarios and order evaluated; does not discover platform stacking rules. Verify platform preview."
+}

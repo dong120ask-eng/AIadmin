@@ -1,0 +1,11 @@
+{
+  "source_label": "SYNTHETIC_DEMO_NOT_REAL_BUSINESS",
+  "rows": [
+    {
+      "case_id": "demo-1",
+      "sku": "DEMO-SKU",
+      "reason": "物流破损",
+      "refund_amount": 20
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "质检抽检与召回协同"
+  short_description: "国内多平台电商质检抽检与召回协同工作流、证据核验与可执行交付"
+  default_prompt: "使用 $ecom-quality 处理项目问题，核证据与授权后完成可执行交付。"
