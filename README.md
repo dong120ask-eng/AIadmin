@@ -162,3 +162,11 @@ JSDOM_MODULE="$PWD/.qa-tools/node_modules/jsdom" PYTHONPATH=. python3 scripts/ui
 本机多账号队列、设备互斥与异常核查见[DISPATCH.md](DISPATCH.md)。当前可执行安卓页面检查，真实发布仍未接通。
 
 GitHub安卓控制项目、可选SDK检查接口与多手机技能整合见[ANDROID-OPEN-SOURCE.md](ANDROID-OPEN-SOURCE.md)。网页优先新增渠道见[WEB-FIRST.md](WEB-FIRST.md)，USB真机接入见[USB-START.md](USB-START.md)。
+
+## 公司署名与开源许可
+
+项目发布署名：**天津智慧筑基科技有限公司**。
+
+公司有权许可的自有原创代码、技能和文档采用 [MIT License](LICENSE)。第三方内容保留原作者及原许可证，适用范围见 [NOTICE.md](NOTICE.md)；未核实许可的复制内容不因添加根许可证而自动获得再分发授权。
+
+仓库是否已公开，以实际GitHub可见性和匿名访问验证为准；检查记录见 [OPEN_SOURCE_AUDIT.md](OPEN_SOURCE_AUDIT.md)。
