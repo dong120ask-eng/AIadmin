@@ -1,0 +1,40 @@
+{
+  "project_id": "",
+  "owner": "",
+  "reference": {
+    "file": "",
+    "source": "",
+    "usage_scope": "analysis-only"
+  },
+  "product": {
+    "brand": "",
+    "trade_name": "",
+    "generic_name": "",
+    "model": "",
+    "evidence_files": [],
+    "verified_claims": []
+  },
+  "character": {
+    "id": "C01",
+    "files": [],
+    "authorization_record": ""
+  },
+  "voice": {
+    "source": "",
+    "authorization_record": ""
+  },
+  "target": {
+    "seconds": null,
+    "aspect_ratio": "9:16",
+    "channel": ""
+  },
+  "budget": {
+    "currency": "CNY",
+    "total": null,
+    "round": null,
+    "retry_limit": null
+  },
+  "publish_authorization": null,
+  "status": "waiting-input",
+  "review_result": "uninspected"
+}
