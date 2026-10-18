@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "confirmed_at": "2026-10-18T12:34:30+08:00",
+  "confirmation_source": "Repository owner statement in this task conversation",
+  "owner_statement": "本人或公司原创，拥有完整公开权利",
+  "scope": {
+    "repository": "dong120ask-eng/AIadmin",
+    "directory": "yijian-jineng/skills/product-market-marketing",
+    "covered_materials": "署名董小事SKILL开发工作室或懂小事科技有限公司的自有商业方案、白皮书及同类资料",
+    "excluded": "第三方技能、第三方代码、引用原文、外部素材、字体、商标和服务均不因本确认获得再许可"
+  },
+  "status": "owner_confirmed_public_rights",
+  "license_document": "LICENSE-OWNED-MATERIALS.md",
+  "evidence_limit": "Owner-provided rights confirmation; not independent verification of quantitative claims, personal data consent, or third-party licenses."
+}
