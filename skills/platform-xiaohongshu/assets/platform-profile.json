@@ -1,0 +1,23 @@
+{
+  "platform_id": "xiaohongshu",
+  "name": "小红书",
+  "candidate_types": [
+    "image_text",
+    "short_video"
+  ],
+  "categories": [
+    "lifestyle",
+    "community"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "图文笔记与视频笔记分别选入口；分页顺序、封面和实际体验表达独立检查；不伪造亲测或搬运笔记。"
+}

@@ -1,0 +1,21 @@
+{
+  "platform_id": "fanqie",
+  "name": "番茄小说",
+  "candidate_types": [
+    "novel"
+  ],
+  "categories": [
+    "fiction"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "先核实作者入驻、作品创建与章节发布入口；检查书名、分类、章序、字数及连载规则；签约独家和收费协议由用户处理。"
+}

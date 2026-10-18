@@ -1,0 +1,21 @@
+{
+  "platform_id": "qimao",
+  "name": "七猫小说",
+  "candidate_types": [
+    "novel"
+  ],
+  "categories": [
+    "fiction"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实作者投稿／签约流程，区分提交审稿和正式连载；不自行接受版权或付费协议，不伪造投稿成功。"
+}

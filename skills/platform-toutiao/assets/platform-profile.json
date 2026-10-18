@@ -1,0 +1,26 @@
+{
+  "platform_id": "toutiao",
+  "name": "今日头条",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "article",
+    "news",
+    "video"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "文章与微头条用不同编辑器和表达结构；视频独立选类型，原创声明须满足条件；不把保存草稿当正式发布。"
+}

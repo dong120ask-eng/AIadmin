@@ -1,0 +1,24 @@
+{
+  "platform_id": "kuaishou",
+  "name": "快手",
+  "candidate_types": [
+    "image_text",
+    "short_video",
+    "short_drama"
+  ],
+  "categories": [
+    "video",
+    "commerce"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "先核实网页或客户端创作入口、视频及图文权限；内容发布与商品挂载分开授权；短剧规则另查。"
+}

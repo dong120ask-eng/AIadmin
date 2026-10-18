@@ -1,0 +1,21 @@
+{
+  "platform_id": "kugou",
+  "name": "酷狗音乐",
+  "candidate_types": [
+    "music"
+  ],
+  "categories": [
+    "music"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实音乐人／发行入口和实际账号资质；检查曲目信息、音频、封面与授权；只写歌词时不得投稿为音频成品。"
+}

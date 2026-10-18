@@ -1,0 +1,25 @@
+{
+  "platform_id": "douyin",
+  "name": "抖音",
+  "candidate_types": [
+    "image_text",
+    "short_video",
+    "long_video",
+    "short_drama"
+  ],
+  "categories": [
+    "video",
+    "commerce"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "图文、视频与短剧按当前账号开放入口核查；检查音乐使用权、封面和AI声明；短剧类别与资格单独检查。"
+}

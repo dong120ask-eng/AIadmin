@@ -1,0 +1,21 @@
+{
+  "platform_id": "jinjiang",
+  "name": "晋江文学城",
+  "candidate_types": [
+    "novel"
+  ],
+  "categories": [
+    "fiction"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实作者后台、作品分类、章节与原创要求；维护人物连续性与章序；独家、签约及入V操作由用户处理。"
+}

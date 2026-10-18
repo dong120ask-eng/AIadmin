@@ -1,0 +1,586 @@
+{
+  "suite": "enterprise-content-suite",
+  "version": "0.2.0",
+  "developed_at": "2026-10-14",
+  "status": "instructions_and_local_helpers_ready",
+  "live_generation_test": "pending",
+  "live_publishing_test": "pending",
+  "skills": [
+    {
+      "name": "content-shared-runtime",
+      "display_name": "内容项目共享底座",
+      "directory": "content-shared-runtime",
+      "layer": "shared",
+      "dependencies": [],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "enterprise-content-orchestrator",
+      "display_name": "企业自媒体总控",
+      "directory": "enterprise-content-orchestrator",
+      "layer": "control",
+      "dependencies": [
+        "content-shared-runtime",
+        "product-analysis",
+        "media-account-planning",
+        "topic-viral-research",
+        "content-media-router",
+        "content-quality-review",
+        "content-publish-workflow",
+        "content-performance-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "product-analysis",
+      "display_name": "产品分析",
+      "directory": "product-analysis",
+      "layer": "operations",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "media-account-planning",
+      "display_name": "媒体账号人群规划",
+      "directory": "media-account-planning",
+      "layer": "operations",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "topic-viral-research",
+      "display_name": "选题与爆款逻辑研究",
+      "directory": "topic-viral-research",
+      "layer": "operations",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-media-router",
+      "display_name": "媒体内容分类与组合运营",
+      "directory": "content-media-router",
+      "layer": "classification",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-article",
+        "content-image-text",
+        "content-short-video",
+        "content-long-video",
+        "content-audio",
+        "content-novel",
+        "content-music",
+        "content-short-drama"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-article",
+      "display_name": "一键文章创作",
+      "directory": "content-article",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-image-text",
+      "display_name": "一键图文创作",
+      "directory": "content-image-text",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-short-video",
+      "display_name": "一键短视频创作",
+      "directory": "content-short-video",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-long-video",
+      "display_name": "一键长视频创作",
+      "directory": "content-long-video",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-audio",
+      "display_name": "一键音频创作",
+      "directory": "content-audio",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-novel",
+      "display_name": "一键小说创作",
+      "directory": "content-novel",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-music",
+      "display_name": "一键音乐创作",
+      "directory": "content-music",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-short-drama",
+      "display_name": "一键短剧创作",
+      "directory": "content-short-drama",
+      "layer": "creation",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-quality-review",
+      "display_name": "内容审核与发布资格检查",
+      "directory": "content-quality-review",
+      "layer": "operations",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-performance-review",
+      "display_name": "自媒体数据复盘",
+      "directory": "content-performance-review",
+      "layer": "operations",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "content-publish-workflow",
+      "display_name": "选题到已发布总工作流",
+      "directory": "content-publish-workflow",
+      "layer": "workflow",
+      "dependencies": [
+        "content-shared-runtime",
+        "topic-viral-research",
+        "content-media-router",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-xiaohongshu",
+      "display_name": "一键小红书内容工作流",
+      "directory": "platform-xiaohongshu",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-douyin",
+      "display_name": "一键抖音内容工作流",
+      "directory": "platform-douyin",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-kuaishou",
+      "display_name": "一键快手内容工作流",
+      "directory": "platform-kuaishou",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-wechat-official",
+      "display_name": "一键微信公众号内容工作流",
+      "directory": "platform-wechat-official",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-wechat-channels",
+      "display_name": "一键微信视频号内容工作流",
+      "directory": "platform-wechat-channels",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-toutiao",
+      "display_name": "一键今日头条内容工作流",
+      "directory": "platform-toutiao",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-bilibili",
+      "display_name": "一键B站内容工作流",
+      "directory": "platform-bilibili",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-zhihu",
+      "display_name": "一键知乎内容工作流",
+      "directory": "platform-zhihu",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-weibo",
+      "display_name": "一键微博内容工作流",
+      "directory": "platform-weibo",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-baijiahao",
+      "display_name": "一键百家号内容工作流",
+      "directory": "platform-baijiahao",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-sohu",
+      "display_name": "一键搜狐号内容工作流",
+      "directory": "platform-sohu",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-netease",
+      "display_name": "一键网易号内容工作流",
+      "directory": "platform-netease",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-penguin",
+      "display_name": "一键企鹅号内容工作流",
+      "directory": "platform-penguin",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-alipay-life",
+      "display_name": "一键支付宝生活号内容工作流",
+      "directory": "platform-alipay-life",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-meituan",
+      "display_name": "一键美团商家内容内容工作流",
+      "directory": "platform-meituan",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-meiyou",
+      "display_name": "一键美柚内容工作流",
+      "directory": "platform-meiyou",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-ximalaya",
+      "display_name": "一键喜马拉雅内容工作流",
+      "directory": "platform-ximalaya",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-qingting",
+      "display_name": "一键蜻蜓FM内容工作流",
+      "directory": "platform-qingting",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-fanqie",
+      "display_name": "一键番茄小说内容工作流",
+      "directory": "platform-fanqie",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-qimao",
+      "display_name": "一键七猫小说内容工作流",
+      "directory": "platform-qimao",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-qidian",
+      "display_name": "一键起点中文网内容工作流",
+      "directory": "platform-qidian",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-jinjiang",
+      "display_name": "一键晋江文学城内容工作流",
+      "directory": "platform-jinjiang",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-netease-music",
+      "display_name": "一键网易云音乐内容工作流",
+      "directory": "platform-netease-music",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-qq-music",
+      "display_name": "一键QQ音乐内容工作流",
+      "directory": "platform-qq-music",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    },
+    {
+      "name": "platform-kugou",
+      "display_name": "一键酷狗音乐内容工作流",
+      "directory": "platform-kugou",
+      "layer": "platform",
+      "dependencies": [
+        "content-shared-runtime",
+        "content-publish-workflow",
+        "topic-viral-research",
+        "content-quality-review"
+      ],
+      "status": "instructions_ready",
+      "e2e": "pending"
+    }
+  ],
+  "structural_validation": {
+    "status": "passed",
+    "skills_checked": 42
+  },
+  "helper_smoke": {
+    "status": "passed",
+    "scope": "dependency_copy_prompt_composition_local_ledger_only"
+  },
+  "native_installation": {
+    "chatgpt_work_personal_skills": "42_saved_and_remote_verified",
+    "codex_cli_user_computer": "pending",
+    "workbuddy": "pending_import_test",
+    "doubao": "prompt_adapter_ready_native_unverified",
+    "qianwen": "prompt_adapter_ready_native_unverified"
+  }
+}

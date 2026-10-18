@@ -1,0 +1,13 @@
+interface:
+  display_name: 产品分析
+  short_description: 围绕企业项目执行产品分析，保留真实证据与状态并按授权推进任务
+  default_prompt: 使用 $product-analysis 完成本次企业内容任务，读取项目资料并交付实际产物与状态。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

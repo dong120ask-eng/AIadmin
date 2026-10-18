@@ -1,0 +1,26 @@
+{
+  "platform_id": "baijiahao",
+  "name": "百家号",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "article",
+    "news",
+    "video"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实作者后台实际类型、账号资质及原创权限；文章素材与视频分开质检；AI声明以当前要求为准。"
+}

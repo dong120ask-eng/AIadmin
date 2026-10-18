@@ -1,0 +1,24 @@
+{
+  "platform_id": "wechat-channels",
+  "name": "微信视频号",
+  "candidate_types": [
+    "short_video",
+    "long_video",
+    "short_drama"
+  ],
+  "categories": [
+    "video",
+    "private_domain"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "视频号与公众号账号分开登记；核实网页／客户端入口和视频权限，商品关联、合集与发布分别授权。"
+}

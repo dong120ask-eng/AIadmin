@@ -1,0 +1,537 @@
+[
+  {
+    "platform_id": "xiaohongshu",
+    "name": "小红书",
+    "candidate_types": [
+      "image_text",
+      "short_video"
+    ],
+    "categories": [
+      "lifestyle",
+      "community"
+    ],
+    "skill_name": "platform-xiaohongshu",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "图文笔记与视频笔记分别选入口；分页顺序、封面和实际体验表达独立检查；不伪造亲测或搬运笔记。"
+  },
+  {
+    "platform_id": "douyin",
+    "name": "抖音",
+    "candidate_types": [
+      "image_text",
+      "short_video",
+      "long_video",
+      "short_drama"
+    ],
+    "categories": [
+      "video",
+      "commerce"
+    ],
+    "skill_name": "platform-douyin",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "图文、视频与短剧按当前账号开放入口核查；检查音乐使用权、封面和AI声明；短剧类别与资格单独检查。"
+  },
+  {
+    "platform_id": "kuaishou",
+    "name": "快手",
+    "candidate_types": [
+      "image_text",
+      "short_video",
+      "short_drama"
+    ],
+    "categories": [
+      "video",
+      "commerce"
+    ],
+    "skill_name": "platform-kuaishou",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "先核实网页或客户端创作入口、视频及图文权限；内容发布与商品挂载分开授权；短剧规则另查。"
+  },
+  {
+    "platform_id": "wechat-official",
+    "name": "微信公众号",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "audio",
+      "short_video"
+    ],
+    "categories": [
+      "article",
+      "private_domain"
+    ],
+    "skill_name": "platform-wechat-official",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "保存草稿、预览、发布与群发是不同动作；群发须在明确授权范围；检查手机排版、外链、原创选项及署名。"
+  },
+  {
+    "platform_id": "wechat-channels",
+    "name": "微信视频号",
+    "candidate_types": [
+      "short_video",
+      "long_video",
+      "short_drama"
+    ],
+    "categories": [
+      "video",
+      "private_domain"
+    ],
+    "skill_name": "platform-wechat-channels",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "视频号与公众号账号分开登记；核实网页／客户端入口和视频权限，商品关联、合集与发布分别授权。"
+  },
+  {
+    "platform_id": "toutiao",
+    "name": "今日头条",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "article",
+      "news",
+      "video"
+    ],
+    "skill_name": "platform-toutiao",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "文章与微头条用不同编辑器和表达结构；视频独立选类型，原创声明须满足条件；不把保存草稿当正式发布。"
+  },
+  {
+    "platform_id": "bilibili",
+    "name": "B站",
+    "candidate_types": [
+      "article",
+      "short_video",
+      "long_video",
+      "audio"
+    ],
+    "categories": [
+      "video",
+      "knowledge"
+    ],
+    "skill_name": "platform-bilibili",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "视频投稿与专栏分别核实；音频候选入口待确认；检查分区、封面、章节、转载／原创标记及字幕。"
+  },
+  {
+    "platform_id": "zhihu",
+    "name": "知乎",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "knowledge",
+      "community"
+    ],
+    "skill_name": "platform-zhihu",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "回答、文章与视频分别核查；回答必须针对实际问题，不伪造问题或专业身份；保留出处和商业说明。"
+  },
+  {
+    "platform_id": "weibo",
+    "name": "微博",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "social",
+      "news"
+    ],
+    "skill_name": "platform-weibo",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "短博文、长文章与视频分开核实账号能力；内容标签相关，链接与推广权限另查；不批量刷话题。"
+  },
+  {
+    "platform_id": "baijiahao",
+    "name": "百家号",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "article",
+      "news",
+      "video"
+    ],
+    "skill_name": "platform-baijiahao",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实作者后台实际类型、账号资质及原创权限；文章素材与视频分开质检；AI声明以当前要求为准。"
+  },
+  {
+    "platform_id": "sohu",
+    "name": "搜狐号",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "article",
+      "news"
+    ],
+    "skill_name": "platform-sohu",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "先核实账号可用投稿形式；文章标题、来源、栏目与署名检查；视频候选不能当已开通。"
+  },
+  {
+    "platform_id": "netease",
+    "name": "网易号",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "article",
+      "news"
+    ],
+    "skill_name": "platform-netease",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实网易号作者入口与账号类型权限；文章和视频分别适配；未开放形式交付制作包不猜入口。"
+  },
+  {
+    "platform_id": "penguin",
+    "name": "企鹅号",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video",
+      "long_video"
+    ],
+    "categories": [
+      "article",
+      "news",
+      "video"
+    ],
+    "skill_name": "platform-penguin",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实企鹅号当前作者入口、资质与投稿形式；不能把上传到后台等同分发到所有腾讯渠道。"
+  },
+  {
+    "platform_id": "alipay-life",
+    "name": "支付宝生活号",
+    "candidate_types": [
+      "image_text",
+      "short_video"
+    ],
+    "categories": [
+      "local",
+      "merchant"
+    ],
+    "skill_name": "platform-alipay-life",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "优先核实生活号／商家具体入口、运营资格和开放形式；不能假设普通账号均可投稿或有网页发布。"
+  },
+  {
+    "platform_id": "meituan",
+    "name": "美团商家内容",
+    "candidate_types": [
+      "image_text",
+      "short_video"
+    ],
+    "categories": [
+      "local",
+      "merchant"
+    ],
+    "skill_name": "platform-meituan",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实具体业务和商家后台入口，区分商家营销内容与普通用户笔记；没有商家权限不得替代发到其他账号。"
+  },
+  {
+    "platform_id": "meiyou",
+    "name": "美柚",
+    "candidate_types": [
+      "article",
+      "image_text",
+      "short_video"
+    ],
+    "categories": [
+      "women",
+      "community"
+    ],
+    "skill_name": "platform-meiyou",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实普通用户、机构及商业合作的入口差别；涉及女性健康保留证据和资质；如仅客户端投稿标mobile_required。"
+  },
+  {
+    "platform_id": "ximalaya",
+    "name": "喜马拉雅",
+    "candidate_types": [
+      "audio"
+    ],
+    "categories": [
+      "audio"
+    ],
+    "skill_name": "platform-ximalaya",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "节目、专辑和单集关系保持一致；文本、有声改编、配音和音乐权利分别核查；上传音频而不是口播稿。"
+  },
+  {
+    "platform_id": "qingting",
+    "name": "蜻蜓FM",
+    "candidate_types": [
+      "audio"
+    ],
+    "categories": [
+      "audio"
+    ],
+    "skill_name": "platform-qingting",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实主播入驻、专辑及上传入口；检查栏目、音频元信息、版权与封面；无可用入口只交付节目包。"
+  },
+  {
+    "platform_id": "fanqie",
+    "name": "番茄小说",
+    "candidate_types": [
+      "novel"
+    ],
+    "categories": [
+      "fiction"
+    ],
+    "skill_name": "platform-fanqie",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "先核实作者入驻、作品创建与章节发布入口；检查书名、分类、章序、字数及连载规则；签约独家和收费协议由用户处理。"
+  },
+  {
+    "platform_id": "qimao",
+    "name": "七猫小说",
+    "candidate_types": [
+      "novel"
+    ],
+    "categories": [
+      "fiction"
+    ],
+    "skill_name": "platform-qimao",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实作者投稿／签约流程，区分提交审稿和正式连载；不自行接受版权或付费协议，不伪造投稿成功。"
+  },
+  {
+    "platform_id": "qidian",
+    "name": "起点中文网",
+    "candidate_types": [
+      "novel"
+    ],
+    "categories": [
+      "fiction"
+    ],
+    "skill_name": "platform-qidian",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实作者后台、作品类型、章节与审核状态；草稿、定时章节和公开章节分别记录；签约、上架收费另行授权。"
+  },
+  {
+    "platform_id": "jinjiang",
+    "name": "晋江文学城",
+    "candidate_types": [
+      "novel"
+    ],
+    "categories": [
+      "fiction"
+    ],
+    "skill_name": "platform-jinjiang",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实作者后台、作品分类、章节与原创要求；维护人物连续性与章序；独家、签约及入V操作由用户处理。"
+  },
+  {
+    "platform_id": "netease-music",
+    "name": "网易云音乐",
+    "candidate_types": [
+      "music",
+      "audio"
+    ],
+    "categories": [
+      "music",
+      "audio"
+    ],
+    "skill_name": "platform-netease-music",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实音乐人／播客具体入口；发行、音频节目和歌词提交不同；检查音频与元信息、封面及音乐权利，不自动申请独占版权。"
+  },
+  {
+    "platform_id": "qq-music",
+    "name": "QQ音乐",
+    "candidate_types": [
+      "music"
+    ],
+    "categories": [
+      "music"
+    ],
+    "skill_name": "platform-qq-music",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实音乐人入驻、作品发行和当前上传方式；音频、歌词、词曲信息与授权完整；发行协议及收费不可自行同意。"
+  },
+  {
+    "platform_id": "kugou",
+    "name": "酷狗音乐",
+    "candidate_types": [
+      "music"
+    ],
+    "categories": [
+      "music"
+    ],
+    "skill_name": "platform-kugou",
+    "discovery_status": "candidate",
+    "rules_status": "unverified",
+    "creator_entry": null,
+    "official_rules_url": null,
+    "verified_at": null,
+    "publishing_method": "unverified",
+    "account_eligibility": "unverified",
+    "notes": "核实音乐人／发行入口和实际账号资质；检查曲目信息、音频、封面与授权；只写歌词时不得投稿为音频成品。"
+  }
+]

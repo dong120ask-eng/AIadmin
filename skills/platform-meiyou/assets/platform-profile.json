@@ -1,0 +1,24 @@
+{
+  "platform_id": "meiyou",
+  "name": "美柚",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video"
+  ],
+  "categories": [
+    "women",
+    "community"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实普通用户、机构及商业合作的入口差别；涉及女性健康保留证据和资质；如仅客户端投稿标mobile_required。"
+}

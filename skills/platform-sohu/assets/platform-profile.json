@@ -1,0 +1,25 @@
+{
+  "platform_id": "sohu",
+  "name": "搜狐号",
+  "candidate_types": [
+    "article",
+    "image_text",
+    "short_video",
+    "long_video"
+  ],
+  "categories": [
+    "article",
+    "news"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "先核实账号可用投稿形式；文章标题、来源、栏目与署名检查；视频候选不能当已开通。"
+}

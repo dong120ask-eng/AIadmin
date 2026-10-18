@@ -1,0 +1,21 @@
+{
+  "platform_id": "qingting",
+  "name": "蜻蜓FM",
+  "candidate_types": [
+    "audio"
+  ],
+  "categories": [
+    "audio"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实主播入驻、专辑及上传入口；检查栏目、音频元信息、版权与封面；无可用入口只交付节目包。"
+}

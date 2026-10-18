@@ -1,0 +1,21 @@
+{
+  "platform_id": "qidian",
+  "name": "起点中文网",
+  "candidate_types": [
+    "novel"
+  ],
+  "categories": [
+    "fiction"
+  ],
+  "creator_entry": null,
+  "official_rules_url": null,
+  "verified_at": null,
+  "format_rules": {},
+  "publishing_adapter": "not_connected",
+  "browser_selectors": null,
+  "api_endpoint": null,
+  "development_status": "instructions_ready",
+  "generation_test": "pending",
+  "publishing_test": "pending",
+  "notes": "核实作者后台、作品类型、章节与审核状态；草稿、定时章节和公开章节分别记录；签约、上架收费另行授权。"
+}
