@@ -6,7 +6,7 @@
 
 ## MIT License
 
-Copyright (c) 2026 董小事SKILL开发工作室／懂小事科技有限公司（适用资料的原权利人）
+Copyright (c) 2026 天津智慧筑基科技有限公司
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,3 +27,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 MATERIALS.
 
 资料中的市场规模、转化率及效果数字仍须单独核实；版权确认不表示数据已验证。
+
+项目当前发布署名为天津智慧筑基科技有限公司；历史署名仅保留作来源记录。根目录LICENSE及NOTICE.md规定其余自有原创内容和第三方内容的许可边界。
