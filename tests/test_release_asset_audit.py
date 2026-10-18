@@ -18,7 +18,10 @@ def archive(entries):
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, 'w') as z:
         for name, data in entries:
-            z.writestr(name, data)
+            info = zipfile.ZipInfo()
+            # Preserve the intended raw ZIP name on Windows too.
+            info.filename = name
+            z.writestr(info, data)
     return stream.getvalue()
 
 
