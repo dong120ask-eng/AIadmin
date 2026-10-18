@@ -1,0 +1,313 @@
+{
+  "checked_at": "2026-10-18",
+  "workflow_run": "https://github.com/dong120ask-eng/AIadmin/actions/runs/39096867914",
+  "scope": "release ZIPs and nested ZIP/wheels; no archived program executed",
+  "limitations": "Pattern scan and license inventory only; not privacy or licensing approval. Other archive formats and binary semantics require separate review.",
+  "official_gh_verification": {
+    "source": "https://github.com/cli/cli",
+    "tag": "v2.102.0",
+    "asset": "gh_2.102.0_windows_amd64.zip",
+    "archive_sha256": "ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4",
+    "binary_sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+  },
+  "releases": [
+    {
+      "tag": "v2026.10.14-r8",
+      "asset_id": 640610170,
+      "asset": "yijian-jineng-20261014-r8.zip",
+      "sha256": "40262e907924368c5d69c5223d6f461288665dd34229bc3b97e5bf82da174e48",
+      "status": "scanned",
+      "files_scanned": 6615,
+      "expanded_bytes": 659028525,
+      "findings": [],
+      "upstream_binary_pattern_hits": [
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/gh_2.102.0_windows_amd64.zip!/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        },
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        }
+      ]
+    },
+    {
+      "tag": "v2026.10.14-r7",
+      "asset_id": 640526467,
+      "asset": "yijian-jineng-20261014-r7.zip",
+      "sha256": "2c90ccb5b9e5b690d67dd5ab36717dcca9dda35902522caf3c1f141fd5259484",
+      "status": "scanned",
+      "files_scanned": 6604,
+      "expanded_bytes": 658989446,
+      "findings": [],
+      "upstream_binary_pattern_hits": [
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/gh_2.102.0_windows_amd64.zip!/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        },
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        }
+      ]
+    },
+    {
+      "tag": "v2026.10.14-r6",
+      "asset_id": 640452320,
+      "asset": "yijian-jineng-20261014-r6.zip",
+      "sha256": "dcafb8f6090707baeb7ceaaf9bd36345dcaaf297ea1ffe693edee44edf61040b",
+      "status": "scanned",
+      "files_scanned": 6598,
+      "expanded_bytes": 658965033,
+      "findings": [],
+      "upstream_binary_pattern_hits": [
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/gh_2.102.0_windows_amd64.zip!/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        },
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        }
+      ]
+    },
+    {
+      "tag": "v2026.10.14-r4",
+      "asset_id": 640268058,
+      "asset": "yijian-jineng-20261014-r4.zip",
+      "sha256": "bc9fa2eb5b88e742c5f3422605542a62cd2c114ad682df046ae6535b1bde33ca",
+      "status": "scanned",
+      "files_scanned": 6553,
+      "expanded_bytes": 658804816,
+      "findings": [],
+      "upstream_binary_pattern_hits": [
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/gh_2.102.0_windows_amd64.zip!/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        },
+        {
+          "rule": "provider-token",
+          "path": "自媒体技能套件/offline/github-cli/bin/gh.exe",
+          "sha256": "756724853cc579510b58e65e7a7429ad6b1af29cf99ef19b3a95f3b701c5c580"
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "Name": "adbutils",
+      "Version": "2.12.0",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "aiohappyeyeballs",
+      "Version": "2.7.1",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Python Software Foundation License"
+      ]
+    },
+    {
+      "Name": "aiohttp",
+      "Version": "3.14.5",
+      "License-Expression": "Apache-2.0 AND MIT",
+      "license_classifiers": []
+    },
+    {
+      "Name": "aiosignal",
+      "Version": "1.4.0",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ]
+    },
+    {
+      "Name": "attrs",
+      "Version": "26.1.0",
+      "License-Expression": "MIT",
+      "license_classifiers": []
+    },
+    {
+      "Name": "certifi",
+      "Version": "2026.7.22",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+      ]
+    },
+    {
+      "Name": "charset-normalizer",
+      "Version": "3.5.2",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "click",
+      "Version": "8.5.0",
+      "License-Expression": "BSD-3-Clause",
+      "license_classifiers": []
+    },
+    {
+      "Name": "decorator",
+      "Version": "5.3.1",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "deprecation",
+      "Version": "2.1.0",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ]
+    },
+    {
+      "Name": "edge-tts",
+      "Version": "7.3.1",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)"
+      ]
+    },
+    {
+      "Name": "frozenlist",
+      "Version": "1.8.0",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "greenlet",
+      "Version": "3.5.6",
+      "License-Expression": "MIT AND PSF-2.0",
+      "license_classifiers": []
+    },
+    {
+      "Name": "idna",
+      "Version": "3.20",
+      "License-Expression": "BSD-3-Clause",
+      "license_classifiers": []
+    },
+    {
+      "Name": "lxml",
+      "Version": "6.1.3",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "multidict",
+      "Version": "7.1.0",
+      "License-Expression": "Apache-2.0",
+      "license_classifiers": []
+    },
+    {
+      "Name": "numpy",
+      "Version": "2.5.4",
+      "License-Expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "license_classifiers": []
+    },
+    {
+      "Name": "packaging",
+      "Version": "26.3",
+      "License-Expression": "Apache-2.0 OR BSD-2-Clause",
+      "license_classifiers": []
+    },
+    {
+      "Name": "pillow",
+      "Version": "12.3.0",
+      "License-Expression": "MIT-CMU",
+      "license_classifiers": []
+    },
+    {
+      "Name": "pip",
+      "Version": "26.2.1",
+      "License-Expression": "MIT",
+      "license_classifiers": []
+    },
+    {
+      "Name": "playwright",
+      "Version": "1.64.0",
+      "License-Expression": "Apache-2.0",
+      "license_classifiers": []
+    },
+    {
+      "Name": "propcache",
+      "Version": "0.5.4",
+      "License-Expression": null,
+      "license_classifiers": []
+    },
+    {
+      "Name": "pyee",
+      "Version": "14.0.0",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ]
+    },
+    {
+      "Name": "PyYAML",
+      "Version": "6.0.3",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ]
+    },
+    {
+      "Name": "requests",
+      "Version": "2.34.2",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ]
+    },
+    {
+      "Name": "retry2",
+      "Version": "0.9.5",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ]
+    },
+    {
+      "Name": "tabulate",
+      "Version": "0.10.0",
+      "License-Expression": "MIT",
+      "license_classifiers": []
+    },
+    {
+      "Name": "typing_extensions",
+      "Version": "4.16.0",
+      "License-Expression": "PSF-2.0",
+      "license_classifiers": []
+    },
+    {
+      "Name": "uiautomator2",
+      "Version": "3.7.0",
+      "License-Expression": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ]
+    },
+    {
+      "Name": "urllib3",
+      "Version": "2.8.0",
+      "License-Expression": "MIT",
+      "license_classifiers": []
+    },
+    {
+      "Name": "yarl",
+      "Version": "1.25.1",
+      "License-Expression": null,
+      "license_classifiers": []
+    }
+  ],
+  "license_file_occurrences_per_release": 208,
+  "public_approval": false
+}
