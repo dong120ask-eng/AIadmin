@@ -25,7 +25,8 @@ def scan_zip(data, report, prefix='', depth=0):
         raise ValueError('archive nesting limit')
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         for item in archive.infolist():
-            name = item.filename
+            # ZipInfo normalizes backslashes on Windows; inspect original bytes-derived name.
+            name = item.orig_filename
             path = prefix + name
             if item.is_dir():
                 continue
