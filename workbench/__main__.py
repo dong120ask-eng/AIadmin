@@ -23,6 +23,21 @@ def main():
     serve.add_argument("--enable-cli", action="store_true", help="允许网页调用现有Codex权益；实际调用费用未知")
     serve.add_argument("--open-browser", action="store_true", help="启动后打开本机工作台")
     sub.add_parser("doctor")
+    for name in ["wechat-browser-enqueue", "wechat-browser-run", "wechat-browser-reconcile"]:
+        browser = sub.add_parser(name, help="公众号网页草稿；不执行发布")
+        browser.add_argument("--assets-root", required=True)
+        if name == "wechat-browser-enqueue":
+            browser.add_argument("--binding", required=True)
+            browser.add_argument("--job", required=True)
+            browser.add_argument("--key", required=True)
+            browser.add_argument("--authorize-draft", action="store_true")
+        else:
+            browser.add_argument("--config", required=True, help="本机核验后的选择器配置，不包含凭证")
+            browser.add_argument("--profiles-root", required=True, help="专用本机会话目录，不上传")
+            if name == "wechat-browser-run":browser.add_argument("--worker", default="wechat-draft-worker")
+            else:
+                browser.add_argument("--task", required=True)
+                browser.add_argument("--worker-stopped", action="store_true")
     media = sub.add_parser("media-index")
     media.add_argument("--category")
     media.add_argument("--keyword")
@@ -65,7 +80,24 @@ def main():
             parser.add_argument("--output", required=True)
     args = p.parse_args()
     try:
-        if args.command.startswith("dispatch-"):
+        if args.command.startswith("wechat-browser-"):
+            from .wechat_browser import BrowserDraftWorker
+            from .wechat_ui import WechatBrowserUI
+            data = Path(args.data_dir).resolve()
+            queue = DispatchQueue(data/"dispatch.sqlite3")
+            store = Store(data/"workbench.sqlite3")
+            draft_worker = BrowserDraftWorker(queue, store, args.assets_root)
+            if args.command == "wechat-browser-enqueue":
+                binding = json.loads(Path(args.binding).read_text(encoding="utf-8"))
+                result = draft_worker.enqueue(args.tenant,args.job,binding,args.key,args.authorize_draft)
+            else:
+                config = json.loads(Path(args.config).read_text(encoding="utf-8"))
+                port = WechatBrowserUI(config,args.profiles_root)
+                if args.command == "wechat-browser-run":
+                    result = draft_worker.run(args.tenant,args.worker,port)
+                else:
+                    result = draft_worker.reconcile(args.tenant,args.task,port,args.worker_stopped)
+        elif args.command.startswith("dispatch-"):
             queue=DispatchQueue(Path(args.data_dir).resolve()/"dispatch.sqlite3")
             if args.command=="dispatch-enqueue":
                 result=queue.enqueue(args.tenant,json.loads(Path(args.binding).read_text(encoding="utf-8")),json.loads(Path(args.request).read_text(encoding="utf-8")),args.key,args.action)
@@ -150,3 +182,4 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
