@@ -118,8 +118,11 @@ class PackageTests(unittest.TestCase):
             with self.assertRaises(AssertionError): release.verify(p)
 
     def test_unsafe_and_duplicate_entries_refused(self):
-        for name in ('../escape', '/absolute', 'C:/drive', 'a\\b'):
+        for name in ('../escape', '/absolute', 'C:/drive'):
             with self.assertRaises(AssertionError): release.inspect(release.archive([(name, b'x')]))
+        # ZipInfo normalizes backslashes on Windows; mutate the wire bytes instead.
+        unsafe = release.archive([('a/b', b'x')]).replace(b'a/b', b'a\\b')
+        with self.assertRaises(AssertionError): release.inspect(unsafe)
         import warnings
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
