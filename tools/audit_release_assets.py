@@ -1,4 +1,5 @@
 """Read-only archive inventory; never executes or extracts archived programs."""
+import argparse
 import email
 import hashlib
 import io
@@ -24,7 +25,8 @@ def scan_zip(data, report, prefix='', depth=0):
         raise ValueError('archive nesting limit')
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         for item in archive.infolist():
-            name = item.filename
+            # ZipInfo normalizes backslashes on Windows; inspect original bytes-derived name.
+            name = item.orig_filename
             path = prefix + name
             if item.is_dir():
                 continue
@@ -88,6 +90,33 @@ def verify_official_gh():
     return {'source': 'https://github.com/cli/cli', 'tag': tag, 'asset': filename, 'archive_sha256': digest, 'binary_sha256': binary_digest}
 
 
+def audit_local(paths):
+    """Audit newly built ZIPs before they can enter the publishing job."""
+    official = verify_official_gh()
+    reports = []
+    for path in paths:
+        report = {'asset': path.name, 'files_scanned': 0, 'expanded_bytes': 0,
+                  'findings': [], 'upstream_binary_pattern_hits': [],
+                  'official_binary_sha256': [official['binary_sha256']],
+                  'license_files': [], 'packages': [], 'status': 'incomplete'}
+        try:
+            data = path.read_bytes()
+            report['sha256'] = hashlib.sha256(data).hexdigest()
+            scan_zip(data, report)
+            report['status'] = 'scanned'
+        except Exception as exc:
+            report['error_type'] = type(exc).__name__
+        reports.append(report)
+    output = Path('audit-output')
+    output.mkdir(exist_ok=True)
+    result = {'scope': 'new local release ZIPs; no archived program executed',
+              'official_gh_verification': official, 'reports': reports}
+    (output / 'local-release-audit.json').write_text(
+        json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+    if not reports or any(r['status'] != 'scanned' or r['findings'] for r in reports):
+        raise SystemExit(1)
+
+
 def main():
     repo = os.environ['GITHUB_REPOSITORY']
     official = verify_official_gh()
@@ -125,4 +154,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--local', nargs='+', type=Path, help='Audit new ZIPs before publication')
+    args = parser.parse_args()
+    if args.local:
+        audit_local(args.local)
+    else:
+        main()
