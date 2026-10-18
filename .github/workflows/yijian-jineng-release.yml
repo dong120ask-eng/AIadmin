@@ -3,10 +3,10 @@ name: Build Yijian Jineng Release
 on:
   push:
     branches: [main]
-    paths: ['yijian-jineng/**', '.github/workflows/yijian-jineng-release.yml']
+    paths: ['yijian-jineng/**', 'tools/audit_release_assets.py', 'tests/test_release_asset_audit.py', '.github/workflows/yijian-jineng-release.yml']
   pull_request:
     branches: [main]
-    paths: ['yijian-jineng/**', '.github/workflows/yijian-jineng-release.yml']
+    paths: ['yijian-jineng/**', 'tools/audit_release_assets.py', 'tests/test_release_asset_audit.py', '.github/workflows/yijian-jineng-release.yml']
   workflow_dispatch:
     inputs:
       publish:
@@ -66,6 +66,24 @@ jobs:
           & .\yijian-jineng\tools\setup.ps1 -TargetRoot "$env:RUNNER_TEMP\SelfMediaSmoke" -Plan
           if ($LASTEXITCODE -ne 0) { throw 'Deployment plan failed' }
 
+
+      - name: Audit newly packaged ZIP before accepting build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m unittest discover -s tests -p test_release_asset_audit.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Audit regression failed' }
+          python tools/audit_release_assets.py --local "dist/${{ steps.metadata.outputs.asset }}"
+          if ($LASTEXITCODE -ne 0) { throw 'New release ZIP audit failed' }
+
+      - name: Retain redacted pre-publication audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-release-security-audit
+          path: audit-output/local-release-audit.json
+          retention-days: 30
+          if-no-files-found: warn
 
       - name: Write and verify checksum
         env:

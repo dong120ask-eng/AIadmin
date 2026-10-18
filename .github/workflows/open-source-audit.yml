@@ -3,7 +3,7 @@ name: Read-only release asset audit
 on:
   push:
     branches: [main]
-    paths: ['tools/audit_release_assets.py', '.github/workflows/open-source-audit.yml']
+    paths: ['tools/audit_release_assets.py', 'tests/test_release_asset_audit.py', 'yijian-jineng/config/runtime-build-pins.json', '.github/workflows/open-source-audit.yml']
   workflow_dispatch:
 
 permissions:
@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
+      - name: Scanner regressions
+        run: python -m unittest discover -s tests -p test_release_asset_audit.py -v
       - name: Inspect existing release ZIPs without executing contents
         env:
           GH_TOKEN: ${{ github.token }}
@@ -30,5 +32,5 @@ jobs:
         with:
           name: release-asset-audit
           path: audit-output/release-audit.json
-          retention-days: 7
+          retention-days: 30
           if-no-files-found: error
