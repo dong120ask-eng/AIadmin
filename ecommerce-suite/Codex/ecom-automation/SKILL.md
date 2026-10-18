@@ -18,3 +18,7 @@ description: 电商活动检测、报名、经营数据巡检、卖点分析、�
 ## 多店混合经营
 
 读取references/multi-store.md，核租户平台店铺隔离、逐SKU经营模式与单人异常容量。运行scripts/capacity.py估算；未实测不得宣称无限店铺。旧授权需按v5绑定契约重核。
+
+## v6迁移
+
+以references/automation-contract.md为准。读取也核授权；所有响应核对象与时间；远端CAS契约为真实写入前提；旧未决任务须先对账。verified仅存储值一致，不代表审核和展示或经营效果。

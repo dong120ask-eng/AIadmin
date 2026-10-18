@@ -1,5 +1,6 @@
-# 专项路由
+# 26技能路由
 
+- manage-china-ecommerce：电商总控
 - ecom-profit：利润与现金流诊断
 - ecom-promotion：促销优惠防错
 - ecom-inventory：共享库存与补货
@@ -20,6 +21,10 @@
 - ecom-category：全品类适配与特殊履约
 - ecom-tooling：工具插件与连接能力管理
 - ecom-incident：经营异常与未知问题分流
+- ecom-automation：电商自动巡检与变更执行
+- ecom-data-quality：经营数据质量与时效核验
+- ecom-change-experiment：商品变更与效果实验
+- ecom-exception-desk：单人多店异常待办
+- ecom-recovery：经营状态备份与灾难恢复
 
-未知问题先进入ecom-incident；品类先进入ecom-category；连接问题进入ecom-tooling。依赖缺失明确报告，不能伪称调用。
-- ecom-automation：活动检测、报名、卖点与数据诊断、商品和推广变更的执行门控；平台适配及专用校验缺失时阻塞。
+先用ecom-data-quality检查数据；商品修改用ecom-change-experiment；人工积压用ecom-exception-desk；崩溃迁移用ecom-recovery。未知问题转ecom-incident。没有宿主技能发现能力时逐文件读取，不冒充已原生安装。

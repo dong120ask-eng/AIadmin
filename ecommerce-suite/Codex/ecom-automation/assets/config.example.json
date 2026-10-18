@@ -22,7 +22,8 @@
       "target_id": "DEMO-SKU",
       "action": "product_title_update",
       "expected_before": "示例旧标题",
-      "desired_value": "待证据审核的新标题"
+      "desired_value": "待证据审核的新标题",
+      "operation_version": "demo-v1"
     }
   ],
   "stores": {
@@ -30,5 +31,6 @@
       "tenant_id": "DEMO-TENANT",
       "platform": "DEMO-PLATFORM"
     }
-  }
+  },
+  "max_observation_age_seconds": 300
 }

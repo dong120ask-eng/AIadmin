@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "tenant_id": "DEMO",
+    "platform": "DEMO",
+    "store_id": "DEMO",
+    "source": "SYNTHETIC_DEMO_NOT_REAL",
+    "currency": "CNY",
+    "metric_definition": "支付净收入，已扣退款",
+    "exported_at": "2026-10-18T14:00:00Z",
+    "period_start": "2026-10-17T00:00:00Z",
+    "period_end": "2026-10-18T00:00:00Z"
+  },
+  "max_age_seconds": 86400,
+  "required_fields": [
+    "record_id",
+    "net_revenue"
+  ],
+  "numeric_fields": [
+    "net_revenue"
+  ],
+  "rows": [
+    {
+      "record_id": "demo-1",
+      "net_revenue": 100
+    }
+  ]
+}

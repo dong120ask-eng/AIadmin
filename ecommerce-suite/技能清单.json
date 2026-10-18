@@ -107,5 +107,25 @@
     "name": "ecom-automation",
     "title": "电商自动巡检与变更执行",
     "command": "automation"
+  },
+  {
+    "name": "ecom-data-quality",
+    "title": "经营数据质量与时效核验",
+    "command": null
+  },
+  {
+    "name": "ecom-change-experiment",
+    "title": "商品变更与效果实验",
+    "command": null
+  },
+  {
+    "name": "ecom-exception-desk",
+    "title": "单人多店异常待办",
+    "command": null
+  },
+  {
+    "name": "ecom-recovery",
+    "title": "经营状态备份与灾难恢复",
+    "command": null
   }
 ]

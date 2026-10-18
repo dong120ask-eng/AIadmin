@@ -1,93 +1,155 @@
-"""Persistent host automation gate. No built-in merchant adapters. Standard library only."""
-import argparse, json, sqlite3, hashlib, subprocess
+"""v6 single-host automation gate. No merchant adapter is bundled."""
+import argparse, hashlib, json, sqlite3, subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+
 WRITE_ACTIONS={'campaign_enroll','campaign_update','product_title_update','product_main_image_update','product_detail_update','product_selling_points_update','ad_plan_update','price_update','inventory_update'}
 READ_ACTIONS={'campaign_detect','product_read','metrics_read','ad_report_read'}
+SPECIAL={'campaign_enroll','campaign_update','ad_plan_update','price_update','inventory_update'}
+UNRESOLVED={'running','submitted','unknown'}
+
+class GateError(Exception):pass
+
+def utc():return datetime.now(timezone.utc)
+def digest(v):return hashlib.sha256(json.dumps(v,ensure_ascii=False,sort_keys=True,allow_nan=False).encode()).hexdigest()
+def timestamp(v):
+    try:
+        d=datetime.fromisoformat(v.replace('Z','+00:00'))
+        if d.tzinfo is None:raise ValueError()
+        return d
+    except (ValueError,AttributeError,TypeError):raise GateError('timezone_aware_timestamp_required')
+def identifier(v):
+    if not isinstance(v,str) or not v or len(v)>200 or any(ord(c)<32 for c in v):raise GateError('invalid_identifier')
+    return v
+
+def initialize(c):
+    c.execute('CREATE TABLE IF NOT EXISTS tasks_v6(task_key TEXT PRIMARY KEY, scope TEXT NOT NULL, target_id TEXT NOT NULL, status TEXT NOT NULL, detail TEXT NOT NULL, updated TEXT NOT NULL)')
+    c.execute('CREATE TABLE IF NOT EXISTS events_v6(id INTEGER PRIMARY KEY,task_key TEXT NOT NULL,status TEXT NOT NULL,detail TEXT NOT NULL,created TEXT NOT NULL)')
+    c.commit()
+
+def record(c,key,scope,target,status,detail):
+    raw=json.dumps(detail,ensure_ascii=False,allow_nan=False)
+    with c:
+        c.execute('INSERT INTO tasks_v6 VALUES(?,?,?,?,?,?) ON CONFLICT(task_key) DO UPDATE SET status=excluded.status,detail=excluded.detail,updated=excluded.updated',(key,scope,target,status,raw,utc().isoformat()))
+        c.execute('INSERT INTO events_v6(task_key,status,detail,created) VALUES(?,?,?,?)',(key,status,raw,utc().isoformat()))
+
+def authorized(cfg,t,b):
+    if cfg.get('stop') is True or b.get('paused') is True:raise GateError('stop_switch_enabled')
+    a=cfg.get('authorization',{});store=t['store_id']
+    if a.get('revoked') is True:raise GateError('authorization_revoked')
+    if timestamp(a.get('valid_until'))<=utc():raise GateError('authorization_expired')
+    if store not in a.get('stores',[]) or t['action'] not in a.get('actions',[]):raise GateError('store_or_action_not_authorized')
+    if t['target_id'] not in a.get('targets_by_store',{}).get(store,[]):raise GateError('target_not_authorized_for_store')
+    if a.get('bindings',{}).get(store)!={k:b[k] for k in ('tenant_id','platform')}:raise GateError('authorization_binding_mismatch')
+
+def task_key(t,b):
+    return digest({**{k:b[k] for k in ('tenant_id','platform')},**{k:t.get(k) for k in ('store_id','action','target_id','expected_before','desired_value','operation_version')}})
 
 def call(adapter,request):
-    if not isinstance(adapter,list) or not adapter or not all(isinstance(x,str) for x in adapter):raise ValueError('explicit adapter argv required')
-    p=subprocess.run(adapter,input=json.dumps(request,ensure_ascii=False),text=True,capture_output=True,timeout=60,shell=False)
-    if p.returncode:raise RuntimeError('adapter failed; inspect local redacted logs')
-    result=json.loads(p.stdout)
-    if not isinstance(result,dict):raise ValueError('adapter response must be object')
-    if any(result.get(k)!=request.get(k) for k in ('tenant_id','platform','store_id')):raise ValueError('adapter tenant/platform/store identity mismatch')
-    return result
+    if not isinstance(adapter,list) or not adapter or not all(isinstance(s,str) and s for s in adapter):raise GateError('trusted_adapter_argv_required')
+    try:
+        p=subprocess.run(adapter,input=json.dumps(request,ensure_ascii=False,allow_nan=False),text=True,capture_output=True,timeout=60,shell=False)
+        if p.returncode:raise GateError('adapter_failed')
+        if len(p.stdout)>1_000_000:raise GateError('adapter_response_too_large')
+        return json.loads(p.stdout,parse_constant=lambda s:(_ for _ in ()).throw(ValueError()))
+    except GateError:raise
+    except Exception:raise GateError('adapter_transport_or_json_error')
 
-def now():return datetime.now(timezone.utc).isoformat()
-def record(conn,key,status,detail):
-    conn.execute('INSERT INTO tasks VALUES (?,?,?,?) ON CONFLICT(task_key) DO UPDATE SET status=excluded.status, detail=excluded.detail, updated=excluded.updated',(key,status,json.dumps(detail,ensure_ascii=False),now()));conn.commit()
+def response_ok(r,req,max_age):
+    if not isinstance(r,dict) or r.get('ok') is not True:raise GateError('adapter_not_confirmed')
+    if any(r.get(k)!=req.get(k) for k in ('tenant_id','platform','store_id','target_id','action','idempotency_key')):raise GateError('response_scope_or_object_mismatch')
+    age=(utc()-timestamp(r.get('observed_at'))).total_seconds()
+    if age < -30 or age>max_age:raise GateError('stale_or_future_observation')
 
-def task_key(t):
-    # Display task ID is not a business idempotency key.
-    identity={k:t.get(k) for k in ('store_id','action','target_id','expected_before','desired_value','operation_version')}
-    return hashlib.sha256(json.dumps(identity,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
-
-def process(config,conn):
-    if config.get('stop',False):return [{'status':'blocked','reason':'stop switch enabled'}]
+def process(cfg,c):
+    initialize(c)
+    if cfg.get('stop') is True:return [{'status':'blocked','reason':'stop_switch_enabled'}]
+    if cfg.get('mode','preview') not in ('preview','execute'):raise GateError('invalid_mode')
+    tasks=cfg.get('tasks',[])
+    if not isinstance(tasks,list) or len(tasks)>1000:raise GateError('task_batch_limit_1000')
+    age=cfg.get('max_observation_age_seconds',300)
+    if isinstance(age,bool) or not isinstance(age,int) or not 1<=age<=3600:raise GateError('invalid_freshness_window')
+    # Legacy uncertain actions cannot be mapped safely: reconcile before any new writes.
+    legacy=False
+    if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='tasks'").fetchone():
+        legacy=bool(c.execute("SELECT 1 FROM tasks WHERE status IN ('running','submitted','unknown') LIMIT 1").fetchone())
     results=[]
-    for t in config.get('tasks',[]):
-        key=task_key(t)
-        previous=conn.execute('select status from tasks where task_key=?',(key,)).fetchone()
-        if previous and previous[0] in ('verified','unknown','running','submitted'):
-            results.append({'task_id':t.get('task_id'),'status':previous[0],'reason':'no automatic replay; reconcile uncertain tasks with platform first'});continue
-        status='blocked';detail={'task_id':t.get('task_id')}
+    for raw in tasks:
+        status='blocked';key=scope=target=None;detail={}
         try:
-            store=t['store_id'];action=t['action'];adapter=config.get('adapters',{}).get(store)
-            binding=config.get('stores',{}).get(store,{})
-            if adapter and (not binding.get('tenant_id') or not binding.get('platform')):raise ValueError('explicit tenant/platform/store binding required')
-            if action not in READ_ACTIONS|WRITE_ACTIONS:raise ValueError('unsupported action')
-            if not adapter:
-                detail['reason']='merchant adapter not connected'
-            elif action in READ_ACTIONS:
-                response=call(adapter,dict(op='read',tenant_id=binding['tenant_id'],platform=binding['platform'],store_id=store,action=action,target_id=t['target_id'],idempotency_key=key))
-                if response.get('ok') is not True:raise ValueError('read not confirmed')
-                status='read_verified';detail['evidence']=response
+            if not isinstance(raw,dict):raise GateError('task_object_required')
+            t=raw
+            for k in ('task_id','store_id','action','target_id'):identifier(t.get(k))
+            detail={'task_id':t['task_id']}
+            b=cfg.get('stores',{}).get(t['store_id'],{})
+            for k in ('tenant_id','platform'):identifier(b.get(k))
+            action=t['action'];target=t['target_id'];scope=digest([b['tenant_id'],b['platform'],t['store_id']])
+            detail.update(tenant_id=b['tenant_id'],platform=b['platform'],store_id=t['store_id'],target_id=target,action=action)
+            if action not in READ_ACTIONS|WRITE_ACTIONS:raise GateError('unsupported_action')
+            authorized(cfg,t,b) # Applies to reads, writes, and cached state disclosure.
+            if action in WRITE_ACTIONS:identifier(t.get('operation_version'))
+            key=task_key(t,b)
+            if action in WRITE_ACTIONS:
+                if legacy:raise GateError('legacy_uncertain_tasks_require_reconciliation')
+                unresolved=c.execute("SELECT task_key,status FROM tasks_v6 WHERE scope=? AND target_id=? AND status IN ('running','submitted','unknown') LIMIT 1",(scope,target)).fetchone()
+                if unresolved:raise GateError('object_has_unresolved_write')
+                old=c.execute('SELECT status FROM tasks_v6 WHERE task_key=?',(key,)).fetchone()
+                if old and old[0]=='verified':
+                    results.append(dict(detail,status='already_verified',reason='no_replay'));continue
+            adapter=cfg.get('adapters',{}).get(t['store_id'])
+            if not adapter:raise GateError('merchant_adapter_not_connected')
+            if action in SPECIAL:raise GateError('platform_specific_validator_unavailable')
+            req=dict(tenant_id=b['tenant_id'],platform=b['platform'],store_id=t['store_id'],target_id=target,action=action,idempotency_key=key)
+            before=call(adapter,dict(req,op='read'));response_ok(before,req,age)
+            detail['observation_time']=before['observed_at']
+            # Log only hashes and identity, never full adapter payload/buyer records.
+            if action in READ_ACTIONS:
+                status='read_verified';detail['data_sha256']=digest(before.get('value'))
+                detail['reason']='read_verified_payload_not_logged'
             else:
-                auth=config.get('authorization',{})
-                expiry=datetime.fromisoformat(auth.get('valid_until','').replace('Z','+00:00'))
-                if expiry.tzinfo is None or expiry<=datetime.now(timezone.utc):raise ValueError('missing/expired timezone-aware authorization')
-                if store not in auth.get('stores',[]) or action not in auth.get('actions',[]):raise ValueError('not authorized for store/action')
-                if t['target_id'] not in auth.get('targets_by_store',{}).get(store,[]):raise ValueError('target not authorized for this store')
-                if auth.get('bindings',{}).get(store)!=binding:raise ValueError('authorization tenant/platform binding mismatch')
-                # Paid actions require per-task financial reservation in a real budget service; do not fake it here.
-                if action in ('ad_plan_update','campaign_enroll','campaign_update','price_update','inventory_update'):
-                    detail['reason']='requires platform-specific promotion/budget/inventory validator; unavailable in generic runner'
+                if 'expected_before' not in t or 'desired_value' not in t:raise GateError('before_and_desired_required')
+                if before.get('value')!=t['expected_before']:raise GateError('precondition_changed')
+                detail.update(before_sha256=digest(t['expected_before']),desired_sha256=digest(t['desired_value']))
+                if cfg.get('mode','preview')=='preview':status='prepared'
                 else:
-                    req=dict(tenant_id=binding['tenant_id'],platform=binding['platform'],store_id=store,action=action,target_id=t['target_id'],idempotency_key=key)
-                    before=call(adapter,dict(req,op='read'))
-                    if before.get('ok') is not True or before.get('value')!=t['expected_before']:raise ValueError('precondition changed or unreadable')
-                    if config.get('mode','preview')!='execute':
-                        status='prepared';detail.update(before=t['expected_before'],after=t['desired_value'],reason='preview mode; no write')
-                    else:
-                        record(conn,key,'running',detail)
-                        status='unknown' # preserve uncertainty if submit or verification fails
-                        submitted=call(adapter,dict(req,op='write',expected_before=t['expected_before'],desired_value=t['desired_value']))
-                        if submitted.get('ok') is not True:raise RuntimeError('write outcome uncertain; reconcile before retry')
-                        status='submitted';record(conn,key,status,detail)
-                        after=call(adapter,dict(req,op='read'))
-                        if after.get('ok') is True and after.get('value')==t['desired_value']:
-                            status='verified';detail['receipt_id']=submitted.get('receipt_id');detail['evidence']=after
-                        else:status='unknown';detail['reason']='readback differs; reconcile before retry'
-        except Exception as e:
-            detail['reason']=str(e)[:300]
-            if status not in ('unknown','submitted'):status='blocked'
-        record(conn,key,status,detail);results.append(dict(detail,status=status))
+                    if before.get('atomic_compare_and_set') is not True or not isinstance(before.get('revision'),str) or not before['revision']:raise GateError('atomic_remote_revision_required')
+                    authorized(cfg,t,b) # May expire during preflight read.
+                    record(c,key,scope,target,'running',detail)
+                    status='unknown'
+                    submitted=call(adapter,dict(req,op='write',expected_revision=before['revision'],expected_before=t['expected_before'],desired_value=t['desired_value']))
+                    response_ok(submitted,req,age)
+                    # Require an adapter receipt before classifying submission.
+                    identifier(submitted.get('receipt_id'))
+                    status='submitted';detail['receipt_sha256']=digest(submitted['receipt_id']);record(c,key,scope,target,status,detail)
+                    after=call(adapter,dict(req,op='read'));response_ok(after,req,age)
+                    if after.get('value')==t['desired_value']:
+                        status='verified';detail['reason']='stored_value_verified_not_live_review_or_business_result'
+                    else:status='unknown';detail['reason']='readback_differs_reconcile'
+        except GateError as e:
+            detail['reason']=str(e)
+        except Exception:
+            detail['reason']='invalid_input_or_internal_error'
+        # Never overwrite an existing uncertain record with blocked from a replay.
+        if key and scope and target:
+            old=c.execute('SELECT status FROM tasks_v6 WHERE task_key=?',(key,)).fetchone()
+            if not (status=='blocked' and old and old[0] in UNRESOLVED):record(c,key,scope,target,status,detail)
+        results.append(dict(detail,status=status))
     return results
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--state',required=True);p.add_argument('--output',required=True);a=p.parse_args()
-    if Path(a.output).exists():p.exit(2,'output already exists; no tasks executed\n')
-    # Exclusive local file lock: applies to one shared state path on one host only.
-    lock=Path(a.state+'.lock')
+    state=Path(a.state).resolve();output=Path(a.output).resolve();config=Path(a.config).resolve()
+    if output in (state,config):p.exit(2,'output must differ from state and config\n')
+    lock=Path(str(state)+'.lock');locked=False
     try:
-        with lock.open('x') as f:f.write(str(datetime.now(timezone.utc)))
-    except FileExistsError:p.exit(2,'state locked; inspect running process before removing stale lock\n')
-    try:
-        with open(a.config,encoding='utf-8') as f:config=json.load(f)
-        with sqlite3.connect(a.state) as c:
-            c.execute('create table if not exists tasks(task_key text primary key,status text,detail text,updated text)')
-            result=process(config,c)
-        with open(a.output,'x',encoding='utf-8') as f:json.dump(result,f,ensure_ascii=False,indent=2)
-    finally:lock.unlink(missing_ok=True)
+        with lock.open('x') as f:f.write(utc().isoformat())
+        locked=True
+        # Reserve a writable new receipt before any adapter operation; no truncation.
+        with output.open('x',encoding='utf-8') as out:
+            with config.open(encoding='utf-8-sig') as f:cfg=json.load(f)
+            with sqlite3.connect(str(state)) as c:result=process(cfg,c)
+            json.dump(result,out,ensure_ascii=False,indent=2)
+    except (OSError,ValueError,GateError):p.exit(2,'operation blocked; inspect configuration/state; existing files preserved\n')
+    finally:
+        if locked:lock.unlink(missing_ok=True)
 if __name__=='__main__':main()
