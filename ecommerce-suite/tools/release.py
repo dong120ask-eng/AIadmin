@@ -75,7 +75,8 @@ def inspect(data):
         assert len(names) == len(set(names)), 'duplicate ZIP entry'
         assert z.testzip() is None, 'CRC failure'
         for info in z.infolist():
-            n = info.filename
+            n = info.orig_filename
+            assert n == info.filename, 'ZIP reader normalized an unsafe name'
             assert '\\' not in n and not n.startswith('/') and ':' not in n
             assert '..' not in PurePosixPath(n).parts
             assert not stat.S_ISLNK(info.external_attr >> 16)
