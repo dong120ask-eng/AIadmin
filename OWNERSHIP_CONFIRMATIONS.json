@@ -11,5 +11,11 @@
   },
   "status": "owner_confirmed_public_rights",
   "license_document": "LICENSE-OWNED-MATERIALS.md",
-  "evidence_limit": "Owner-provided rights confirmation; not independent verification of quantitative claims, personal data consent, or third-party licenses."
+  "evidence_limit": "Owner-provided rights confirmation; not independent verification of quantitative claims, personal data consent, or third-party licenses.",
+  "publication_attribution": "天津智慧筑基科技有限公司",
+  "publication_instruction": {
+    "confirmed_at": "2026-10-18T12:38:10+08:00",
+    "owner_statement": "天津智慧筑基科技有限公司署名 仓库所有文件全部开源",
+    "implementation": "Company-owned original content licensed under root MIT; third-party rights retained; credentials and private data excluded."
+  }
 }
