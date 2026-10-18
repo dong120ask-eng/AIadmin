@@ -7,6 +7,8 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from .recipes import TYPES, platform_catalog
+from .media import media_index
+from .dispatch import DispatchQueue
 from .runner import doctor, run_job
 from .store import Problem, identifier
 
@@ -57,10 +59,18 @@ def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=No
             if not mutation:
                 files = {"/": ("index.html", "text/html; charset=utf-8"),
                          "/app.js": ("app.js", "text/javascript; charset=utf-8"),
+                         "/media.html": ("media.html", "text/html; charset=utf-8"),
+                         "/dispatch.html": ("dispatch.html", "text/html; charset=utf-8"),
+                         "/dispatch.js": ("dispatch.js", "text/javascript; charset=utf-8"),
+                         "/media.js": ("media.js", "text/javascript; charset=utf-8"),
                          "/style.css": ("style.css", "text/css; charset=utf-8")}
                 if path in files:
                     filename, mime = files[path]
                     return self.send((STATIC / filename).read_bytes(), mime=mime)
+                if path == "/api/dispatch":
+                    return self.send(DispatchQueue(store.path.parent/"dispatch.sqlite3").tasks(tenant))
+                if path == "/api/media-index":
+                    return self.send(media_index(query.get("category", [None])[0], query.get("keyword", [None])[0]))
                 if path == "/api/bootstrap":
                     return self.send({"token": csrf, "capabilities": caps, "types": {k: v[0] for k, v in TYPES.items()}, "platforms": platform_catalog()})
                 if path == "/api/projects":

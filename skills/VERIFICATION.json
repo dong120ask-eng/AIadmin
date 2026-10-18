@@ -1,9 +1,14 @@
 {
-  "skills_saved_verified": 42,
+  "skills_saved_verified": 43,
   "platform_skills": 25,
-  "structure_validation": "42 passed",
-  "dependency_closure": "42 resolved",
+  "android_device_skill_saved": true,
+  "dependency_closure": "43 resolved",
   "portable_adapters": "4 composed successfully",
+  "program_python_tests": 72,
+  "optional_sdk_tests": "controlled fake modules, not real SDK execution",
+  "sdk_installed": false,
+  "real_usb_devices_connected": false,
+  "real_account_switch_verified": false,
   "live_generation_and_publishing": "not tested",
   "checked_on": "2026-10-14"
 }

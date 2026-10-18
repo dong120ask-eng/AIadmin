@@ -1,6 +1,6 @@
 {
   "suite": "enterprise-content-suite",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "developed_at": "2026-10-14",
   "status": "instructions_and_local_helpers_ready",
   "live_generation_test": "pending",
@@ -212,7 +212,8 @@
         "content-shared-runtime",
         "topic-viral-research",
         "content-media-router",
-        "content-quality-review"
+        "content-quality-review",
+        "android-device-operator"
       ],
       "status": "instructions_ready",
       "e2e": "pending"
@@ -566,6 +567,17 @@
       ],
       "status": "instructions_ready",
       "e2e": "pending"
+    },
+    {
+      "name": "android-device-operator",
+      "display_name": "安卓多手机操作",
+      "directory": "android-device-operator",
+      "layer": "execution",
+      "dependencies": [
+        "content-shared-runtime"
+      ],
+      "status": "instructions_and_optional_inspection_adapters_ready",
+      "e2e": "pending"
     }
   ],
   "structural_validation": {
@@ -575,12 +587,5 @@
   "helper_smoke": {
     "status": "passed",
     "scope": "dependency_copy_prompt_composition_local_ledger_only"
-  },
-  "native_installation": {
-    "chatgpt_work_personal_skills": "42_saved_and_remote_verified",
-    "codex_cli_user_computer": "pending",
-    "workbuddy": "pending_import_test",
-    "doubao": "prompt_adapter_ready_native_unverified",
-    "qianwen": "prompt_adapter_ready_native_unverified"
   }
 }

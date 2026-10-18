@@ -152,3 +152,13 @@ JSDOM_MODULE="$PWD/.qa-tools/node_modules/jsdom" PYTHONPATH=. python3 scripts/ui
 - Python本地HTTP服务：https://docs.python.org/3.12/library/http.server.html
 
 这些链接用于实现依据；当前平台规格与商业接入仍需各自核查。
+
+## 媒体发现与执行计划扩展
+
+打开本机工作台的`/media.html`查看分类清单。当前仅有发现登记、部分渠道证据及浏览器／安卓执行计划，未接通真实发布。使用方法与覆盖限制见[PUBLISHING-DEVELOPMENT.md](PUBLISHING-DEVELOPMENT.md)。
+
+安卓环境首选雷电9；本机Appium页面读取接口与准备步骤见[ANDROID-SETUP.md](ANDROID-SETUP.md)。实际发布执行器仍待开发和实测。
+
+本机多账号队列、设备互斥与异常核查见[DISPATCH.md](DISPATCH.md)。当前可执行安卓页面检查，真实发布仍未接通。
+
+GitHub安卓控制项目、可选SDK检查接口与多手机技能整合见[ANDROID-OPEN-SOURCE.md](ANDROID-OPEN-SOURCE.md)。网页优先新增渠道见[WEB-FIRST.md](WEB-FIRST.md)，USB真机接入见[USB-START.md](USB-START.md)。

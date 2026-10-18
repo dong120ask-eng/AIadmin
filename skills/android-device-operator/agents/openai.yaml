@@ -1,0 +1,13 @@
+interface:
+  display_name: 安卓多手机操作
+  short_description: USB安卓设备检查、多手机调度、账号身份复核和授权操作；真实发布须按平台验收
+  default_prompt: 使用安卓多手机操作技能检查已连接设备，按唯一设备与账号绑定安全执行已授权任务，报告实际结果和阻塞。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
