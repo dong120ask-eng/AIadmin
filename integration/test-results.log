@@ -1,0 +1,128 @@
+expert_installer
+test_agents_default (test_install.InstallTests.test_agents_default) ... ok
+test_default_preserves_existing (test_install.InstallTests.test_default_preserves_existing) ... ok
+test_defaults (test_install.InstallTests.test_defaults) ... ok
+test_dry_run_creates_nothing (test_install.InstallTests.test_dry_run_creates_nothing) ... ok
+test_dry_run_replace_preserves_everything (test_install.InstallTests.test_dry_run_replace_preserves_everything) ... ok
+test_failed_copy_preserves_existing (test_install.InstallTests.test_failed_copy_preserves_existing) ... ok
+test_install_copies_nested_files (test_install.InstallTests.test_install_copies_nested_files) ... ok
+test_real_repository_cli (test_install.InstallTests.test_real_repository_cli) ... ok
+test_refuses_replacing_file (test_install.InstallTests.test_refuses_replacing_file) ... ok
+test_rejects_overlapping_paths (test_install.InstallTests.test_rejects_overlapping_paths) ... ok
+test_replace_retains_backup (test_install.InstallTests.test_replace_retains_backup) ... ok
+test_roles_dry_run_never_writes (test_install.InstallTests.test_roles_dry_run_never_writes) ... ok
+test_roles_preserve_and_backup (test_install.InstallTests.test_roles_preserve_and_backup) ... ok
+test_roles_substitute_absolute_path (test_install.InstallTests.test_roles_substitute_absolute_path) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.079s
+
+OK
+
+upstream
+test_browser_binding_cannot_open_android_session (test_android.AndroidTransportTests.test_browser_binding_cannot_open_android_session) ... ok
+test_device_identity_mismatch_closes_session (test_android.AndroidTransportTests.test_device_identity_mismatch_closes_session) ... ok
+test_redirect_not_followed (test_android.AndroidTransportTests.test_redirect_not_followed) ... ok
+test_remote_or_credential_urls_rejected (test_android.AndroidTransportTests.test_remote_or_credential_urls_rejected) ... ok
+test_session_and_read_only_source (test_android.AndroidTransportTests.test_session_and_read_only_source) ... ok
+test_unconnected_source_rejected (test_android.AndroidTransportTests.test_unconnected_source_rejected) ... ok
+test_disconnected_target_blocks_source (test_android_sdks.OptionalSdkTests.test_disconnected_target_blocks_source) ... ok
+test_missing_dependency_reports_setup_failure (test_android_sdks.OptionalSdkTests.test_missing_dependency_reports_setup_failure) ... ok
+test_missing_target_does_not_fall_back_to_other_device (test_android_sdks.OptionalSdkTests.test_missing_target_does_not_fall_back_to_other_device) ... ok
+test_mobilerun_never_selects_cloud (test_android_sdks.OptionalSdkTests.test_mobilerun_never_selects_cloud) ... ok
+test_returned_device_mismatch_rejected (test_android_sdks.OptionalSdkTests.test_returned_device_mismatch_rejected) ... ok
+test_uiautomator_receives_explicit_device (test_android_sdks.OptionalSdkTests.test_uiautomator_receives_explicit_device) ... ok
+test_actual_protocol_worker_saves_local_source_without_publishing (test_dispatch.DispatchTests.test_actual_protocol_worker_saves_local_source_without_publishing) ... ok
+test_changed_artifact_rejected (test_dispatch.DispatchTests.test_changed_artifact_rejected) ... ok
+test_concurrent_claims_only_one_owner (test_dispatch.DispatchTests.test_concurrent_claims_only_one_owner) ... ok
+test_credentials_and_unapproved_commands_rejected (test_dispatch.DispatchTests.test_credentials_and_unapproved_commands_rejected) ... ok
+test_cross_tenant_binding_rejected (test_dispatch.DispatchTests.test_cross_tenant_binding_rejected) ... ok
+test_draft_and_publish_stay_blocked (test_dispatch.DispatchTests.test_draft_and_publish_stay_blocked) ... ok
+test_heartbeat_extends_only_current_owner (test_dispatch.DispatchTests.test_heartbeat_extends_only_current_owner) ... ok
+test_idempotent_enqueue_and_conflicting_payload (test_dispatch.DispatchTests.test_idempotent_enqueue_and_conflicting_payload) ... ok
+test_independent_devices_can_run (test_dispatch.DispatchTests.test_independent_devices_can_run) ... ok
+test_interrupted_lease_quarantines_device_after_restart (test_dispatch.DispatchTests.test_interrupted_lease_quarantines_device_after_restart) ... ok
+test_lists_are_tenant_scoped_and_hide_lease (test_dispatch.DispatchTests.test_lists_are_tenant_scoped_and_hide_lease) ... ok
+test_old_or_wrong_worker_cannot_finish (test_dispatch.DispatchTests.test_old_or_wrong_worker_cannot_finish) ... ok
+test_physical_resource_locked_across_tenants (test_dispatch.DispatchTests.test_physical_resource_locked_across_tenants) ... ok
+test_resolution_requires_stopped_worker_and_does_not_requeue (test_dispatch.DispatchTests.test_resolution_requires_stopped_worker_and_does_not_requeue) ... ok
+test_same_device_serialized_even_with_other_accounts (test_dispatch.DispatchTests.test_same_device_serialized_even_with_other_accounts) ... ok
+test_worker_connection_failure_retains_quarantine (test_dispatch.DispatchTests.test_worker_connection_failure_retains_quarantine) ... ok
+test_wrong_artifact_path_rejected (test_dispatch.DispatchTests.test_wrong_artifact_path_rejected) ... ok
+test_android_binding_requires_real_device_and_package (test_media.MediaTests.test_android_binding_requires_real_device_and_package) ... ok
+test_closed_old_entry_blocked (test_media.MediaTests.test_closed_old_entry_blocked) ... ok
+test_coverage_is_honest (test_media.MediaTests.test_coverage_is_honest) ... ok
+test_credentials_not_accepted (test_media.MediaTests.test_credentials_not_accepted) ... ok
+test_cross_account_and_tenant_rejected (test_media.MediaTests.test_cross_account_and_tenant_rejected) ... ok
+test_environment_does_not_claim_user_machine_deployment (test_media.MediaTests.test_environment_does_not_claim_user_machine_deployment) ... ok
+test_filter_retains_coverage_and_evidence (test_media.MediaTests.test_filter_retains_coverage_and_evidence) ... ok
+test_no_mode_can_turn_plan_into_actual_publication (test_media.MediaTests.test_no_mode_can_turn_plan_into_actual_publication) ... ok
+test_unknown_channel_is_not_publishing_capability (test_media.MediaTests.test_unknown_channel_is_not_publishing_capability) ... ok
+test_cli_disabled_does_not_run (test_workbench.HTTPTests.test_cli_disabled_does_not_run) ... ok
+test_cross_origin_denied (test_workbench.HTTPTests.test_cross_origin_denied) ... ok
+test_dns_rebinding_host_denied (test_workbench.HTTPTests.test_dns_rebinding_host_denied) ... ok
+test_get_and_create_over_http (test_workbench.HTTPTests.test_get_and_create_over_http) ... ok
+test_missing_csrf_denied (test_workbench.HTTPTests.test_missing_csrf_denied) ... ok
+test_static_uses_safe_text_rendering (test_workbench.HTTPTests.test_static_uses_safe_text_rendering) ... ok
+test_traversal_not_served (test_workbench.HTTPTests.test_traversal_not_served) ... ok
+test_fake_executor_real_file_validation (test_workbench.RunnerTests.test_fake_executor_real_file_validation) ... ok
+test_media_claim_denied (test_workbench.RunnerTests.test_media_claim_denied) ... ok
+test_nonzero_exit_fails (test_workbench.RunnerTests.test_nonzero_exit_fails) ... ok
+test_result_schema_requires_fields (test_workbench.RunnerTests.test_result_schema_requires_fields) ... ok
+test_symlink_result_denied (test_workbench.RunnerTests.test_symlink_result_denied) ... ok
+test_timeout_stops_child (test_workbench.RunnerTests.test_timeout_stops_child) ... ok
+test_unknown_cost_requires_explicit_opt_in (test_workbench.RunnerTests.test_unknown_cost_requires_explicit_opt_in) ... ok
+test_zero_exit_without_artifact_fails (test_workbench.RunnerTests.test_zero_exit_without_artifact_fails) ... ok
+test_account_platform_mismatch (test_workbench.StoreTests.test_account_platform_mismatch) ... ok
+test_all_recipes_are_briefs (test_workbench.StoreTests.test_all_recipes_are_briefs) ... ok
+test_concurrent_claim_only_one (test_workbench.StoreTests.test_concurrent_claim_only_one) ... ok
+test_concurrent_create_only_one (test_workbench.StoreTests.test_concurrent_create_only_one) ... ok
+test_cross_project_account_denied (test_workbench.StoreTests.test_cross_project_account_denied) ... ok
+test_export_scoped_no_database_or_accounts (test_workbench.StoreTests.test_export_scoped_no_database_or_accounts) ... ok
+test_fact_requires_source (test_workbench.StoreTests.test_fact_requires_source) ... ok
+test_idempotency_conflict (test_workbench.StoreTests.test_idempotency_conflict) ... ok
+test_idempotent_same_payload (test_workbench.StoreTests.test_idempotent_same_payload) ... ok
+test_identifier_traversal_and_sql (test_workbench.StoreTests.test_identifier_traversal_and_sql) ... ok
+test_illegal_state_transition (test_workbench.StoreTests.test_illegal_state_transition) ... ok
+test_interruption_marks_unknown_no_retry (test_workbench.StoreTests.test_interruption_marks_unknown_no_retry) ... ok
+test_invalid_budget (test_workbench.StoreTests.test_invalid_budget) ... ok
+test_persistent_restart (test_workbench.StoreTests.test_persistent_restart) ... ok
+test_platform_type_mismatch (test_workbench.StoreTests.test_platform_type_mismatch) ... ok
+test_publish_never_fakes_success (test_workbench.StoreTests.test_publish_never_fakes_success) ... ok
+test_publish_without_review_denied (test_workbench.StoreTests.test_publish_without_review_denied) ... ok
+test_review_requires_all_true_booleans (test_workbench.StoreTests.test_review_requires_all_true_booleans) ... ok
+test_tenant_read_isolation (test_workbench.StoreTests.test_tenant_read_isolation) ... ok
+
+----------------------------------------------------------------------
+Ran 72 tests in 9.252s
+
+OK
+
+integration
+test_added_input_file_is_rejected (test_expert_bridge.BridgeQA.test_added_input_file_is_rejected) ... ok
+test_digest_mismatch_fails (test_expert_bridge.BridgeQA.test_digest_mismatch_fails) ... ok
+test_empty_independent_qa_suite_cannot_pass_on_developer_tests (test_expert_bridge.BridgeQA.test_empty_independent_qa_suite_cannot_pass_on_developer_tests) ... ok
+test_failing_tests_cannot_pass (test_expert_bridge.BridgeQA.test_failing_tests_cannot_pass) ... ok
+test_original_development_tampering_before_verification_is_rejected (test_expert_bridge.BridgeQA.test_original_development_tampering_before_verification_is_rejected) ... ok
+test_parent_directory_symlink_rejected (test_expert_bridge.BridgeQA.test_parent_directory_symlink_rejected) ... ok
+test_persistence_and_tenant_separation (test_expert_bridge.BridgeQA.test_persistence_and_tenant_separation) ... ok
+test_prepare_is_nonexecuting_and_idempotent (test_expert_bridge.BridgeQA.test_prepare_is_nonexecuting_and_idempotent) ... ok
+test_process_failure_cannot_succeed (test_expert_bridge.BridgeQA.test_process_failure_cannot_succeed) ... ok
+test_qa_failed_verdict_blocks_host_test (test_expert_bridge.BridgeQA.test_qa_failed_verdict_blocks_host_test) ... ok
+test_qa_input_tamper_rejected (test_expert_bridge.BridgeQA.test_qa_input_tamper_rejected) ... ok
+test_qa_must_supply_own_tests (test_expert_bridge.BridgeQA.test_qa_must_supply_own_tests) ... ok
+test_qa_overwrite_is_rejected (test_expert_bridge.BridgeQA.test_qa_overwrite_is_rejected) ... ok
+test_qa_receives_actual_product_acceptance_text (test_expert_bridge.BridgeQA.test_qa_receives_actual_product_acceptance_text) ... ok
+test_recovery_requires_stopped_confirmation_and_preserves_unknown (test_expert_bridge.BridgeQA.test_recovery_requires_stopped_confirmation_and_preserves_unknown) ... ok
+test_simulated_executor_is_never_real_cli_evidence (test_expert_bridge.BridgeQA.test_simulated_executor_is_never_real_cli_evidence) ... ok
+test_stale_completion_cannot_overwrite_recovered_state (test_expert_bridge.BridgeQA.test_stale_completion_cannot_overwrite_recovered_state) ... ok
+test_success_runs_independent_real_host_tests (test_expert_bridge.BridgeQA.test_success_runs_independent_real_host_tests) ... ok
+test_symlink_and_hardlink_rejected (test_expert_bridge.BridgeQA.test_symlink_and_hardlink_rejected) ... ok
+test_terminal_duplicate_never_executes_again (test_expert_bridge.BridgeQA.test_terminal_duplicate_never_executes_again) ... ok
+test_traversal_absolute_and_normalization_rejected (test_expert_bridge.BridgeQA.test_traversal_absolute_and_normalization_rejected) ... ok
+test_zero_tests_cannot_pass (test_expert_bridge.BridgeQA.test_zero_tests_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.936s
+
+OK

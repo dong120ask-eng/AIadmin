@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-17",
+  "real_cli": "blocked_binary_absent",
+  "native_cli_subagents": "not_verified",
+  "work_agents": "product_analysis, development, independent_qa",
+  "suites": [
+    {
+      "name": "expert_installer",
+      "exit_code": 0,
+      "result_tail": [
+        "----------------------------------------------------------------------",
+        "Ran 14 tests in 0.079s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "upstream",
+      "exit_code": 0,
+      "result_tail": [
+        "----------------------------------------------------------------------",
+        "Ran 72 tests in 9.252s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "integration",
+      "exit_code": 0,
+      "result_tail": [
+        "----------------------------------------------------------------------",
+        "Ran 22 tests in 0.936s",
+        "",
+        "OK"
+      ]
+    }
+  ]
+}
