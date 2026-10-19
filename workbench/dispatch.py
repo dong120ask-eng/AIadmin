@@ -88,19 +88,29 @@ class DispatchQueue:
     def recover(self):
         with self.transaction() as db:return {'marked_unknown':self._expire(db),'auto_requeued':False}
 
-    def claim(self,tenant,worker,lease_seconds=120,action="inspect_only"):
+    def claim(self,tenant,worker,lease_seconds=120,action="inspect_only",max_browser_sessions=2,profile_ref=None):
         identifier(tenant);identifier(worker)
-        if action not in {"inspect_only", "draft"}:raise Problem("不允许执行发布")
+        if action not in {"inspect_only", "draft", "browser_read"}:raise Problem("不允许执行发布")
         if isinstance(lease_seconds,bool) or not isinstance(lease_seconds,(int,float)) or not math.isfinite(lease_seconds) or not 5<=lease_seconds<=600:
             raise Problem('租约必须为5至600秒')
+        if type(max_browser_sessions) is not int or not 1 <= max_browser_sessions <= 2:
+            raise Problem('浏览器并发上限必须为1或2')
         with self.transaction() as db:
             self._expire(db)
+            if action in {'draft','browser_read'} and db.execute(
+                    "SELECT count(*) FROM dispatch_resources WHERE resource LIKE 'browser-profile:%'").fetchone()[0] >= max_browser_sessions:
+                return None
             row=db.execute("SELECT t.* FROM dispatch_tasks t LEFT JOIN dispatch_resources r ON t.resource=r.resource WHERE t.tenant=? AND t.state='queued' AND t.action=? AND r.resource IS NULL ORDER BY t.created,t.rowid",(tenant,action)).fetchall()
             candidates=row;row=None;extra=None
             for candidate in candidates:
                 payload=json.loads(candidate["payload"])
+                if profile_ref is not None and payload["binding"].get("profile_ref") != profile_ref:continue
                 unique=payload["binding"]["account_unique_id"]
-                alias="wechat-account:"+hashlib.sha256(unique.encode()).hexdigest() if action=="draft" else None
+                alias = None
+                if action == 'draft' or (action == 'browser_read' and payload['binding']['channel_id'] == 'wechat-official-draft'):
+                    alias = 'wechat-account:' + hashlib.sha256(unique.encode()).hexdigest()
+                elif action == 'browser_read':
+                    alias = 'browser-account:' + digest({'channel':payload['binding']['channel_id'],'unique':unique})
                 if alias and db.execute("SELECT 1 FROM dispatch_resources WHERE resource=?",(alias,)).fetchone():continue
                 row=candidate;extra=alias;break
             if row is None:return None
