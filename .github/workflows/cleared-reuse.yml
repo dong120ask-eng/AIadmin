@@ -17,13 +17,17 @@ jobs:
           python-version: '3.12'
       - run: python reuse/aladmin/verify.py
       - run: python -m unittest discover -s reuse/aladmin/tests -p test_verify.py -v
-  installer:
+  windows-powershell:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        shell: [powershell, pwsh]
     steps:
       - uses: actions/checkout@v4
       - name: Test copied installer with isolated fixtures
-        shell: ${{ matrix.shell }}
+        shell: powershell
+        run: ./reuse/aladmin/tests/test-install.ps1
+  windows-pwsh:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test copied installer with isolated fixtures
+        shell: pwsh
         run: ./reuse/aladmin/tests/test-install.ps1
