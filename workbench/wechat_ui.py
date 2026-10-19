@@ -29,6 +29,7 @@ class WechatBrowserUI:
         self.profile_dir = Path(profiles_root).resolve()/config['profile_ref']
         self.page = self.context = self.engine = None
         self.mapping = None
+        self.profile_lease = None
 
     def _official(self):
         parts = urlsplit(self.page.url)
@@ -44,17 +45,8 @@ class WechatBrowserUI:
     def connect(self, binding):
         if binding['profile_ref'] != self.config['profile_ref']:
             raise Problem('会话配置不匹配',409)
-        try:
-            from playwright.sync_api import sync_playwright
-        except ImportError:
-            raise Problem('可选浏览器运行时未安装；核心工作台不自动下载依赖',503) from None
-        self.engine = sync_playwright().start()
-        self.profile_dir.mkdir(parents=True,exist_ok=True,mode=0o700)
-        self.context = self.engine.chromium.launch_persistent_context(str(self.profile_dir),headless=False)
-        self.context.set_default_timeout(10000)
-        # Dedicated profile; no imported cookies, tokens, credentials or CDP.
-        self.page = self.context.new_page()
-        self.page.goto('https://mp.weixin.qq.com/',timeout=20000)
+        from .wechat_session import open_profile
+        self.profile_lease, self.engine, self.context, self.page = open_profile(self.profile_dir)
         # Login is performed beforehand in the SAME dedicated profile. A QR/login
         # wall causes identity() to fail BEFORE an editor is opened.
         self._official()
@@ -151,4 +143,7 @@ class WechatBrowserUI:
         try:
             if self.context:self.context.close()
         finally:
-            if self.engine:self.engine.stop()
+            try:
+                if self.engine:self.engine.stop()
+            finally:
+                if self.profile_lease:self.profile_lease.close()
