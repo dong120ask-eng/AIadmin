@@ -58,7 +58,7 @@ AIadmin main 的 media.execution_plan 仍为blocked；Aladmin browser-use-automa
 ## 验证与边界
 
 - 本地Python3.12：12个来源文件Git blob精确匹配；唯一技能目录与4文件白名单一致；18项排除清单保留。
-- 新增4项离线校验测试：正常快照、MIT文件篡改、夹带未审技能、缺失安装源码。结果见PR与CI。
+- 新增4项离线校验测试：正常快照、MIT文件篡改、夹带未审技能、缺失安装源码。本地4项全部通过，CI结果见下方实际记录。
 - 环境无PowerShell，本地未执行Windows行为测试；新增独立CI运行Windows PowerShell及pwsh复用的12项临时目录行为检查。其通过状态必须查实际运行，不能沿用Aladmin历史通过记录。
 - 未执行模型调用、飞书写入、素材生成、浏览器登录或发布；未证明用户Windows安装及四端加载成功。
 
@@ -74,3 +74,10 @@ AIadmin main 的 media.execution_plan 仍为blocked；Aladmin browser-use-automa
 - https://github.com/dong120ask-eng/Aladmin/pull/1 （私有）
 - https://github.com/dong120ask-eng/AIadmin/pull/12
 
+## 本次CI实际记录
+
+PR：https://github.com/dong120ask-eng/AIadmin/pull/13 （独立分支，草稿，未合并）。验证运行：https://github.com/dong120ask-eng/AIadmin/actions/runs/39340505421 ，验证提交771313f8954c97c538b787737613344db3dcadcd。
+
+实际回读三个作业日志：Ubuntu来源核验12文件及4项测试通过；Windows PowerShell 5.1.26100.33438的12项行为检查通过；PowerShell 7.6.6的12项行为检查通过。首次工作流定义未创建作业即失败；拆分明确Shell作业后上述运行全部成功。没有将历史测试或未启动作业计作通过。Windows临时夹具覆盖预览不写入、默认保留、显式更新备份、复制失败保护、提升失败恢复、元数据拒绝、排他锁、目录重叠、链接拒绝、四端包装器和失败退出码。
+
+CI通过不代表本机客户端加载、飞书模板可访问、图像视频生成或真实浏览器平台执行通过。当前PR保持草稿，等待这些运行时验收；本轮源码复用与文件行为验证已完成。
