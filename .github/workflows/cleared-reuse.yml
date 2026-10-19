@@ -1,0 +1,29 @@
+name: Cleared component reuse
+on:
+  pull_request:
+    paths: ['reuse/aladmin/**', '.github/workflows/cleared-reuse.yml']
+  push:
+    paths: ['reuse/aladmin/**', '.github/workflows/cleared-reuse.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python reuse/aladmin/verify.py
+      - run: python -m unittest discover -s reuse/aladmin/tests -p test_verify.py -v
+  installer:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: [powershell, pwsh]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test copied installer with isolated fixtures
+        shell: ${{ matrix.shell }}
+        run: ./reuse/aladmin/tests/test-install.ps1

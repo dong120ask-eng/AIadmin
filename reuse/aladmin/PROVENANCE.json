@@ -1,0 +1,169 @@
+{
+  "reviewed_at": "2026-10-20",
+  "source_repository": "dong120ask-eng/Aladmin",
+  "source_tree": "5fed620c5804d6058076773cd749def523b3c73c",
+  "aiadmin_base_tree": "c5ff4480d2e392a078c839da6c9bd989aa1c3573",
+  "upstream_repository": "cuiabner1-ux/marketing-material-generator",
+  "upstream_tree": "948ca893593587f6517262ec837dd7b50731a81e",
+  "files": [
+    {
+      "path": "reuse/aladmin/LICENSE",
+      "source_path": "LICENSE",
+      "git_blob_sha": "42ef58bdea6178c1dc24c113fd6124ad3860b4cb",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/tests/test-install.ps1",
+      "source_path": "tests/test-install.ps1",
+      "git_blob_sha": "5b46dc71ea78bf5135232d0278e1d57c52888730",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-all.ps1",
+      "source_path": "install/install-all.ps1",
+      "git_blob_sha": "95959bd982941799eac803356c20b3ea6e4181d1",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-codex.ps1",
+      "source_path": "install/install-codex.ps1",
+      "git_blob_sha": "40dbdbdd0791c7c76ae837aa13ca67884b68a6df",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-workbuddy.ps1",
+      "source_path": "install/install-workbuddy.ps1",
+      "git_blob_sha": "ac403cebd0e88f948bad90a7f614bc7a75de19ba",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-dsh.ps1",
+      "source_path": "install/install-dsh.ps1",
+      "git_blob_sha": "ace7aa2134f5bd8af94e57b5f23e521f1282ec45",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-doubao.ps1",
+      "source_path": "install/install-doubao.ps1",
+      "git_blob_sha": "e30d8e634e9172f064942407af7dcb6917053708",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/install/install-shared.ps1",
+      "source_path": "install/install-shared.ps1",
+      "git_blob_sha": "b41c8628c1063833d02a518c4cefbddfa40ea84a",
+      "license": "MIT",
+      "kind": "owned_code_explicit_spdx"
+    },
+    {
+      "path": "reuse/aladmin/skills/marketing-material-generator/LICENSE",
+      "source_path": "skills/marketing-material-generator/LICENSE",
+      "git_blob_sha": "c9969162f9b8f78c7b338e30e6aecb46c92354ba",
+      "license": "MIT",
+      "kind": "third_party_verified_upstream"
+    },
+    {
+      "path": "reuse/aladmin/skills/marketing-material-generator/README.md",
+      "source_path": "skills/marketing-material-generator/README.md",
+      "git_blob_sha": "0104a1d3784e28f2e304905519bfc4c3f926eaa7",
+      "license": "MIT",
+      "kind": "third_party_verified_upstream"
+    },
+    {
+      "path": "reuse/aladmin/skills/marketing-material-generator/SKILL.md",
+      "source_path": "skills/marketing-material-generator/SKILL.md",
+      "git_blob_sha": "a6d3c80e90c0af9d53b473ec96e76da85c30924c",
+      "license": "MIT",
+      "kind": "third_party_verified_upstream"
+    },
+    {
+      "path": "reuse/aladmin/skills/marketing-material-generator/references/prompts.md",
+      "source_path": "skills/marketing-material-generator/references/prompts.md",
+      "git_blob_sha": "2a6fb35ff1915098692d66b81421b6de8a7d730e",
+      "license": "MIT",
+      "kind": "third_party_verified_upstream"
+    }
+  ],
+  "excluded_skills": [
+    {
+      "name": "aladmin-deploy-guide",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "apple-keynote-product-video",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "browser-use-automation",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "byted-mediakit-motion-graphics",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "consistent-style-images",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-creative-design",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-creative-drama",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-creative-video",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-headlines-calendar",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-multiplatform-rewrite",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-newmedia-writing",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-product-analysis",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-questionnaire-designer",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-shortvideo-writing",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "doubao-video-extract",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "lark-shortdrama-studio",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "reference-prompt-iteration",
+      "status": "pending_redistribution_rights"
+    },
+    {
+      "name": "seedance-real-selling-video",
+      "status": "pending_redistribution_rights"
+    }
+  ]
+}
+
