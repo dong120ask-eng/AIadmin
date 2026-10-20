@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-21",
+  "base_sha": "c5ff4480d2e392a078c839da6c9bd989aa1c3573",
+  "environment": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "automated_tests": {
+    "command": "python -m unittest discover -v",
+    "total": 81,
+    "passed": 81,
+    "skipped": 0,
+    "model_calls": "mocked; existing adapter process fixtures only"
+  },
+  "doctor": {
+    "python": "available",
+    "sqlite": "available",
+    "codex_installed": false,
+    "codex_version": null,
+    "codex_authenticated": false,
+    "codex_execution": "not_verified",
+    "video_rendering": "not_connected",
+    "browser_publishing": "not_connected",
+    "payment": "not_connected",
+    "deepseek": "not_connected",
+    "volcano": "not_connected",
+    "billing": "unknown",
+    "deployment": "local_only"
+  },
+  "real_file_trial": {
+    "status": "blocked",
+    "reason": "未发现Codex CLI；请先配置CODEX_BIN",
+    "model_started": false
+  },
+  "windows_desktop": "not_verified",
+  "powershell": "not_verified",
+  "speech_to_codex_loop": "not_verified",
+  "syntax_check": "python -m compileall -q workbench passed",
+  "independent_checker": "deterministic host bytes and sha256; not a QA model"
+}
