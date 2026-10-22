@@ -32,6 +32,8 @@ python -m workbench.ecommerce serve --data-dir '/tmp/运营试用' --port 8766
 
 既有内容工作台 `python -m workbench serve` 增加电商入口，内容与电商记录分表。本试用启动命令将电商页作为首页，并保持模型调用关闭。
 
+轻量源码试用包只包含本轮12项运营测试和两项实际复用的计算/质量工具。包内可执行 `python -m unittest tests.test_ecommerce -v` 和 `python scripts/verify-ecommerce.py`；下文84项工作台与36项电商完整回归命令用于完整GitHub源码仓库。
+
 ## 文件与数据契约
 
 CSV 支持 UTF-8 BOM、UTF-8 和 GB18030。XLSX 只读一张表，不接受公式、宏、外链或布尔/错误值；公式须在 Excel 中复制后“粘贴为值”。不支持旧 `.xls`。最多4MB、5000条数据行、40列，单元格最长500字符。使用模板中的中文列名，或对应英文键；未知/重复表头拒绝，不静默丢弃。SKU和记录ID在 Excel 中设为文本，避免前导零丢失。
