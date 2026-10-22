@@ -1,0 +1,45 @@
+{
+  "at_utc": "2026-10-22T16:25:03.623215+00:00",
+  "python": "3.12.14",
+  "os": "linux",
+  "environment": "separate CLI HTTP server process",
+  "data_dir_scenario": "temporary Chinese and space path",
+  "binding": "http://127.0.0.1:41147",
+  "source_kind": "demo",
+  "merchant_connected": false,
+  "assets_http_checks": [
+    {
+      "path": "/",
+      "http": 200
+    },
+    {
+      "path": "/ecommerce.js",
+      "http": 200
+    },
+    {
+      "path": "/ecommerce.css",
+      "http": 200
+    }
+  ],
+  "demo_summary": {
+    "sku_count": 3,
+    "alert_count": 6,
+    "profit_rows": 2,
+    "profit_missing_rows": 1,
+    "covered_net_revenue": "1100.00",
+    "covered_contribution_profit": "305.00"
+  },
+  "issue_update_and_export_readback": "passed",
+  "report_zip_crc": "passed",
+  "report_members": [
+    "report.md",
+    "analysis.json",
+    "issue-history.json",
+    "results.csv"
+  ],
+  "report_sha256": "a29ca754f598e457a71bcb535d39c1882f903daf78696cf33c8b769eb1aa5a52",
+  "template_download": "passed",
+  "visual_browser_qa": "not run by this script",
+  "windows_user_machine": "not connected; not verified",
+  "real_business_file": "not supplied; not verified"
+}

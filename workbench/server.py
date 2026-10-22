@@ -15,7 +15,9 @@ from .store import Problem, identifier
 STATIC = Path(__file__).parent / "static"
 
 
-def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=None):
+def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=None, homepage="index.html"):
+    from .ecommerce import Operations, template, FIELDS, KINDS, PLATFORMS, LIMITATION
+    operations = Operations(store)
     csrf = secrets.token_urlsafe(32)
     caps = capabilities if capabilities is not None else doctor()
     caps = {**caps, "cli_enabled": allow_cli}
@@ -57,7 +59,10 @@ def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=No
             identifier(tenant)
             path = parsed.path
             if not mutation:
-                files = {"/": ("index.html", "text/html; charset=utf-8"),
+                files = {"/": (homepage, "text/html; charset=utf-8"),
+                         "/ecommerce.html": ("ecommerce.html", "text/html; charset=utf-8"),
+                         "/ecommerce.js": ("ecommerce.js", "text/javascript; charset=utf-8"),
+                         "/ecommerce.css": ("ecommerce.css", "text/css; charset=utf-8"),
                          "/app.js": ("app.js", "text/javascript; charset=utf-8"),
                          "/media.html": ("media.html", "text/html; charset=utf-8"),
                          "/dispatch.html": ("dispatch.html", "text/html; charset=utf-8"),
@@ -67,6 +72,19 @@ def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=No
                 if path in files:
                     filename, mime = files[path]
                     return self.send((STATIC / filename).read_bytes(), mime=mime)
+                if path == "/api/ecommerce/config":
+                    return self.send({"token": csrf, "fields": FIELDS, "kinds": KINDS, "platforms": PLATFORMS, "limitation": LIMITATION})
+                if path == "/api/ecommerce/template":
+                    return self.send(template(), mime="text/csv; charset=utf-8", filename="ecommerce-template.csv")
+                if path == "/api/ecommerce/imports":
+                    return self.send(operations.imports())
+                eparts = path.strip("/").split("/")
+                if len(eparts) in (4, 5) and eparts[:3] == ["api", "ecommerce", "imports"]:
+                    key = identifier(eparts[3])
+                    if len(eparts) == 4:
+                        return self.send(operations.get(key))
+                    if eparts[4] == "export":
+                        return self.send(operations.export(key), mime="application/zip", filename="ecommerce-" + key + ".zip")
                 if path == "/api/dispatch":
                     return self.send(DispatchQueue(store.path.parent/"dispatch.sqlite3").tasks(tenant))
                 if path == "/api/media-index":
@@ -91,7 +109,8 @@ def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=No
                 length = int(self.headers.get("Content-Length", "0"))
             except ValueError:
                 raise Problem("请求长度无效")
-            if not 0 < length <= 128 * 1024:
+            limit = 6 * 1024 * 1024 if path == "/api/ecommerce/imports" else 128 * 1024
+            if not 0 < length <= limit:
                 raise Problem("请求过大或为空", 413)
             if self.headers.get_content_type() != "application/json":
                 raise Problem("请使用JSON请求", 415)
@@ -101,6 +120,13 @@ def make_server(store, port=8765, allow_cli=False, runtime=None, capabilities=No
                 raise Problem("请求不是有效JSON")
             if not isinstance(data, dict):
                 raise Problem("请求内容必须为对象")
+            if path == "/api/ecommerce/demo":
+                return self.send(operations.demo(), 201)
+            if path == "/api/ecommerce/imports":
+                return self.send(operations.ingest(data), 201)
+            eparts = path.strip("/").split("/")
+            if len(eparts) == 4 and eparts[:3] == ["api", "ecommerce", "issues"]:
+                return self.send(operations.update_issue(eparts[3], data))
             if path == "/api/projects":
                 return self.send(store.create_project(tenant, data), 201)
             if path == "/api/accounts":

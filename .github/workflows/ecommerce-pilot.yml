@@ -1,0 +1,51 @@
+name: Ecommerce read-only pilot
+on:
+  pull_request:
+    paths:
+      - 'workbench/**'
+      - 'tests/**'
+      - 'ecommerce-suite/**'
+      - 'scripts/start-ecommerce.ps1'
+      - 'scripts/verify-ecommerce.py'
+      - '.github/workflows/ecommerce-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  PYTHONUTF8: "1"
+jobs:
+  pilot:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.12', '3.13']
+    timeout-minutes: 10
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Workbench and pilot HTTP / parser / analysis tests
+        run: python -m unittest discover -v
+      - name: Independent CLI and HTTP smoke
+        run: python scripts/verify-ecommerce.py --output build/ecommerce-pilot/http-evidence.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ecommerce-pilot-${{ matrix.os }}-py${{ matrix.python }}
+          path: build/ecommerce-pilot/http-evidence.json
+      - name: Existing v6 offline regressions
+        run: |
+          python ecommerce-suite/示例与验收/test_ecom.py
+          python ecommerce-suite/示例与验收/test_capacity.py
+          python ecommerce-suite/示例与验收/test_automation.py
+          python ecommerce-suite/示例与验收/test_data_quality.py
+      - name: Windows PowerShell 5.1 startup check
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: ./scripts/start-ecommerce.ps1 -CheckOnly -NoBrowser
+      - name: Windows PowerShell 7 startup check
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/start-ecommerce.ps1 -CheckOnly -NoBrowser
