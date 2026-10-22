@@ -36,14 +36,14 @@ class ManagerTests(unittest.TestCase):
             (kwargs['cwd']/'hello.txt').write_bytes('你好，AIadmin'.encode())
             return 0, 'model claims ignored'
         with patch('workbench.manager.codex_binary', return_value='fake'), patch('workbench.manager.invoke', side_effect=fake):
-            result = self.q.run_next(True, True)
+            result = self.q.run_next(True, True, task_id=self.q.tasks(TENANT)[0]['id'])
         self.assertEqual(result['state'], 'checked')
         self.assertEqual(result['result']['checker'], 'host_exact_bytes')
 
     def test_missing_cli_does_not_claim(self):
         self.q.submit(self.sentence)
         with patch('workbench.manager.codex_binary', return_value=None):
-            with self.assertRaises(Problem): self.q.run_next(True, True)
+            with self.assertRaises(Problem): self.q.run_next(True, True, task_id=self.q.tasks(TENANT)[0]['id'])
         self.assertEqual(self.q.tasks(TENANT)[0]['state'], 'queued')
 
     def test_bad_output_and_failure_isolate(self):
@@ -51,7 +51,7 @@ class ManagerTests(unittest.TestCase):
             q = ManagerQueue(self.path / ('case'+str(code)+'.db'))
             q.submit(self.sentence)
             with patch('workbench.manager.codex_binary', return_value='fake'), patch('workbench.manager.invoke', return_value=(code, 'success')):
-                with self.assertRaises(Problem): q.run_next(True, True)
+                with self.assertRaises(Problem): q.run_next(True, True, task_id=q.tasks(TENANT)[0]['id'])
             self.assertEqual(q.tasks(TENANT)[0]['state'], 'unknown')
             self.assertIsNone(q.claim(TENANT, 'other'))
 
@@ -78,7 +78,7 @@ class ManagerTests(unittest.TestCase):
     def test_timeout_is_unknown(self):
         self.q.submit(self.sentence)
         with patch('workbench.manager.codex_binary', return_value='fake'), patch('workbench.manager.invoke', side_effect=Problem('超时')):
-            with self.assertRaises(Problem): self.q.run_next(True, True)
+            with self.assertRaises(Problem): self.q.run_next(True, True, task_id=self.q.tasks(TENANT)[0]['id'])
         self.assertEqual(self.q.tasks(TENANT)[0]['state'], 'unknown')
 
 if __name__ == '__main__': unittest.main()

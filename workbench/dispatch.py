@@ -88,13 +88,14 @@ class DispatchQueue:
     def recover(self):
         with self.transaction() as db:return {'marked_unknown':self._expire(db),'auto_requeued':False}
 
-    def claim(self,tenant,worker,lease_seconds=120):
+    def claim(self,tenant,worker,lease_seconds=120,expected_task=None):
         identifier(tenant);identifier(worker)
+        if expected_task is not None:identifier(expected_task)
         if isinstance(lease_seconds,bool) or not isinstance(lease_seconds,(int,float)) or not math.isfinite(lease_seconds) or not 5<=lease_seconds<=600:
             raise Problem('租约必须为5至600秒')
         with self.transaction() as db:
             self._expire(db)
-            row=db.execute("SELECT t.* FROM dispatch_tasks t LEFT JOIN dispatch_resources r ON t.resource=r.resource WHERE t.tenant=? AND t.state='queued' AND r.resource IS NULL ORDER BY t.created,t.rowid LIMIT 1",(tenant,)).fetchone()
+            row=db.execute("SELECT t.* FROM dispatch_tasks t LEFT JOIN dispatch_resources r ON t.resource=r.resource WHERE t.tenant=? AND t.state='queued' AND r.resource IS NULL AND (? IS NULL OR t.id=?) ORDER BY t.created,t.rowid LIMIT 1",(tenant,expected_task,expected_task)).fetchone()
             if row is None:return None
             token=secrets.token_hex(24)
             db.execute('INSERT INTO dispatch_resources(resource,task_id) VALUES(?,?)',(row['resource'],row['id']))
