@@ -17,9 +17,9 @@ MAX_BYTES = 2 * 1024 * 1024
 def codex_binary():
     explicit = os.environ.get("CODEX_BIN")
     if explicit:
-        return explicit
+        return explicit if os.name != 'nt' or explicit.lower().endswith('.exe') else None
     installed = shutil.which("codex")
-    if installed:
+    if installed and (os.name != 'nt' or installed.lower().endswith('.exe')):
         return installed
     # Discover the official project's local npm installation without depending
     # on a global PATH or invoking Windows .cmd scripts through a shell.
@@ -34,17 +34,19 @@ def codex_binary():
 
 def invoke(args, prompt="", timeout=90, cwd=None):
     """Bound time and output; temporary raw streams never enter saved reports."""
-    with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
+    with tempfile.TemporaryFile() as incoming, tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
+        # A file-backed stdin cannot block the host on a child that never reads.
+        # Windows communicate() may synchronously write its PIPE before waiting.
+        incoming.write(prompt.encode('utf-8'))
+        incoming.seek(0)
         kwargs = {"start_new_session": True} if os.name == "posix" else {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
         try:
-            p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=out, stderr=err,
+            p = subprocess.Popen(args, stdin=incoming, stdout=out, stderr=err,
                                  cwd=cwd, shell=False, **kwargs)
         except (OSError, ValueError):
             raise Problem("Codex进程无法启动，请检查CODEX_BIN与执行权限", 503)
         reason = None
         try:
-            p.stdin.write(prompt.encode("utf-8"))
-            p.stdin.close()
             started = time.monotonic()
             while p.poll() is None:
                 if time.monotonic() - started > timeout:
@@ -54,15 +56,17 @@ def invoke(args, prompt="", timeout=90, cwd=None):
                     reason = "Codex输出超过限制，任务已停止"
                     break
                 time.sleep(0.05)
-        except BrokenPipeError:
-            p.wait(timeout=5)
         finally:
+            if os.name == "posix":
+                # Children may outlive an already exited CLI parent.
+                try: os.killpg(p.pid, signal.SIGKILL)
+                except ProcessLookupError: pass
             if p.poll() is None:
-                if os.name == "posix":
-                    os.killpg(p.pid, signal.SIGKILL)
-                else:
+                if os.name != "posix":
                     subprocess.run(["taskkill", "/PID", str(p.pid), "/T", "/F"], capture_output=True, timeout=10)
                 p.wait(timeout=5)
+            if os.fstat(out.fileno()).st_size + os.fstat(err.fileno()).st_size > MAX_BYTES:
+                reason = "Codex输出超过限制，任务已停止"
         out.seek(0)
         stdout = out.read(MAX_BYTES).decode("utf-8", "replace")
         # No raw stderr, arguments, tokens or model messages are persisted.
