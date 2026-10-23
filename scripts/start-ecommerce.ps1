@@ -62,7 +62,9 @@ function Start-PilotPython([string[]]$Arguments, [string]$Stdout, [string]$Stder
     try {
         [void]$Process.Start()
         $Started = $true
-        [EcommercePilotJob]::Assign($Job, $Process.Handle)
+        if (-not [EcommercePilotNative]::AssignProcessToJobObject($Job.DangerousGetHandle(), $Process.Handle)) {
+            throw '无法将子进程加入Windows清理边界；拒绝继续。'
+        }
         $script:Pumps += [pscustomobject]@{ Id=$Process.Id; Task=$Process.StandardOutput.BaseStream.CopyToAsync($OutStream); Stream=$OutStream }
         $script:Pumps += [pscustomobject]@{ Id=$Process.Id; Task=$Process.StandardError.BaseStream.CopyToAsync($ErrStream); Stream=$ErrStream }
     } catch {
@@ -92,48 +94,47 @@ try {
         $PythonArgs = @('-3')
     } else { throw '请安装 Python 3.12 或更新版，并添加到 PATH 或启用 Python Launcher。' }
 
-    if (-not ('EcommercePilotJob' -as [type])) {
-        Add-Type -TypeDefinition @'
-using System;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
-public static class EcommercePilotJob {
-    [StructLayout(LayoutKind.Sequential)] struct Basic {
-        public long ProcessTime, JobTime; public uint Flags;
-        public UIntPtr MinWorkingSet, MaxWorkingSet; public uint ActiveProcesses;
-        public UIntPtr Affinity; public uint Priority, Scheduling;
-    }
-    [StructLayout(LayoutKind.Sequential)] struct Io {
-        public ulong ReadOps, WriteOps, OtherOps, ReadBytes, WriteBytes, OtherBytes;
-    }
-    [StructLayout(LayoutKind.Sequential)] struct Extended {
-        public Basic Basic; public Io Io;
-        public UIntPtr ProcessMemory, JobMemory, PeakProcessMemory, PeakJobMemory;
-    }
-    [DllImport("kernel32.dll", CharSet=CharSet.Unicode, SetLastError=true)]
-    static extern SafeFileHandle CreateJobObject(IntPtr attributes, string name);
-    [DllImport("kernel32.dll", SetLastError=true)]
-    static extern bool SetInformationJobObject(SafeFileHandle job, int kind, ref Extended limits, uint size);
-    [DllImport("kernel32.dll", SetLastError=true)]
-    static extern bool AssignProcessToJobObject(SafeFileHandle job, IntPtr process);
-    public static SafeFileHandle Create() {
-        SafeFileHandle job = CreateJobObject(IntPtr.Zero, null);
-        if (job.IsInvalid) throw new Win32Exception();
-        Extended limits = new Extended(); limits.Basic.Flags = 0x2000;
-        if (!SetInformationJobObject(job, 9, ref limits, (uint)Marshal.SizeOf(typeof(Extended)))) {
-            int error = Marshal.GetLastWin32Error(); job.Dispose(); throw new Win32Exception(error);
+    # Define only three native signatures in memory. PS5.1 Add-Type invokes
+    # CodeDom/csc, whose temporary-directory ACL creation fails in some Unicode
+    # TEMP paths. Reflection.Emit needs no compiler or temporary DLL/source file.
+    if (-not ('EcommercePilotNative' -as [type])) {
+        $Name = New-Object Reflection.AssemblyName('EcommercePilotNativeAssembly')
+        if ($PSVersionTable.PSEdition -eq 'Desktop') {
+            $Assembly = [AppDomain]::CurrentDomain.DefineDynamicAssembly($Name, [Reflection.Emit.AssemblyBuilderAccess]::Run)
+        } else {
+            $Assembly = [Reflection.Emit.AssemblyBuilder]::DefineDynamicAssembly($Name, [Reflection.Emit.AssemblyBuilderAccess]::Run)
         }
-        return job;
-    }
-    public static void Assign(SafeFileHandle job, IntPtr process) {
-        if (!AssignProcessToJobObject(job, process)) throw new Win32Exception();
-    }
-}
-'@
+        $Module = $Assembly.DefineDynamicModule('Native')
+        $Builder = $Module.DefineType('EcommercePilotNative', [Reflection.TypeAttributes]'Public, Abstract, Sealed')
+        $Attributes = [Reflection.MethodAttributes]'Public, Static, PinvokeImpl'
+        $Signatures = @(
+            @{ Name='CreateJobObjectW'; Return=[IntPtr]; Parameters=[type[]]@([IntPtr],[IntPtr]) },
+            @{ Name='SetInformationJobObject'; Return=[bool]; Parameters=[type[]]@([IntPtr],[int],[IntPtr],[uint32]) },
+            @{ Name='AssignProcessToJobObject'; Return=[bool]; Parameters=[type[]]@([IntPtr],[IntPtr]) }
+        )
+        foreach ($Signature in $Signatures) {
+            $Method = $Builder.DefinePInvokeMethod($Signature.Name, 'kernel32.dll', $Attributes,
+                [Reflection.CallingConventions]::Standard, $Signature.Return, $Signature.Parameters,
+                [Runtime.InteropServices.CallingConvention]::Winapi, [Runtime.InteropServices.CharSet]::None)
+            $Method.SetImplementationFlags([Reflection.MethodImplAttributes]::PreserveSig)
+        }
+        $Builder.CreateType() | Out-Null
     }
     Write-PilotLog "Python：$PythonExe"
-    $Job = [EcommercePilotJob]::Create()
+    $NativeHandle = [EcommercePilotNative]::CreateJobObjectW([IntPtr]::Zero, [IntPtr]::Zero)
+    $Job = New-Object Microsoft.Win32.SafeHandles.SafeFileHandle($NativeHandle, $true)
+    if ($Job.IsInvalid) { throw '无法创建Windows进程清理边界。' }
+    # JOBOBJECT_EXTENDED_LIMIT_INFORMATION: flags at offset 16 on x86/x64.
+    $Size = if ([IntPtr]::Size -eq 8) { 144 } else { 112 }
+    $Limits = [Runtime.InteropServices.Marshal]::AllocHGlobal($Size)
+    try {
+        $Zeros = New-Object byte[] $Size
+        [Runtime.InteropServices.Marshal]::Copy($Zeros, 0, $Limits, $Size)
+        [Runtime.InteropServices.Marshal]::WriteInt32($Limits, 16, 0x2000) # KILL_ON_JOB_CLOSE
+        if (-not [EcommercePilotNative]::SetInformationJobObject($NativeHandle, 9, $Limits, $Size)) {
+            throw '无法设置Windows进程自动清理；拒绝启动服务。'
+        }
+    } finally { [Runtime.InteropServices.Marshal]::FreeHGlobal($Limits) }
     $CheckOut = Join-Path $LogDir "$Run-check.stdout.log"
     $CheckErr = Join-Path $LogDir "$Run-check.stderr.log"
     $Child = Start-PilotPython @('-c', "import sys,sqlite3; assert sys.version_info >= (3,12), 'Requires Python 3.12+'; from workbench.ecommerce import TOOLS,QUALITY; print('Python ' + sys.version.split()[0] + ' / SQLite / offline modules OK')") $CheckOut $CheckErr

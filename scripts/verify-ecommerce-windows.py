@@ -108,6 +108,7 @@ class LauncherTests(unittest.TestCase):
                         'fixture': 'real application; synthetic records only'}
 
     def launch(self, *extra):
+        self.previous_logs = set(self.case.rglob('*-launcher.log'))
         env = dict(os.environ, PYTHONUTF8='1', PYTHONUNBUFFERED='1',
                    LOCALAPPDATA=str(self.case/'localappdata'), TEMP=str(self.case), TMP=str(self.case),
                    PATH=str(Path(sys.executable).parent) + os.pathsep + os.environ['PATH'])
@@ -121,7 +122,8 @@ class LauncherTests(unittest.TestCase):
         ], cwd=self.case, env=env, stdout=self.console, stderr=subprocess.STDOUT)
 
     def log_text(self):
-        return '\n'.join(p.read_text(encoding='utf-8-sig') for p in self.case.rglob('*-launcher.log'))
+        return '\n'.join(p.read_text(encoding='utf-8-sig') for p in self.case.rglob('*-launcher.log')
+                         if p not in self.previous_logs)
 
     def wait_ready(self):
         def ready():
