@@ -1,0 +1,473 @@
+{
+  "date_shanghai": "2026-10-23",
+  "main": "c5ff4480d2e392a078c839da6c9bd989aa1c3573",
+  "pr9": "03e4cdd18e66edc3946b50a2197ee04ec84f870a",
+  "pr15_before": "5968cc75996010ed3c82f133e5c982cc384346e6",
+  "environment": "Linux Python 3.12.14; synthetic local records only",
+  "merge_simulations": {
+    "9-15": {
+      "first_merge_exit": 0,
+      "second_merge_exit": 1,
+      "conflicts": [
+        "ecommerce-suite/README.md"
+      ],
+      "resolved_tree": "cabebf3f22dc20553d2fe52adce16993ddfc098b",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "estart (tests.test_workbench.StoreTests.test_persistent_restart) ... ok\ntest_platform_type_mismatch (tests.test_workbench.StoreTests.test_platform_type_mismatch) ... ok\ntest_publish_never_fakes_success (tests.test_workbench.StoreTests.test_publish_never_fakes_success) ... ok\ntest_publish_without_review_denied (tests.test_workbench.StoreTests.test_publish_without_review_denied) ... ok\ntest_review_requires_all_true_booleans (tests.test_workbench.StoreTests.test_review_requires_all_true_booleans) ... ok\ntest_tenant_read_isolation (tests.test_workbench.StoreTests.test_tenant_read_isolation) ... ok\n\n----------------------------------------------------------------------\nRan 84 tests in 9.611s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "ecommerce-suite/示例与验收",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "y.QualityTests.test_duplicate) ... ok\ntest_infinite (test_data_quality.QualityTests.test_infinite) ... ok\ntest_missing_not_zero (test_data_quality.QualityTests.test_missing_not_zero) ... ok\ntest_stale (test_data_quality.QualityTests.test_stale) ... ok\ntest_valid (test_data_quality.QualityTests.test_valid) ... ok\ntest_cases (test_ecom.Tests.test_cases) ... ok\ntest_inventory (test_ecom.Tests.test_inventory) ... ok\ntest_profit (test_ecom.Tests.test_profit) ... ok\ntest_promotion_order (test_ecom.Tests.test_promotion_order) ... ok\ntest_zero_and_invalid (test_ecom.Tests.test_zero_and_invalid) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.051s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "ecommerce-suite/tests",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "nant_and_platform_cannot_borrow_authorization (test_ci.IsolationTests.test_rebound_tenant_and_platform_cannot_borrow_authorization) ... ok\ntest_archive_source_mismatch_even_with_valid_checksum (test_ci.PackageTests.test_archive_source_mismatch_even_with_valid_checksum) ... ok\ntest_rebuild_and_corruption_detection (test_ci.PackageTests.test_rebuild_and_corruption_detection) ... ok\ntest_structure_and_historical_assets (test_ci.PackageTests.test_structure_and_historical_assets) ... ok\ntest_unsafe_and_duplicate_entries_refused (test_ci.PackageTests.test_unsafe_and_duplicate_entries_refused) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.675s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "ecommerce-suite/tools/release.py",
+            "check"
+          ],
+          "exit": 0,
+          "tail": "Structure, historical SHA256, CRC and WorkBuddy layout passed\n"
+        },
+        {
+          "command": [
+            "python",
+            "ecommerce-suite/tools/release.py",
+            "build",
+            "--output",
+            "$ISOLATED_WORKSPACE/build-9-15"
+          ],
+          "exit": 0,
+          "tail": "{\"version\": \"6.1.0\", \"skills\": 26, \"sha256\": \"6c6371c0ada7b575698178541b453cb2d258b44bfb28a406defcb542810c3ab0\", \"acceptance\": \"offline-only\"}\n"
+        },
+        {
+          "command": [
+            "python",
+            "scripts/verify-ecommerce.py",
+            "--output",
+            "$ISOLATED_WORKSPACE/http-9-15.json"
+          ],
+          "exit": 0,
+          "tail": "\n      \"http\": 200\n    }\n  ],\n  \"demo_summary\": {\n    \"sku_count\": 3,\n    \"alert_count\": 6,\n    \"profit_rows\": 2,\n    \"profit_missing_rows\": 1,\n    \"covered_net_revenue\": \"1100.00\",\n    \"covered_contribution_profit\": \"305.00\"\n  },\n  \"issue_update_and_export_readback\": \"passed\",\n  \"report_zip_crc\": \"passed\",\n  \"report_members\": [\n    \"report.md\",\n    \"analysis.json\",\n    \"issue-history.json\",\n    \"results.csv\"\n  ],\n  \"report_sha256\": \"ca54861cf23cd9054b132fbfc1fee524f82d7caafbf64d23363112161daa862f\",\n  \"template_download\": \"passed\",\n  \"visual_browser_qa\": \"not run by this script\",\n  \"windows_user_machine\": \"not connected; not verified\",\n  \"real_business_file\": \"not supplied; not verified\"\n}\n\n"
+        }
+      ]
+    },
+    "15-9": {
+      "first_merge_exit": 0,
+      "second_merge_exit": 1,
+      "conflicts": [
+        "ecommerce-suite/README.md"
+      ],
+      "resolved_tree": "cabebf3f22dc20553d2fe52adce16993ddfc098b",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "estart (tests.test_workbench.StoreTests.test_persistent_restart) ... ok\ntest_platform_type_mismatch (tests.test_workbench.StoreTests.test_platform_type_mismatch) ... ok\ntest_publish_never_fakes_success (tests.test_workbench.StoreTests.test_publish_never_fakes_success) ... ok\ntest_publish_without_review_denied (tests.test_workbench.StoreTests.test_publish_without_review_denied) ... ok\ntest_review_requires_all_true_booleans (tests.test_workbench.StoreTests.test_review_requires_all_true_booleans) ... ok\ntest_tenant_read_isolation (tests.test_workbench.StoreTests.test_tenant_read_isolation) ... ok\n\n----------------------------------------------------------------------\nRan 84 tests in 9.631s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "ecommerce-suite/示例与验收",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "y.QualityTests.test_duplicate) ... ok\ntest_infinite (test_data_quality.QualityTests.test_infinite) ... ok\ntest_missing_not_zero (test_data_quality.QualityTests.test_missing_not_zero) ... ok\ntest_stale (test_data_quality.QualityTests.test_stale) ... ok\ntest_valid (test_data_quality.QualityTests.test_valid) ... ok\ntest_cases (test_ecom.Tests.test_cases) ... ok\ntest_inventory (test_ecom.Tests.test_inventory) ... ok\ntest_profit (test_ecom.Tests.test_profit) ... ok\ntest_promotion_order (test_ecom.Tests.test_promotion_order) ... ok\ntest_zero_and_invalid (test_ecom.Tests.test_zero_and_invalid) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.045s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "ecommerce-suite/tests",
+            "-v"
+          ],
+          "exit": 0,
+          "tail": "nant_and_platform_cannot_borrow_authorization (test_ci.IsolationTests.test_rebound_tenant_and_platform_cannot_borrow_authorization) ... ok\ntest_archive_source_mismatch_even_with_valid_checksum (test_ci.PackageTests.test_archive_source_mismatch_even_with_valid_checksum) ... ok\ntest_rebuild_and_corruption_detection (test_ci.PackageTests.test_rebuild_and_corruption_detection) ... ok\ntest_structure_and_historical_assets (test_ci.PackageTests.test_structure_and_historical_assets) ... ok\ntest_unsafe_and_duplicate_entries_refused (test_ci.PackageTests.test_unsafe_and_duplicate_entries_refused) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.643s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "ecommerce-suite/tools/release.py",
+            "check"
+          ],
+          "exit": 0,
+          "tail": "Structure, historical SHA256, CRC and WorkBuddy layout passed\n"
+        },
+        {
+          "command": [
+            "python",
+            "ecommerce-suite/tools/release.py",
+            "build",
+            "--output",
+            "$ISOLATED_WORKSPACE/build-15-9"
+          ],
+          "exit": 0,
+          "tail": "{\"version\": \"6.1.0\", \"skills\": 26, \"sha256\": \"6c6371c0ada7b575698178541b453cb2d258b44bfb28a406defcb542810c3ab0\", \"acceptance\": \"offline-only\"}\n"
+        },
+        {
+          "command": [
+            "python",
+            "scripts/verify-ecommerce.py",
+            "--output",
+            "$ISOLATED_WORKSPACE/http-15-9.json"
+          ],
+          "exit": 0,
+          "tail": "\n      \"http\": 200\n    }\n  ],\n  \"demo_summary\": {\n    \"sku_count\": 3,\n    \"alert_count\": 6,\n    \"profit_rows\": 2,\n    \"profit_missing_rows\": 1,\n    \"covered_net_revenue\": \"1100.00\",\n    \"covered_contribution_profit\": \"305.00\"\n  },\n  \"issue_update_and_export_readback\": \"passed\",\n  \"report_zip_crc\": \"passed\",\n  \"report_members\": [\n    \"report.md\",\n    \"analysis.json\",\n    \"issue-history.json\",\n    \"results.csv\"\n  ],\n  \"report_sha256\": \"0651fd37780f0be96bc23047a06e0a25870dc5b26c1a73135541b7684a3a8399\",\n  \"template_download\": \"passed\",\n  \"visual_browser_qa\": \"not run by this script\",\n  \"windows_user_machine\": \"not connected; not verified\",\n  \"real_business_file\": \"not supplied; not verified\"\n}\n\n"
+        }
+      ]
+    }
+  },
+  "static_workflow_audit": {
+    "scope": "static YAML path audit; not GitHub event execution",
+    "cases": {
+      "installer": {
+        "files": [
+          "ecommerce-suite/安装Codex.py"
+        ],
+        "expected_workflows": [
+          "suite"
+        ]
+      },
+      "safety_tests": {
+        "files": [
+          "ecommerce-suite/tests/test_ci.py"
+        ],
+        "expected_workflows": [
+          "suite"
+        ]
+      },
+      "shared_analysis": {
+        "files": [
+          "ecommerce-suite/示例与验收/ecom_tools.py"
+        ],
+        "expected_workflows": [
+          "suite",
+          "pilot"
+        ]
+      },
+      "shared_quality": {
+        "files": [
+          "ecommerce-suite/示例与验收/data_quality.py"
+        ],
+        "expected_workflows": [
+          "suite",
+          "pilot"
+        ]
+      },
+      "capacity_gate": {
+        "files": [
+          "ecommerce-suite/示例与验收/automation.py"
+        ],
+        "expected_workflows": [
+          "suite"
+        ]
+      },
+      "pilot_ui": {
+        "files": [
+          "workbench/static/ecommerce.js"
+        ],
+        "expected_workflows": [
+          "pilot"
+        ]
+      },
+      "pilot_packager": {
+        "files": [
+          "scripts/package-ecommerce.py"
+        ],
+        "expected_workflows": [
+          "pilot"
+        ]
+      },
+      "pilot_package_verifier": {
+        "files": [
+          "scripts/verify-ecommerce-package.py"
+        ],
+        "expected_workflows": [
+          "pilot"
+        ]
+      },
+      "pilot_launcher": {
+        "files": [
+          "启动电商运营壳.cmd"
+        ],
+        "expected_workflows": [
+          "pilot"
+        ]
+      },
+      "pilot_tests": {
+        "files": [
+          "tests/test_ecommerce.py"
+        ],
+        "expected_workflows": [
+          "pilot"
+        ]
+      },
+      "readme": {
+        "files": [
+          "ecommerce-suite/README.md"
+        ],
+        "expected_workflows": [
+          "suite"
+        ]
+      }
+    },
+    "historical_files_unchanged": {
+      "ecommerce-suite/dist/SHA256SUMS-v6.txt": "d33c596d68044c36d99e476d716968f21291bca1157139eefe5308ea2a8ceaa0",
+      "ecommerce-suite/dist/ecommerce-suite-v5.zip": "27b45f6a2877e29ba3f210436ae770c551144f8e5abab8cddd43c83ffc16c6f2",
+      "ecommerce-suite/dist/ecommerce-suite-v6.zip": "9fe0917fa7aaab8d0ed02761c1d68f068465e48cf872d48fa058be43b3f0bfd4",
+      "ecommerce-suite/dist/SHA256SUMS.txt": "f476866a260a533b361ce5553050689f10012944a480a40a9c8d10653be65aa7"
+    },
+    "original_safety_and_pilot_tests": "byte-identical",
+    "merge_trees_equal": "cabebf3f22dc20553d2fe52adce16993ddfc098b"
+  },
+  "fixed_local_checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit": 0,
+      "tail": "estart (tests.test_workbench.StoreTests.test_persistent_restart) ... ok\ntest_platform_type_mismatch (tests.test_workbench.StoreTests.test_platform_type_mismatch) ... ok\ntest_publish_never_fakes_success (tests.test_workbench.StoreTests.test_publish_never_fakes_success) ... ok\ntest_publish_without_review_denied (tests.test_workbench.StoreTests.test_publish_without_review_denied) ... ok\ntest_review_requires_all_true_booleans (tests.test_workbench.StoreTests.test_review_requires_all_true_booleans) ... ok\ntest_tenant_read_isolation (tests.test_workbench.StoreTests.test_tenant_read_isolation) ... ok\n\n----------------------------------------------------------------------\nRan 84 tests in 9.094s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "ecommerce-suite/示例与验收",
+        "-v"
+      ],
+      "exit": 0,
+      "tail": "y.QualityTests.test_duplicate) ... ok\ntest_infinite (test_data_quality.QualityTests.test_infinite) ... ok\ntest_missing_not_zero (test_data_quality.QualityTests.test_missing_not_zero) ... ok\ntest_stale (test_data_quality.QualityTests.test_stale) ... ok\ntest_valid (test_data_quality.QualityTests.test_valid) ... ok\ntest_cases (test_ecom.Tests.test_cases) ... ok\ntest_inventory (test_ecom.Tests.test_inventory) ... ok\ntest_profit (test_ecom.Tests.test_profit) ... ok\ntest_promotion_order (test_ecom.Tests.test_promotion_order) ... ok\ntest_zero_and_invalid (test_ecom.Tests.test_zero_and_invalid) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.040s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "ecommerce-suite/tests",
+        "-v"
+      ],
+      "exit": 0,
+      "tail": "nant_and_platform_cannot_borrow_authorization (test_ci.IsolationTests.test_rebound_tenant_and_platform_cannot_borrow_authorization) ... ok\ntest_archive_source_mismatch_even_with_valid_checksum (test_ci.PackageTests.test_archive_source_mismatch_even_with_valid_checksum) ... ok\ntest_rebuild_and_corruption_detection (test_ci.PackageTests.test_rebuild_and_corruption_detection) ... ok\ntest_structure_and_historical_assets (test_ci.PackageTests.test_structure_and_historical_assets) ... ok\ntest_unsafe_and_duplicate_entries_refused (test_ci.PackageTests.test_unsafe_and_duplicate_entries_refused) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.638s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python",
+        "ecommerce-suite/tools/release.py",
+        "check"
+      ],
+      "exit": 0,
+      "tail": "Structure, historical SHA256, CRC and WorkBuddy layout passed\n"
+    },
+    {
+      "command": [
+        "python",
+        "ecommerce-suite/tools/release.py",
+        "build",
+        "--output",
+        "$ISOLATED_WORKSPACE/build-fixed"
+      ],
+      "exit": 0,
+      "tail": "{\"version\": \"6.1.0\", \"skills\": 26, \"sha256\": \"b78b8abfeb1a07cf225da55b374498e604d7f53e7f59eb10703cad9722fcd981\", \"acceptance\": \"offline-only\"}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/verify-ecommerce.py",
+        "--output",
+        "$ISOLATED_WORKSPACE/http-fixed.json"
+      ],
+      "exit": 0,
+      "tail": "\n      \"http\": 200\n    }\n  ],\n  \"demo_summary\": {\n    \"sku_count\": 3,\n    \"alert_count\": 6,\n    \"profit_rows\": 2,\n    \"profit_missing_rows\": 1,\n    \"covered_net_revenue\": \"1100.00\",\n    \"covered_contribution_profit\": \"305.00\"\n  },\n  \"issue_update_and_export_readback\": \"passed\",\n  \"report_zip_crc\": \"passed\",\n  \"report_members\": [\n    \"report.md\",\n    \"analysis.json\",\n    \"issue-history.json\",\n    \"results.csv\"\n  ],\n  \"report_sha256\": \"df53f10a15b09a05728a9a353f0e5bf6b5d376da980f419a6fb468204a6baef6\",\n  \"template_download\": \"passed\",\n  \"visual_browser_qa\": \"not run by this script\",\n  \"windows_user_machine\": \"not connected; not verified\",\n  \"real_business_file\": \"not supplied; not verified\"\n}\n\n"
+    }
+  ],
+  "package_checks": {
+    "scope": "isolated source package, synthetic offline records only",
+    "python": "3.12.14",
+    "os": "linux",
+    "archive_sha256": "a210388828db76511cc9c9d23969cadac897971e182f910719e13b98aa96fd1b",
+    "manifest_and_crc": "passed",
+    "file_count": 36,
+    "package_tests": "test_http_import_export_guard_and_no_write_routes (tests.test_ecommerce.EcommerceHTTPTests.test_http_import_export_guard_and_no_write_routes) ... ok\ntest_bad_rows_block_entire_batch_and_record_issue (tests.test_ecommerce.EcommerceTests.test_bad_rows_block_entire_batch_and_record_issue) ... ok\ntest_cross_store_records_not_aggregated (tests.test_ecommerce.EcommerceTests.test_cross_store_records_not_aggregated) ... ok\ntest_csv_header_mapping_encoding_and_shape (tests.test_ecommerce.EcommerceTests.test_csv_header_mapping_encoding_and_shape) ... ok\ntest_demo_is_explicit_and_never_real (tests.test_ecommerce.EcommerceTests.test_demo_is_explicit_and_never_real) ... ok\ntest_import_idempotency_persistence_and_source_identity (tests.test_ecommerce.EcommerceTests.test_import_idempotency_persistence_and_source_identity) ... ok\ntest_inventory_price_purchase_and_profit (tests.test_ecommerce.EcommerceTests.test_inventory_price_purchase_and_profit) ... ok\ntest_issue_closure_history_conflict_and_export_scope (tests.test_ecommerce.EcommerceTests.test_issue_closure_history_conflict_and_export_scope) ... ok\ntest_saved_analysis_is_blocked_when_snapshot_becomes_stale (tests.test_ecommerce.EcommerceTests.test_saved_analysis_is_blocked_when_snapshot_becomes_stale) ... ok\ntest_stale_future_period_and_blank_record (tests.test_ecommerce.EcommerceTests.test_stale_future_period_and_blank_record) ... ok\ntest_xlsx_values_and_formula_rejection (tests.test_ecommerce.EcommerceTests.test_xlsx_values_and_formula_rejection) ... ok\ntest_zero_sales_and_missing_cost_not_zero_profit (tests.test_ecommerce.EcommerceTests.test_zero_sales_and_missing_cost_not_zero_profit) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.630s\n\nOK\n",
+    "package_http": {
+      "at_utc": "2026-10-23T05:06:21.508473+00:00",
+      "python": "3.12.14",
+      "os": "linux",
+      "environment": "separate CLI HTTP server process",
+      "data_dir_scenario": "temporary Chinese and space path",
+      "binding": "http://127.0.0.1:45953",
+      "source_kind": "demo",
+      "merchant_connected": false,
+      "assets_http_checks": [
+        {
+          "path": "/",
+          "http": 200
+        },
+        {
+          "path": "/ecommerce.js",
+          "http": 200
+        },
+        {
+          "path": "/ecommerce.css",
+          "http": 200
+        }
+      ],
+      "demo_summary": {
+        "sku_count": 3,
+        "alert_count": 6,
+        "profit_rows": 2,
+        "profit_missing_rows": 1,
+        "covered_net_revenue": "1100.00",
+        "covered_contribution_profit": "305.00"
+      },
+      "issue_update_and_export_readback": "passed",
+      "report_zip_crc": "passed",
+      "report_members": [
+        "report.md",
+        "analysis.json",
+        "issue-history.json",
+        "results.csv"
+      ],
+      "report_sha256": "c9a8fd364914022d56d295160877a7a50bae6943ed137e7aa52afff492018464",
+      "template_download": "passed",
+      "visual_browser_qa": "not run by this script",
+      "windows_user_machine": "not connected; not verified",
+      "real_business_file": "not supplied; not verified"
+    },
+    "windows_user_machine": "not connected; not verified",
+    "operator_acceptance": "not performed"
+  },
+  "original_ci": {
+    "pr9": {
+      "run": 39138203913,
+      "jobs": 5,
+      "conclusion": "success"
+    },
+    "pr15": {
+      "run": 39814536608,
+      "jobs": 4,
+      "conclusion": "success"
+    }
+  },
+  "combined_ci": {
+    "source_commit": "c3680c1988407ee7b116ec76b01a9e8c9cccbe26",
+    "test_merge": "9a34061f425f187233b52e094fead9fc171bb41b",
+    "tested_tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c",
+    "suite": {
+      "run": 39904141476,
+      "conclusion": "success",
+      "jobs": 5,
+      "matrix_tests_each": {
+        "offline": 36,
+        "safety": 14
+      },
+      "reproducibility": "all four inner ZIP files identical",
+      "inner_zip_sha256": "b78b8abfeb1a07cf225da55b374498e604d7f53e7f59eb10703cad9722fcd981",
+      "windows_log_job": 120252093129,
+      "reproducibility_log_job": 120252265575
+    },
+    "pilot": {
+      "run": 39904141579,
+      "conclusion": "success",
+      "jobs": 4,
+      "matrix_tests_each": {
+        "source": 84,
+        "extracted_package": 12
+      },
+      "source_http": "passed",
+      "extracted_package_http": "passed",
+      "windows_powershell_5_1_and_7": "passed",
+      "windows_log_job": 120252093569
+    }
+  },
+  "prepared_merge_simulations": {
+    "prepared-9-15": {
+      "merges": [
+        {
+          "ref": "origin/codex/ecommerce-ci",
+          "exit": 0
+        },
+        {
+          "ref": "origin/codex/ecommerce-operations-pilot",
+          "exit": 0
+        }
+      ],
+      "tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c"
+    },
+    "prepared-15-9": {
+      "merges": [
+        {
+          "ref": "origin/codex/ecommerce-operations-pilot",
+          "exit": 0
+        },
+        {
+          "ref": "origin/codex/ecommerce-ci",
+          "exit": 0
+        }
+      ],
+      "tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c"
+    }
+  },
+  "remaining_acceptance": [
+    "Windows 11 user machine",
+    "operator trial",
+    "real business file",
+    "visual browser QA"
+  ],
+  "final_documentation_update": "Only this evidence JSON and its companion review Markdown changed after the CI-tested source commit."
+}

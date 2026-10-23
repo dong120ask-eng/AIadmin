@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AIadmin 电商运营台</title><link rel="stylesheet" href="/ecommerce.css"><script defer src="/ecommerce.js"></script></head>
+<body><header><div class="brand">AIadmin <span>内部试用</span></div><nav><a href="#import">数据导入</a><a href="#analysis">经营分析</a><a href="#tasks">异常待办</a></nav><span class="pill">离线 · 只读</span></header>
+<main><section class="intro"><p class="eyebrow">电商运营 / 工作台</p><h1>先发现异常，再核查处理。</h1><p>导入一份店铺经营表，查看库存、采购、价格与贡献利润。所有建议均由运营人员核查后处理。</p></section>
+<div class="notice">当前使用人工导出文件，尚未连接商家后台。此页面只分析和记事，不执行采购、投放、改价、调库存或报名。</div>
+<div id="message" role="status" aria-live="polite"></div>
+<section id="import" class="panel"><div class="section-head"><div><p class="eyebrow">01 / 导入</p><h2>导入经营数据</h2></div><a class="button secondary" href="/api/ecommerce/template">下载空白 CSV 模板</a></div>
+<p class="muted">每批仅含同一店铺、同一物理仓库、同一统计区间，币种为人民币。必填前7列；价格、采购与8项收入成本列可留空，留空的分析将标记未检查。Excel须仅一张表、SKU设为文本、公式粘贴为值。支持 UTF-8 / GB18030 CSV 和 XLSX，最多4MB / 5000行。</p>
+<form id="upload"><div class="grid">
+<label>数据类型<select name="kind" required><option value="">请选择</option><option value="real">真实业务数据（人工声明）</option><option value="demo">演示数据</option><option value="test">模拟测试</option></select></label>
+<label>平台<select name="platform" id="platform" required></select></label>
+<label>店铺 / 物理仓库<input name="store_id" maxlength="500" required placeholder="如：京东A店 / 北京仓"></label>
+<label>数据来源<input name="source" maxlength="500" required placeholder="如：京东后台手工导出，运营张某"></label>
+<label>文件导出时间<input name="exported_at" type="datetime-local" required></label>
+<label>统计开始时间<input name="period_start" type="datetime-local" required></label>
+<label>统计结束时间（不含）<input name="period_end" type="datetime-local" required></label>
+<label class="wide">业务口径说明<input name="metric_definition" maxlength="500" required placeholder="说明销量是否扣退货、库存是否含占用、收入成本是否同区间等"></label>
+<label class="wide">经营数据文件<input id="file" type="file" accept=".csv,.xlsx" required></label>
+</div><p class="muted">时间按本机时区录入并保存时区。导出时间超过7天或统计区间不合法时，只留存质量问题，不生成经营建议。</p><button type="submit" id="submit">校验并分析</button> <button type="button" class="secondary" id="demo">载入演示数据（合成）</button></form></section>
+<section class="panel"><div class="section-head"><h2>历史导入</h2><button class="secondary" id="refresh">刷新</button></div><p class="muted">同一文件与来源信息重复导入会返回原记录。演示、模拟和业务数据分别标记，分析只针对当前批次。</p><div id="history" class="history"></div></section>
+<section id="analysis" class="panel"><div class="section-head"><div><p class="eyebrow">02 / 分析</p><h2>经营概览</h2></div><a id="export" class="button secondary hidden">导出报告 ZIP</a></div><div id="source" class="notice">选择历史记录或导入一份文件后，查看分析结果。</div><div id="quality"></div><div id="cards" class="cards"></div><div class="table-wrap"><table><thead><tr><th>SKU</th><th>可用库存</th><th>日均销量</th><th>覆盖天数</th><th>补货复核量</th><th>库存提示</th><th>贡献利润 / ROAS</th><th>价格检查</th></tr></thead><tbody id="results"></tbody></table></div><details><summary>计算口径与适用限制</summary><p id="method"></p></details></section>
+<section id="tasks" class="panel"><p class="eyebrow">03 / 核查</p><h2>异常待办</h2><p class="muted">仅记录人工处理过程。关闭代表本地备注已记录，不代表店铺数据已修改或业务结果已验证。</p><div id="issues"><p>尚未选择导入记录。</p></div></section>
+<footer>AIadmin · 本机试用版 · 请由同一台受控电脑的运营人员使用；暂无用户登录和跨电脑协作。</footer></main></body></html>
