@@ -152,3 +152,24 @@ python scripts/verify-ecommerce.py --output /tmp/ecommerce-http-evidence.json
 | 多人/多电脑协作 | 账号登录、服务端授权、审计、备份与部署方案。本机资料分区和负责人文本不代表用户身份认证 |
 
 当前页面不会调用这些写入动作，也没有后台代理或外部通知功能。
+
+## PowerShell 真实启动回归（2026-10-23补充）
+
+新增 `scripts/verify-ecommerce-windows.py`，在Windows上分别调用真正的 `powershell.exe` 5.1 和 `pwsh.exe` 7。测试从独立ZIP解压到中文、空格、方括号及 `&` 路径，用隔离数据目录（含末尾反斜杠）启动实际服务，不再用 `-CheckOnly` 代替启动验收。
+
+每种Shell覆盖11项：真实HTTP就绪、合成演示/报告导出/停服重启回读；仅检查模式；已有HTTP服务占用端口且不得被误认或终止；数据目录错误；服务就绪前异常退出及UTF-8错误日志；HTTP 503超时；就绪后服务被终止；启动器强制退出清理服务；启动器强退清理后代进程；已有停止信号；日志目录失败时的临时日志。故障注入仅修改临时解压副本，报告会明确标记；正常路径运行真实应用。
+
+启动器修正：优先使用PATH选定的Python；HTTP就绪后才打开浏览器；逐次记录UTF-8启动日志、环境检查输出和Python服务stdout/stderr；启动失败/超时/服务异常退出返回非零；通过Windows Job Object在正常停止、Ctrl+C的finally以及启动器被强杀时清理其所启动的进程树。无法建立进程清理边界时拒绝启动。日志默认在数据目录的 `launcher-logs`；指定日志目录无法创建时写入 `%TEMP%\AIadmin-ecommerce-logs` 并显示位置。日志只供本机排障，不纳入经营报告ZIP，可能含本机路径，不要直接公开业务环境日志。
+
+本机自动化可使用 `-StopFile <尚不存在的文件路径>`：服务就绪后创建该文件，启动器停止服务并返回0；文件已存在则拒绝启动。`-StartupTimeoutSeconds` 默认为30秒（1至120），`-LogDir` 可指定独立诊断目录。员工正常使用仍为双击CMD启动、Ctrl+C停止。
+
+完整仓库Windows复现：
+
+```powershell
+python scripts/verify-ecommerce-windows.py --shell powershell --output build/ecommerce-pilot/windows-ps51-evidence.json
+python scripts/verify-ecommerce-windows.py --shell pwsh --output build/ecommerce-pilot/windows-ps7-evidence.json
+```
+
+CI保留Windows/Ubuntu × Python3.12/3.13四组。每个Windows组执行两种Shell的全部生命周期测试，失败时也上传JSON证据和隔离测试日志；不会上传数据库、经营文件或HTTP令牌。实际通过结果及对应提交以GitHub Actions为准，不以新增测试源码代替通过证明。
+
+仍需员工Windows11实机验收：双击CMD、真实控制台Ctrl+C/关窗、默认浏览器打开与页面交互、实际安装的Python/权限/安全软件、真实CSV/XLSX字段与至少3个SKU对账，以及停服备份恢复。云端Windows runner及合成数据不替代这些验收；PR继续保持草稿。

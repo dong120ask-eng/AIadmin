@@ -11,6 +11,7 @@ on:
       - 'scripts/verify-ecommerce.py'
       - 'scripts/package-ecommerce.py'
       - 'scripts/verify-ecommerce-package.py'
+      - 'scripts/verify-ecommerce-windows.py'
       - '启动电商运营壳.cmd'
       - '.github/workflows/ecommerce-pilot.yml'
   pull_request:
@@ -24,6 +25,7 @@ on:
       - 'scripts/verify-ecommerce.py'
       - 'scripts/package-ecommerce.py'
       - 'scripts/verify-ecommerce-package.py'
+      - 'scripts/verify-ecommerce-windows.py'
       - '启动电商运营壳.cmd'
       - '.github/workflows/ecommerce-pilot.yml'
   workflow_dispatch:
@@ -57,19 +59,22 @@ jobs:
         run: python scripts/verify-ecommerce.py --output build/ecommerce-pilot/http-evidence.json
       - name: Packaged source manifest, isolated tests and CLI HTTP smoke
         run: python scripts/verify-ecommerce-package.py --output build/ecommerce-pilot/package-evidence.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ecommerce-pilot-${{ matrix.os }}-py${{ matrix.python }}
-          path: build/ecommerce-pilot/*-evidence.json
-          if-no-files-found: error
       # The suite workflow owns all 36 calculation/gate regressions plus the
       # 14 installer/isolation/archive tests. Keep both workflows on shared-tool
       # changes: the pilot additionally verifies their HTTP integration.
-      - name: Windows PowerShell 5.1 startup check
+      - name: Windows PowerShell 5.1 actual launcher lifecycle (synthetic only)
         if: runner.os == 'Windows'
         shell: powershell
-        run: ./scripts/start-ecommerce.ps1 -CheckOnly -NoBrowser
-      - name: Windows PowerShell 7 startup check
-        if: runner.os == 'Windows'
+        run: python scripts/verify-ecommerce-windows.py --shell powershell --output build/ecommerce-pilot/windows-ps51-evidence.json
+      - name: Windows PowerShell 7 actual launcher lifecycle (synthetic only)
+        if: always() && runner.os == 'Windows'
         shell: pwsh
-        run: ./scripts/start-ecommerce.ps1 -CheckOnly -NoBrowser
+        run: python scripts/verify-ecommerce-windows.py --shell pwsh --output build/ecommerce-pilot/windows-ps7-evidence.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ecommerce-pilot-${{ matrix.os }}-py${{ matrix.python }}
+          path: |
+            build/ecommerce-pilot/*-evidence.json
+            build/ecommerce-pilot/*-logs/**/*.log
+          if-no-files-found: error
