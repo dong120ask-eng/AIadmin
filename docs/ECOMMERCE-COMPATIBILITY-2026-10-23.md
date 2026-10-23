@@ -63,7 +63,18 @@
 
 修复版本地环境为 Linux / Python 3.12.14：84 + 36 + 14 项均通过，无跳过；独立 HTTP 验收通过；解压包 12 项测试及独立 HTTP 验收通过。新发行 ZIP 的构建与源码核验成功。其摘要与原 PR #9 不同，因为 README 已合并且补充发行边界；版本、源码提交与 Actions artifact 应共同识别产物，不能沿用旧提交的摘要。
 
-机器可读的合并、测试和历史资产哈希证据见同目录 `ECOMMERCE-COMPATIBILITY-EVIDENCE-2026-10-23.json`。组合提交的云端验证在推送后补录；这里不借用原 PR 的成功状态宣称组合提交已经跨平台通过。
+组合修复提交：[`c3680c1988407ee7b116ec76b01a9e8c9cccbe26`](https://github.com/dong120ask-eng/AIadmin/commit/c3680c1988407ee7b116ec76b01a9e8c9cccbe26)。实际测试合并提交为 `9a34061f425f187233b52e094fead9fc171bb41b`，其树与本地受测树完全一致：`c3fd0c443d3de5a9dfaab8f91e03accf79400d8c`。
+
+| 组合提交的实际 CI | 结果 |
+|---|---|
+| [Suite 39904141476](https://github.com/dong120ask-eng/AIadmin/actions/runs/39904141476) | 四环境各 36 + 14 项测试、安装与构建校验通过；第五项跨环境重现性通过，共五个作业成功 |
+| [Pilot 39904141579](https://github.com/dong120ask-eng/AIadmin/actions/runs/39904141579) | 四环境各 84 项源码测试、完整源码 HTTP、解压包 12 项测试及 HTTP 通过，共四个作业成功；Windows PS5.1/7 均通过 |
+
+已实际读取组合提交 Windows 3.12 的 suite/pilot 日志，以及重现性作业日志。四环境内层 `ecommerce-suite-6.1.0.zip` 摘要均为 `b78b8abfeb1a07cf225da55b374498e604d7f53e7f59eb10703cad9722fcd981`，与修复版本地构建一致。Actions 外层 artifact 的摘要可以不同，不应混为发行 ZIP 的摘要。
+
+修复推送后再次从 main 模拟 #9 → 更新后 #15，以及更新后 #15 → #9：两种顺序均无冲突，结果树均与上述受测树一致。反向顺序中 #9 已作为 #15 的祖先而不再产生新变更；业务合并仍推荐先 #9，等待 #15 实机与人员验收。
+
+机器可读的合并、测试、实际 CI 和历史资产哈希证据见同目录 `ECOMMERCE-COMPATIBILITY-EVIDENCE-2026-10-23.json`。随后补录这些结果只修改核查文档与 JSON，不改变上述已验证的程序、工作流或发行内容。
 
 ## 合并关卡与限制
 

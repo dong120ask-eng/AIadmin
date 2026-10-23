@@ -404,5 +404,70 @@
       "conclusion": "success"
     }
   },
-  "combined_ci": "pending remote branch update; see subsequent GitHub Actions evidence"
+  "combined_ci": {
+    "source_commit": "c3680c1988407ee7b116ec76b01a9e8c9cccbe26",
+    "test_merge": "9a34061f425f187233b52e094fead9fc171bb41b",
+    "tested_tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c",
+    "suite": {
+      "run": 39904141476,
+      "conclusion": "success",
+      "jobs": 5,
+      "matrix_tests_each": {
+        "offline": 36,
+        "safety": 14
+      },
+      "reproducibility": "all four inner ZIP files identical",
+      "inner_zip_sha256": "b78b8abfeb1a07cf225da55b374498e604d7f53e7f59eb10703cad9722fcd981",
+      "windows_log_job": 120252093129,
+      "reproducibility_log_job": 120252265575
+    },
+    "pilot": {
+      "run": 39904141579,
+      "conclusion": "success",
+      "jobs": 4,
+      "matrix_tests_each": {
+        "source": 84,
+        "extracted_package": 12
+      },
+      "source_http": "passed",
+      "extracted_package_http": "passed",
+      "windows_powershell_5_1_and_7": "passed",
+      "windows_log_job": 120252093569
+    }
+  },
+  "prepared_merge_simulations": {
+    "prepared-9-15": {
+      "merges": [
+        {
+          "ref": "origin/codex/ecommerce-ci",
+          "exit": 0
+        },
+        {
+          "ref": "origin/codex/ecommerce-operations-pilot",
+          "exit": 0
+        }
+      ],
+      "tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c"
+    },
+    "prepared-15-9": {
+      "merges": [
+        {
+          "ref": "origin/codex/ecommerce-operations-pilot",
+          "exit": 0
+        },
+        {
+          "ref": "origin/codex/ecommerce-ci",
+          "exit": 0
+        }
+      ],
+      "tree": "c3fd0c443d3de5a9dfaab8f91e03accf79400d8c"
+    }
+  },
+  "remaining_acceptance": [
+    "Windows 11 user machine",
+    "operator trial",
+    "real business file",
+    "visual browser QA"
+  ],
+  "final_documentation_update": "Only this evidence JSON and its companion review Markdown changed after the CI-tested source commit."
 }
