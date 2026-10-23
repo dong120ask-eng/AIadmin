@@ -58,10 +58,10 @@ try {
     Write-PilotLog "启动日志：$LauncherLog"
     # Prefer setup-python / the operator's PATH version over py -3's latest.
     if (Get-Command python -CommandType Application -ErrorAction SilentlyContinue) {
-        $PythonExe = (Get-Command python -CommandType Application).Source
+        $PythonExe = (Get-Command python -CommandType Application | Select-Object -First 1).Source
         $PythonArgs = @()
     } elseif (Get-Command py -CommandType Application -ErrorAction SilentlyContinue) {
-        $PythonExe = (Get-Command py -CommandType Application).Source
+        $PythonExe = (Get-Command py -CommandType Application | Select-Object -First 1).Source
         $PythonArgs = @('-3')
     } else { throw '请安装 Python 3.12 或更新版，并添加到 PATH 或启用 Python Launcher。' }
 
