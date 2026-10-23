@@ -1,0 +1,85 @@
+name: Ecommerce Suite CI
+on:
+  push:
+    branches: [main]
+    paths: ['ecommerce-suite/**', '.github/workflows/ecommerce-suite-ci.yml']
+  pull_request:
+    branches: [main]
+    paths: ['ecommerce-suite/**', '.github/workflows/ecommerce-suite-ci.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ecommerce-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: ecommerce-${{ matrix.os }}-py${{ matrix.python }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Skill structure, historical ZIP and SHA256
+        run: python ecommerce-suite/tools/release.py check
+      - name: Calculation and automation gate regressions
+        run: python -m unittest discover -s ecommerce-suite/示例与验收 -p 'test_*.py' -v
+      - name: Isolated installer, rollback, idempotence, identity and packaging regressions
+        run: python -m unittest discover -s ecommerce-suite/tests -p 'test_*.py' -v
+      - name: Build versioned deterministic bundle
+        run: python ecommerce-suite/tools/release.py build --output build/ecommerce
+      - name: Independent archive and SHA256 verification
+        run: python ecommerce-suite/tools/release.py verify --output build/ecommerce
+      - name: Record source and runtime evidence
+        shell: bash
+        run: |
+          git rev-parse HEAD > build/ecommerce/source-commit.txt
+          python --version > build/ecommerce/python-version.txt
+          printf '%s\n' 'Offline regression only; Windows client recognition, WorkBuddy import and merchant execution remain unverified.' > build/ecommerce/acceptance.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ecommerce-${{ matrix.os }}-py${{ matrix.python }}-${{ github.sha }}
+          path: build/ecommerce/*
+          if-no-files-found: error
+  reproducibility:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ecommerce-*-${{ github.sha }}
+          path: artifacts
+      - name: Verify all four OS/runtime bundles against source and each other
+        run: |
+          python - <<'PY'
+          import hashlib, pathlib, subprocess, sys
+          paths = sorted(pathlib.Path('artifacts').iterdir())
+          assert len(paths) == 4, paths
+          hashes = set()
+          for p in paths:
+              subprocess.run([sys.executable, 'ecommerce-suite/tools/release.py', 'verify', '--output', str(p)], check=True)
+              archives = list(p.glob('*.zip'))
+              assert len(archives) == 1
+              hashes.add(hashlib.sha256(archives[0].read_bytes()).hexdigest())
+          assert len(hashes) == 1, 'Cross-platform archive hashes differ'
+          print('All four artifacts reproduce exactly:', hashes.pop())
+          PY

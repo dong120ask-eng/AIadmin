@@ -1,18 +1,40 @@
 name: Ecommerce read-only pilot
 on:
-  pull_request:
+  push:
+    branches: [main]
     paths:
       - 'workbench/**'
       - 'tests/**'
-      - 'ecommerce-suite/**'
+      - 'ecommerce-suite/示例与验收/ecom_tools.py'
+      - 'ecommerce-suite/示例与验收/data_quality.py'
       - 'scripts/start-ecommerce.ps1'
       - 'scripts/verify-ecommerce.py'
+      - 'scripts/package-ecommerce.py'
+      - 'scripts/verify-ecommerce-package.py'
+      - '启动电商运营壳.cmd'
+      - '.github/workflows/ecommerce-pilot.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'workbench/**'
+      - 'tests/**'
+      - 'ecommerce-suite/示例与验收/ecom_tools.py'
+      - 'ecommerce-suite/示例与验收/data_quality.py'
+      - 'scripts/start-ecommerce.ps1'
+      - 'scripts/verify-ecommerce.py'
+      - 'scripts/package-ecommerce.py'
+      - 'scripts/verify-ecommerce-package.py'
+      - '启动电商运营壳.cmd'
       - '.github/workflows/ecommerce-pilot.yml'
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ecommerce-pilot-${{ github.ref }}
+  cancel-in-progress: true
 env:
   PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
 jobs:
   pilot:
     strategy:
@@ -23,24 +45,26 @@ jobs:
     timeout-minutes: 10
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
       - name: Workbench and pilot HTTP / parser / analysis tests
         run: python -m unittest discover -v
       - name: Independent CLI and HTTP smoke
         run: python scripts/verify-ecommerce.py --output build/ecommerce-pilot/http-evidence.json
+      - name: Packaged source manifest, isolated tests and CLI HTTP smoke
+        run: python scripts/verify-ecommerce-package.py --output build/ecommerce-pilot/package-evidence.json
       - uses: actions/upload-artifact@v4
         with:
           name: ecommerce-pilot-${{ matrix.os }}-py${{ matrix.python }}
-          path: build/ecommerce-pilot/http-evidence.json
-      - name: Existing v6 offline regressions
-        run: |
-          python ecommerce-suite/示例与验收/test_ecom.py
-          python ecommerce-suite/示例与验收/test_capacity.py
-          python ecommerce-suite/示例与验收/test_automation.py
-          python ecommerce-suite/示例与验收/test_data_quality.py
+          path: build/ecommerce-pilot/*-evidence.json
+          if-no-files-found: error
+      # The suite workflow owns all 36 calculation/gate regressions plus the
+      # 14 installer/isolation/archive tests. Keep both workflows on shared-tool
+      # changes: the pilot additionally verifies their HTTP integration.
       - name: Windows PowerShell 5.1 startup check
         if: runner.os == 'Windows'
         shell: powershell
