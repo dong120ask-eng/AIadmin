@@ -34,6 +34,14 @@ function Quote-PilotArgument([string]$Value) {
     return '"' + $Escaped + '"'
 }
 
+# Read while the pipe pump still owns a write handle (Windows sharing is
+# symmetric; File.ReadAllText's default FileShare.Read rejects a live writer).
+function Read-PilotText([string]$Path) {
+    $Stream = New-Object IO.FileStream($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::ReadWrite)
+    $Reader = New-Object IO.StreamReader($Stream, $Utf8)
+    try { return $Reader.ReadToEnd() } finally { $Reader.Dispose() }
+}
+
 function Start-PilotPython([string[]]$Arguments, [string]$Stdout, [string]$Stderr) {
     $Joined = (($PythonArgs + $Arguments) | ForEach-Object { Quote-PilotArgument $_ }) -join ' '
     # ProcessStartInfo treats paths literally; Start-Process may resolve [] as
@@ -150,7 +158,7 @@ public static class EcommercePilotJob {
         while ([DateTime]::UtcNow -lt $Deadline) {
             if ($Child.HasExited) { throw "服务异常退出，退出码 $($Child.ExitCode)。错误日志：$Stderr" }
             # Only this child's post-bind message may authorize the HTTP probe.
-            if ([IO.File]::Exists($Stdout) -and [IO.File]::ReadAllText($Stdout, $Utf8).Contains($Base)) {
+            if ([IO.File]::Exists($Stdout) -and (Read-PilotText $Stdout).Contains($Base)) {
                 try {
                     $Response = Invoke-WebRequest -UseBasicParsing -Uri "$Base/api/ecommerce/config" -TimeoutSec 1
                     $Config = $Response.Content | ConvertFrom-Json
@@ -178,6 +186,7 @@ public static class EcommercePilotJob {
     }
     Write-PilotLog "启动或运行失败：$($_.Exception.Message)"
     Write-PilotLog "出错位置：$($_.InvocationInfo.PositionMessage)"
+    Write-PilotLog ($_.Exception.ToString())
     Write-PilotLog "请检查端口和目录写权限。启动日志：$LauncherLog"
 } finally {
     if ($Job) { $Job.Dispose() }
