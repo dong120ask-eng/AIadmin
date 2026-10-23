@@ -17,6 +17,7 @@ $ExitCode = 1
 $Job = $null
 $Child = $null
 $LauncherLog = $null
+$Pumps = @()
 $Utf8 = New-Object Text.UTF8Encoding($false)
 
 function Write-PilotLog([string]$Message) {
@@ -35,13 +36,31 @@ function Quote-PilotArgument([string]$Value) {
 
 function Start-PilotPython([string[]]$Arguments, [string]$Stdout, [string]$Stderr) {
     $Joined = (($PythonArgs + $Arguments) | ForEach-Object { Quote-PilotArgument $_ }) -join ' '
-    $Process = Start-Process -FilePath $PythonExe -ArgumentList $Joined -WorkingDirectory $Root `
-        -RedirectStandardOutput $Stdout -RedirectStandardError $Stderr -NoNewWindow -PassThru
+    # ProcessStartInfo treats paths literally; Start-Process may resolve [] as
+    # PowerShell wildcards in a working directory. Keep native argv quoting.
+    $Info = New-Object Diagnostics.ProcessStartInfo
+    $Info.FileName = $PythonExe
+    $Info.Arguments = $Joined
+    $Info.WorkingDirectory = $Root
+    $Info.UseShellExecute = $false
+    $Info.CreateNoWindow = $true
+    $Info.RedirectStandardOutput = $true
+    $Info.RedirectStandardError = $true
+    $Process = New-Object Diagnostics.Process
+    $Process.StartInfo = $Info
+    $OutStream = New-Object IO.FileStream($Stdout, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::ReadWrite, 1)
+    $ErrStream = New-Object IO.FileStream($Stderr, [IO.FileMode]::Create, [IO.FileAccess]::Write, [IO.FileShare]::ReadWrite, 1)
+    $Started = $false
     try {
-        # Covers py.exe descendants and abrupt launcher death (no finally).
+        [void]$Process.Start()
+        $Started = $true
         [EcommercePilotJob]::Assign($Job, $Process.Handle)
+        $script:Pumps += [pscustomobject]@{ Id=$Process.Id; Task=$Process.StandardOutput.BaseStream.CopyToAsync($OutStream); Stream=$OutStream }
+        $script:Pumps += [pscustomobject]@{ Id=$Process.Id; Task=$Process.StandardError.BaseStream.CopyToAsync($ErrStream); Stream=$ErrStream }
     } catch {
-        Stop-Process -Id $Process.Id -Force -ErrorAction SilentlyContinue
+        if ($Started -and -not $Process.HasExited) { $Process.Kill() }
+        $OutStream.Dispose()
+        $ErrStream.Dispose()
         throw
     }
     return $Process
@@ -105,11 +124,14 @@ public static class EcommercePilotJob {
 }
 '@
     }
+    Write-PilotLog "Python：$PythonExe"
     $Job = [EcommercePilotJob]::Create()
     $CheckOut = Join-Path $LogDir "$Run-check.stdout.log"
     $CheckErr = Join-Path $LogDir "$Run-check.stderr.log"
     $Child = Start-PilotPython @('-c', "import sys,sqlite3; assert sys.version_info >= (3,12), 'Requires Python 3.12+'; from workbench.ecommerce import TOOLS,QUALITY; print('Python ' + sys.version.split()[0] + ' / SQLite / offline modules OK')") $CheckOut $CheckErr
     if (-not $Child.WaitForExit(15000)) { throw '运行环境检查超时。' }
+    foreach ($Pump in $Pumps) { $Pump.Task.Wait(5000) | Out-Null; $Pump.Stream.Dispose() }
+    $Pumps = @()
     if ($Child.ExitCode -ne 0) { throw "运行环境检查失败，需要 Python 3.12+ 和完整源码。错误日志：$CheckErr" }
     Write-PilotLog ([IO.File]::ReadAllText($CheckOut, $Utf8).Trim())
     if ($CheckOnly) {
@@ -155,6 +177,7 @@ public static class EcommercePilotJob {
         $LauncherLog = Join-Path $Fallback ([guid]::NewGuid().ToString('N') + '-launcher.log')
     }
     Write-PilotLog "启动或运行失败：$($_.Exception.Message)"
+    Write-PilotLog "出错位置：$($_.InvocationInfo.PositionMessage)"
     Write-PilotLog "请检查端口和目录写权限。启动日志：$LauncherLog"
 } finally {
     if ($Job) { $Job.Dispose() }
@@ -162,6 +185,7 @@ public static class EcommercePilotJob {
         if (-not $Child.HasExited) { $Child.WaitForExit(5000) | Out-Null }
         $Child.Dispose()
     }
+    foreach ($Pump in $Pumps) { $Pump.Task.Wait(5000) | Out-Null; $Pump.Stream.Dispose() }
     if ($LauncherLog) { Write-PilotLog "启动器结束，退出码 $ExitCode；所启动的服务进程已清理。" }
 }
 exit $ExitCode
